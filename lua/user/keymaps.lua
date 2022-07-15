@@ -52,6 +52,12 @@ keymap("v", ">", ">gv", opts)
 
 -- Plugins --
 
+-- Align --
+keymap("x", "aa", function() require'align'.align_to_char(1, true) end, opts) -- Aligns to 1 character, looking left
+keymap("x", "as", function() require'align'.align_to_char(2, true, true) end, opts) -- Aligns to 2 characters, looking left and with previews
+keymap("x", "aw", function() require'align'.align_to_char(false, true, true) end, opts) -- Aligns to a string, looking left and with previews
+keymap("x", "ar", function() require'align'.align_to_char(true, true, true) end, opts) -- Aligns to a Lua pattern, looking left and with previews
+
 -- NvimTree
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 

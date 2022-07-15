@@ -150,6 +150,9 @@ return packer.startup(function(use)
     ft = "markdown",
   }
 
+  -- Alignment
+  use { 'Vonr/align.nvim', commit = "368343964ac6d30f913bb46c272fea1c4d477bc5" }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
