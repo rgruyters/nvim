@@ -1,25 +1,22 @@
-# A Basic Stable IDE config for Neovim
+# My basic IDE config for Neovim
 
-> Why does this repo exist?
+## Install Neovim >0.8
 
-This config attempts to provide a rock solid fully featured starting point for someone new to Neovim, or just tired of maintaining the basic IDE components of their config. 
+Install Neovim from a package manager of your choice e.g. brew, apt, pacman
+etc.. For this config we need to have Neovim version 0.8 or higher.
 
-> What makes it "rock solid"?
+On a Mac:
 
-All of the included plugins are pinned to a version that ensures they are compatible and will not update potentially introducing errors into your config. For every Neovim release I will update this repo along with the community to keep it up to date with the newest versions.
+```sh
+brew install --HEAD neovim
+```
 
-As I mentioned, this config is meant as a starting point for people new to Neovim who want a familiar IDE experience. The config has a very simple structure that makes it easy to add new plugins. 
-
-## Install Neovim 0.7
-
-You can install Neovim with your package manager e.g. brew, apt, pacman etc.. but remember that when you update your packages Neovim may be upgraded to a newer version.
-
-If you would like to make sure Neovim only updates when you want it to than I recommend installing from source:
+If you would like to make sure Neovim only updates when you want it to
+than I recommend installing from source:
 
 ```sh
 git clone https://github.com/neovim/neovim.git
 cd neovim
-git checkout release-0.7
 make CMAKE_BUILD_TYPE=Release
 sudo make install
 ```
@@ -29,30 +26,33 @@ sudo make install
 Make sure to remove or move your current `nvim` directory
 
 ```sh
-git clone https://github.com/LunarVim/nvim-basic-ide.git ~/.config/nvim
+git clone https://github.com/rgruyters/nvim.git ~/.config/nvim
 ```
 
-Run `nvim` and wait for the plugins to be installed 
+Run `nvim` and wait for the plugins to be installed
 
-**NOTE** (You will notice treesitter pulling in a bunch of parsers the next time you open Neovim) 
+**NOTE** (You will notice treesitter pulling in a bunch of parsers the
+next time you open Neovim)
 
-**NOTE** Checkout this file for some predefined keymaps: [keymaps](https://github.com/LunarVim/nvim-basic-ide/blob/master/lua/user/keymaps.lua)
+**NOTE** Checkout this file for some predefined keymaps:
+[keymaps](https://github.com/LunarVim/nvim-basic-ide/blob/master/lua/user/keymaps.lua)
 
 ## Get healthy
 
 Open `nvim` and enter the following:
 
-```
+```neovim
 :checkhealth
 ```
 
-You'll probably notice you don't have support for copy/paste also that python and node haven't been setup
+You'll probably notice you don't have support for copy/paste also that python
+and node haven't been setup
 
 So let's fix that
 
 First we'll fix copy/paste
 
-- On mac `pbcopy` should be builtin
+- On Mac `pbcopy` should be builtin
 
 - On Ubuntu
 
@@ -61,7 +61,7 @@ First we'll fix copy/paste
   sudo apt install wl-clipboard # for wayland
   ```
 
-Next we need to install python support (node is optional)
+Next we need to install Python support (node is optional)
 
 - Neovim python support
 
@@ -75,20 +75,24 @@ Next we need to install python support (node is optional)
   npm i -g neovim
   ```
 
-We will also need `ripgrep` for Telescope to work: 
+We will also need `ripgrep` for Telescope to work:
 
 - Ripgrep
 
   ```sh
-  sudo apt install ripgrep
+  brew install ripgrep # for Mac
+  sudo apt install ripgrep # for Ubuntu
   ```
+
 ---
 
-**NOTE** make sure you have [node](https://nodejs.org/en/) installed, I recommend a node manager like [fnm](https://github.com/Schniz/fnm).
+**NOTE** make sure you have [node](https://nodejs.org/en/) installed, I
+recommend a node manager like [fnm](https://github.com/Schniz/fnm).
 
 ## Fonts
 
-I recommend using the following repo to get a "Nerd Font" (Font that supports icons)
+I recommend using the following repo to get a "[Nerd Font](https://github.com/ryanoasis/nerd-fonts)"
+(Font that supports icons)
 
 [getnf](https://github.com/ronniedroid/getnf)
 
@@ -100,7 +104,7 @@ To add a new LSP
 
 First Enter:
 
-```
+```neovim
 :LspInstallInfo
 ```
 
@@ -110,17 +114,14 @@ Next you will need to add the server to this list: [servers](https://github.com/
 
 ### Formatters and linters
 
-Make sure the formatter or linter is installed and add it to this setup function: [null-ls](https://github.com/LunarVim/nvim-basic-ide/blob/8b9ec3bffe8c8577042baf07c75408532a733fea/lua/user/lsp/null-ls.lua#L13)
+Make sure the formatter or linter is installed and add it to this setup function:
+[null-ls](https://github.com/LunarVim/nvim-basic-ide/blob/8b9ec3bffe8c8577042baf07c75408532a733fea/lua/user/lsp/null-ls.lua#L13)
 
 **NOTE** Some are already setup as examples, remove them if you want
 
 ### Plugins
 
 You can install new plugins here: [plugins](https://github.com/LunarVim/nvim-basic-ide/blob/8b9ec3bffe8c8577042baf07c75408532a733fea/lua/user/plugins.lua#L42)
-
----
-
-## Plugins
 
 - [packer](https://github.com/wbthomason/packer.nvim)
 - [plenary](https://github.com/nvim-lua/plenary.nvim)
@@ -137,8 +138,6 @@ You can install new plugins here: [plugins](https://github.com/LunarVim/nvim-bas
 - [impatient.nvim](https://github.com/lewis6991/impatient.nvim)
 - [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
 - [alpha-nvim](https://github.com/goolord/alpha-nvim)
-- [tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
-- [darkplus.nvim](https://github.com/LunarVim/darkplus.nvim)
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 - [cmp-buffer](https://github.com/hrsh7th/cmp-buffer)
 - [cmp-path](https://github.com/hrsh7th/cmp-path)
@@ -154,12 +153,18 @@ You can install new plugins here: [plugins](https://github.com/LunarVim/nvim-bas
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
-- [nvim-dap](https://github.com/mfussenegger/nvim-dap)
-- [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
-- [DAPInstall.nvim](https://github.com/ravenxrz/DAPInstall.nvim)
+- [which-key.nvim](https://github.com/folke/which-key.nvim)
+- [nvim-notify](https://github.com/rcarriga/nvim-notify)
+- [nvim-gps](https://github.com/christianchiarulli/nvim-gps)
+- [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
+- [nvim-surround](https://github.com/kylechui/nvim-surround)
+- [shaunsingh/nord.nvim](https://github.com/shaunsingh/nord.nvim)
+- [trouble.nvim](https://github.com/folke/trouble.nvim)
+- [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
 
 ---
 
-> The computing scientist's main challenge is not to get confused by the complexities of his own making. 
+> The computing scientist's main challenge is not to get confused by the
+> complexities of his own making.
 
 \- Edsger W. Dijkstra
