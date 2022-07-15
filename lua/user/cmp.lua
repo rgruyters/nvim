@@ -15,33 +15,13 @@ local check_backspace = function()
 	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
-local kind_icons = {
-	Text = "",
-	Method = "",
-	Function = "",
-	Constructor = "",
-	Field = "",
-	Variable = "",
-	Class = "",
-	Interface = "",
-	Module = "",
-	Property = "",
-	Unit = "",
-	Value = "",
-	Enum = "",
-	Keyword = "",
-	Snippet = "",
-	Color = "",
-	File = "",
-	Reference = "",
-	Folder = "",
-	EnumMember = "",
-	Constant = "",
-	Struct = "",
-	Event = "",
-	Operator = "",
-	TypeParameter = "",
-}
+
+local icons = require "user.icons"
+
+local kind_icons = icons.kind
+
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
+vim.api.nvim_set_hl(0, "CmpItemKindTabnine", {fg ="#CA42F0"})
 
 cmp.setup({
 	snippet = {
@@ -96,6 +76,17 @@ cmp.setup({
 		fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
 			vim_item.kind = kind_icons[vim_item.kind]
+
+      if entry.source.name == "cmp_tabnine" then
+        vim_item.kind = icons.misc.Robot
+        vim_item.kind_hl_group = "CmpItemKindTabnine"
+      end
+
+      if entry.source.name == "copilot" then
+        vim_item.kind = icons.git.Octoface
+        vim_item.kind_hl_group = "CmpItemKindCopilot"
+      end
+
 			vim_item.menu = ({
 				nvim_lsp = "",
 				nvim_lua = "",
@@ -104,10 +95,13 @@ cmp.setup({
 				path = "",
 				emoji = "",
 			})[entry.source.name]
+
 			return vim_item
 		end,
 	},
 	sources = {
+    { name = "copilot" },
+    { name = "cmp_tabnine" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },

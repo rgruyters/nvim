@@ -1,5 +1,6 @@
 local null_ls_status_ok, null_ls = pcall(require, "null-ls")
 if not null_ls_status_ok then
+  vim.notify("Cannot load null-ls")
   return
 end
 
@@ -13,12 +14,19 @@ null_ls.setup {
   debug = false,
   sources = {
     formatting.prettier.with {
-      extra_filetypes = { "toml" },
+      extra_filetypes = { "toml", "markdown" },
       extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
     },
     formatting.black.with { extra_args = { "--fast" } },
     formatting.stylua,
-    formatting.google_java_format,
+    formatting.shfmt,
+    formatting.puppet_lint,
+    formatting.terraform_fmt,
+    formatting.terrafmt,
+    diagnostics.markdownlint.with {
+      command = "/usr/local/bin/markdownlint-cli2",
+    },
     diagnostics.flake8,
+    diagnostics.shellcheck,
   },
 }
