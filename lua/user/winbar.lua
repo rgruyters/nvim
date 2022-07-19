@@ -17,7 +17,7 @@ M.winbar_filetype_exclude = {
   "",
 }
 
-local get_filename = function()
+M.get_filename = function()
   local filename = vim.fn.expand "%:t"
   local extension = vim.fn.expand "%:e"
   local f = require "user.functions"
@@ -42,7 +42,7 @@ local get_filename = function()
 end
 
 local get_gps = function()
-  local status_gps_ok, gps = pcall(require, "nvim-gps")
+  local status_gps_ok, gps = pcall(require, "nvim-navic")
   if not status_gps_ok then
     return ""
   end
@@ -76,7 +76,7 @@ M.get_winbar = function()
     return
   end
   local f = require "user.functions"
-  local value = get_filename()
+  local value = M.get_filename()
 
   local gps_added = false
   if not f.isempty(value) then

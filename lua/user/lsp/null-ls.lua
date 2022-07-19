@@ -23,9 +23,7 @@ null_ls.setup {
     formatting.puppet_lint,
     formatting.terraform_fmt,
     formatting.terrafmt,
-    diagnostics.markdownlint.with {
-      command = "/usr/local/bin/markdownlint-cli2",
-    },
+    diagnostics.markdownlint,
     diagnostics.flake8,
     diagnostics.shellcheck,
   },

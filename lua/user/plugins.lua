@@ -60,9 +60,13 @@ return packer.startup(function(use)
   use { "goolord/alpha-nvim", commit = "ef27a59e5b4d7b1c2fe1950da3fe5b1c5f3b4c94" }
   use { "folke/which-key.nvim", commit = "bd4411a2ed4dd8bb69c125e339d837028a6eea71" } -- Which key modal viewer
   use { "rcarriga/nvim-notify", commit = "4ef4c133fb92527b928603bf1ce43e729d09db50" } -- Notification window
-  use { "christianchiarulli/nvim-gps", branch = "text_hl" }
+  -- use { "christianchiarulli/nvim-gps", branch = "text_hl" }
   use "folke/todo-comments.nvim"
   use "kylechui/nvim-surround"
+  use {
+    "SmiteshP/nvim-navic",
+    requires = "neovim/nvim-lspconfig",
+  }
 
   -- Colorschemes
   use { "shaunsingh/nord.nvim" }
