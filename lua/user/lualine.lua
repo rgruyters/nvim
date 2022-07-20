@@ -70,7 +70,8 @@ local diff = {
   colored = false,
   symbols = { added = icons.git.Add .. " ", modified = icons.git.Mod .. " ", removed = icons.git.Remove .. " " }, -- changes diff symbols
   cond = hide_in_width_60,
-  separator = "%#SLSeparator#" .. "│ " .. "%*",
+  -- separator = "%#SLSeparator#" .. "│ " .. "%*",
+  separator = "%#SLSeparator#" .. " " .. "%*",
 }
 
 local filetype = {
@@ -167,7 +168,8 @@ local spaces = {
     return "  " .. vim.api.nvim_buf_get_option(0, "shiftwidth") .. space
   end,
   padding = 0,
-  separator = "%#SLSeparator#" .. " │" .. "%*",
+  -- separator = "%#SLSeparator#" .. " │" .. "%*",
+  separator = "%#SLSeparator#" .. " " .. "%*",
   cond = hide_in_width_100,
 }
 
@@ -220,8 +222,8 @@ local current_signature = {
     local hint = sig.hint
 
     if not require("user.functions").isempty(hint) then
-      -- return "%#SLSeparator#│ : " .. hint .. "%*"
-      return "%#SLSeparator#│ " .. hint .. "%*"
+      -- return "%#SLSeparator#│ " .. hint .. "%*"
+      return "%#SLSeparator# " .. hint .. "%*"
     end
 
     return ""
@@ -307,7 +309,8 @@ local lanuage_server = {
   end,
   padding = 0,
   cond = hide_in_width,
-  separator = "%#SLSeparator#" .. " │" .. "%*",
+  -- separator = "%#SLSeparator#" .. " │" .. "%*",
+  separator = "%#SLSeparator#" .. " " .. "%*",
 }
 
 lualine.setup {
