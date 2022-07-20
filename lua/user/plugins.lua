@@ -44,32 +44,32 @@ return packer.startup(function(use)
   use { "wbthomason/packer.nvim", commit = "e4c2afb37d31e99b399425e102c58b091fbc16be" } -- Have packer manage itself
   use { "nvim-lua/plenary.nvim", commit = "968a4b9afec0c633bc369662e78f8c5db0eba249" } -- Useful lua functions used by lots of plugins
   use { "windwp/nvim-autopairs", commit = "fa6876f832ea1b71801c4e481d8feca9a36215ec" } -- Autopairs, integrates with both cmp and treesitter
-  use { "numToStr/Comment.nvim", commit = "2c26a00f32b190390b664e56e32fd5347613b9e2" }
-  use { "JoosepAlviste/nvim-ts-context-commentstring", commit = "88343753dbe81c227a1c1fd2c8d764afb8d36269" }
-  use { "akinsho/bufferline.nvim", commit = "bf9eb696c2f640c812374f5eead740b189adcccf" }
+  use { "numToStr/Comment.nvim", commit = "2e0572cc35ecc117c0ab6dc0aa3132b109d61047" } -- Make comments pretty
+  use { "JoosepAlviste/nvim-ts-context-commentstring", commit = "88343753dbe81c227a1c1fd2c8d764afb8d36269" } -- Commenting
+  use { "akinsho/bufferline.nvim", commit = "d7b775a35be9c80ed591d3335b35ec84e5c5d81e" } -- Make bufferlines pretty
   use { "moll/vim-bbye", commit = "25ef93ac5a87526111f43e5110675032dbcacf56" }
-  use { "nvim-lualine/lualine.nvim", commit = "655411fb7aa3cf4d46094132d684d815453f5043" }
-  use { "akinsho/toggleterm.nvim", commit = "aaeed9e02167c5e8f00f25156895a6fd95403af8" }
-  use { "ahmedkhalf/project.nvim", commit = "541115e762764bc44d7d3bf501b6e367842d3d4f" }
-  use { "lewis6991/impatient.nvim", commit = "969f2c5c90457612c09cf2a13fee1adaa986d350" }
-  use { "lukas-reineke/indent-blankline.nvim", commit = "4a58fe6e9854ccfe6c6b0f59abb7cb8301e23025" }
+  use { "nvim-lualine/lualine.nvim", commit = "655411fb7aa3cf4d46094132d684d815453f5043" } -- Blazing fast statusline
+  use { "akinsho/toggleterm.nvim", commit = "9db6f98af4f700945cff0f4f34b92ec80ab67a2b" } -- Create Terminal windows
+  use { "ahmedkhalf/project.nvim", commit = "541115e762764bc44d7d3bf501b6e367842d3d4f" } -- Project window
+  use { "lewis6991/impatient.nvim", commit = "2aa872de40dbbebe8e2d3a0b8c5651b81fe8b235" } -- Speedup loads
+  use { "lukas-reineke/indent-blankline.nvim", commit = "4a58fe6e9854ccfe6c6b0f59abb7cb8301e23025" } -- Indentation guides
 
   -- UI
-  use { "kyazdani42/nvim-web-devicons" }
-  use { "kyazdani42/nvim-tree.lua" }
-  use { "goolord/alpha-nvim", commit = "ef27a59e5b4d7b1c2fe1950da3fe5b1c5f3b4c94" }
+  use { "kyazdani42/nvim-web-devicons", commit = "2d02a56189e2bde11edd4712fea16f08a6656944" } -- provide webdev icons
+  use { "kyazdani42/nvim-tree.lua", commit = "630305c233b815464d57bc253444610eb327d255" } -- File Explorer
+  use { "goolord/alpha-nvim", commit = "79187fdf8f2a08a7174f237423198f6e75ae213a" } -- Greeter
   use { "folke/which-key.nvim", commit = "bd4411a2ed4dd8bb69c125e339d837028a6eea71" } -- Which key modal viewer
   use { "rcarriga/nvim-notify", commit = "4ef4c133fb92527b928603bf1ce43e729d09db50" } -- Notification window
-  -- use { "christianchiarulli/nvim-gps", branch = "text_hl" }
-  use "folke/todo-comments.nvim"
-  use "kylechui/nvim-surround"
+  use { "folke/todo-comments.nvim", commit = "98b1ebf198836bdc226c0562b9f906584e6c400e" } -- highlight todo comments
+  use { "kylechui/nvim-surround", commit = "78f10536d30a4f86155354636335263a0e6a7891" } -- Surround selections
   use {
     "SmiteshP/nvim-navic",
+    commit = "94bf6fcb1dc27bdad230d9385da085e72c390019",
     requires = "neovim/nvim-lspconfig",
-  }
+  } -- Winbar component show current code context
 
   -- Colorschemes
-  use { "shaunsingh/nord.nvim" }
+  use { "shaunsingh/nord.nvim" } -- Nord theme: My theme of choise
 
   -- cmp plugins
   use { "hrsh7th/nvim-cmp", commit = "df6734aa018d6feb4d76ba6bda94b1aeac2b378a" } -- The completion plugin
@@ -88,22 +88,19 @@ return packer.startup(function(use)
   use { "neovim/nvim-lspconfig", commit = "148c99bd09b44cf3605151a06869f6b4d4c24455" } -- enable LSP
   use { "williamboman/nvim-lsp-installer", commit = "e9f13d7acaa60aff91c58b923002228668c8c9e6" } -- simple to use language server installer
   use { "jose-elias-alvarez/null-ls.nvim", commit = "ff40739e5be6581899b43385997e39eecdbf9465" } -- for formatters and linters
-  use { "RRethy/vim-illuminate", commit = "c82e6d04f27a41d7fdcad9be0bce5bb59fcb78e5" }
-  use "stevearc/aerial.nvim"
-  use "j-hui/fidget.nvim"
-  use "folke/trouble.nvim"
+  use { "RRethy/vim-illuminate", commit = "6bfa5dc069bd4aa8513a3640d0b73392094749be" } -- Highlight words
+  use { "stevearc/aerial.nvim", commit = "67bddeca28c476731ed5da64876b7f71d01190d1" } -- code outline window
+  use { "j-hui/fidget.nvim", commit  = "46d1110435f1f023c22fa95bb10b3906aecd7bde" } -- UI LSP progress
+  use { "folke/trouble.nvim", commit = "da61737d860ddc12f78e638152834487eabf0ee5" } -- Diagnostics viewer
 
   -- Telescope
-  use { "nvim-telescope/telescope.nvim", commit = "d96eaa914aab6cfc4adccb34af421bdd496468b0" }
+  use { "nvim-telescope/telescope.nvim", commit = "8c563017200bebd76153feb1046ecdf2db26c9d4" } -- Fuzzy finder
 
   -- Treesitter
-  use {
-    "nvim-treesitter/nvim-treesitter",
-    commit = "518e27589c0463af15463c9d675c65e464efc2fe",
-  }
+  use { "nvim-treesitter/nvim-treesitter", commit = "0e29e2c6e16bba7b5267148c394f0c908f1ff43f" } -- Highlight and parser
 
   -- Git
-  use { "lewis6991/gitsigns.nvim", commit = "c18e016864c92ecf9775abea1baaa161c28082c3" }
+  use { "lewis6991/gitsigns.nvim", commit = "4883988cf8b623f63cc8c7d3f11b18b7e81f06ff" } -- Superfast Git decorations
 
   -- Copilot
   -- use {"github/copilot.vim"}
@@ -150,12 +147,13 @@ return packer.startup(function(use)
   -- Markdown
   use {
     "iamcco/markdown-preview.nvim",
+    commit = "02cc3874738bc0f86e4b91f09b8a0ac88aef8e96",
     run = "cd app && npm install",
     ft = "markdown",
-  }
+  } -- Markdown previewer
 
   -- Alignment
-  use { 'Vonr/align.nvim', commit = "368343964ac6d30f913bb46c272fea1c4d477bc5" }
+  use { "Vonr/align.nvim", commit = "368343964ac6d30f913bb46c272fea1c4d477bc5" } -- Aligning lines
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
