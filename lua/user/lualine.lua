@@ -27,26 +27,30 @@ local hide_in_width_100 = function()
   return vim.o.columns > 100
 end
 
--- vim.api.nvim_set_hl(0, "SLGitIcon", { fg = "#d08770", bg = "#303030" })
--- vim.api.nvim_set_hl(0, "SLBranchName", { fg = "#d8dee9", bg = "#303030", bold = false })
--- vim.api.nvim_set_hl(0, "SLProgress", { fg = "#D7BA7D", bg = "#252525" })
--- vim.api.nvim_set_hl(0, "SLProgress", { fg = "#d8dee9", bg = "#303030" })
--- vim.api.nvim_set_hl(0, "SLSeparator", { fg = "#bbc2cf", bg = "#2e3440" })
-
+-- Nord theme colors
 local colors = {
-  bg = "#2e3440",
-  fg = "#bbc2cf",
-  yellow = "#ebcb8b",
-  cyan = "#8fbcbb",
-  darkblue = "#5e81ac",
-  green = "#a3be8c",
-  orange = "#d08770",
-  violet = "#a9a1e1",
-  magenta = "#c678dd",
-  purple = "#b48ead",
-  blue = "#81a1c1",
-  red = "#bf616a",
+	--16 colors
+	black = "#2E3440", -- nord0 in palette
+	dark_gray = "#3B4252", -- nord1 in palette
+	gray = "#434C5E", -- nord2 in palette
+	light_gray = "#4C566A", -- nord3 in palette
+	light_gray_bright = "#616E88", -- out of palette
+	darkest_white = "#D8DEE9", -- nord4 in palette
+	darker_white = "#E5E9F0", -- nord5 in palette
+	white = "#ECEFF4", -- nord6 in palette
+	teal = "#8FBCBB", -- nord7 in palette
+	off_blue = "#88C0D0", -- nord8 in palette
+	glacier = "#81A1C1", -- nord9 in palette
+	blue = "#5E81AC", -- nord10 in palette
+	red = "#BF616A", -- nord11 in palette
+	orange = "#D08770", -- nord12 in palette
+	yellow = "#EBCB8B", -- nord13 in palette
+	green = "#A3BE8C", -- nord14 in palette
+	purple = "#B48EAD", -- nord15 in palette
 }
+
+vim.api.nvim_set_hl(0, "SLGitIcon", { fg = colors.glacier, bg = colors.gray })
+vim.api.nvim_set_hl(0, "SLSeparator", { fg = colors.darkest_white, bg = colors.dark_gray })
 
 local icons = require "user.icons"
 
@@ -120,7 +124,7 @@ local scrollbar = {
       return chars[index]
     end,
     padding = { left = 0, right = 0 },
-    color = { fg = colors.yellow, bg = colors.bg },
+    color = { fg = colors.yellow, bg = colors.black },
     cond = nil,
 }
 
