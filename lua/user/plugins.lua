@@ -98,7 +98,7 @@ return packer.startup(function(use)
   use { "nvim-telescope/telescope.nvim", commit = "8c563017200bebd76153feb1046ecdf2db26c9d4" } -- Fuzzy finder
 
   -- Treesitter
-  use { "nvim-treesitter/nvim-treesitter", commit = "0e29e2c6e16bba7b5267148c394f0c908f1ff43f" } -- Highlight and parser
+  use { "nvim-treesitter/nvim-treesitter", commit = "07b722157f10664c46ab0f457d6ea8e62bde75a7" } -- Highlight and parser
 
   -- Git
   use { "lewis6991/gitsigns.nvim", commit = "4883988cf8b623f63cc8c7d3f11b18b7e81f06ff" } -- Superfast Git decorations
