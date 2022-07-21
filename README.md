@@ -121,7 +121,7 @@ Make sure the formatter or linter is installed and add it to this setup function
 
 ### Plugins
 
-You can install new plugins here: [plugins](https://github.com/LunarVim/nvim-basic-ide/blob/8b9ec3bffe8c8577042baf07c75408532a733fea/lua/user/plugins.lua#L42)
+You can install new plugins here: [plugins](https://github.com/rgruyters/nvim/blob/2bb20c9070e34459c9f102b0e39b3b50366f940b/lua/user/plugins.lua#L42)
 
 - [packer](https://github.com/wbthomason/packer.nvim)
 - [plenary](https://github.com/nvim-lua/plenary.nvim)
@@ -161,6 +161,13 @@ You can install new plugins here: [plugins](https://github.com/LunarVim/nvim-bas
 - [shaunsingh/nord.nvim](https://github.com/shaunsingh/nord.nvim)
 - [trouble.nvim](https://github.com/folke/trouble.nvim)
 - [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
+
+### Breaking changes
+
+Some plugins will have breaking changes at some point. Here are some links with
+more information:
+
+- [nvim-treesitter breaking changes](https://github.com/nvim-treesitter/nvim-treesitter/issues/2293)
 
 ---
 
