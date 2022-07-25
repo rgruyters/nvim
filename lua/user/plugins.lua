@@ -87,7 +87,9 @@ return packer.startup(function(use)
 
   -- LSP
   use { "neovim/nvim-lspconfig", commit = "148c99bd09b44cf3605151a06869f6b4d4c24455" } -- enable LSP
-  use { "williamboman/nvim-lsp-installer", commit = "e9f13d7acaa60aff91c58b923002228668c8c9e6" } -- simple to use language server installer
+  -- use { "williamboman/nvim-lsp-installer", commit = "e9f13d7acaa60aff91c58b923002228668c8c9e6" } -- simple to use language server installer
+  use { "williamboman/mason.nvim", commit = "e61d2b7ba0ed392f6851bcdd4ed992694d4f4810" } -- Portable package manager for Neovim
+  use { "williamboman/mason-lspconfig.nvim", commit = "a7971cdd755c737f5da5bca001299791c42a4a3b" } -- Bridge between LSP en Mason
   use { "jose-elias-alvarez/null-ls.nvim", commit = "ff40739e5be6581899b43385997e39eecdbf9465" } -- for formatters and linters
   use { "RRethy/vim-illuminate", commit = "6bfa5dc069bd4aa8513a3640d0b73392094749be" } -- Highlight words
   use { "stevearc/aerial.nvim", commit = "67bddeca28c476731ed5da64876b7f71d01190d1" } -- code outline window
