@@ -46,4 +46,14 @@ nvim_web_devicons.set_icon {
     cterm_color = "59",
     name = "Diff",
   },
+  ["pp"] = {
+    icon = "",
+    color = "#FFA61A",
+    name = "Pp",
+  },
+  ["epp"] = {
+    icon = "",
+    color = "#FFA61A",
+    name = "Epp",
+  },
 }
