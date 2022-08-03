@@ -56,7 +56,7 @@ bufferline.setup {
     --     return true
     --   end
     -- end,
-    offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
+    offsets = { { filetype = "NvimTree", text = nil, padding = 1 } },
     show_buffer_icons = true,
     show_buffer_close_icons = true,
     show_close_icon = true,
@@ -65,7 +65,7 @@ bufferline.setup {
     -- can also be a table containing 2 custom separators
     -- [focused and unfocused]. eg: { '|', '|' }
     separator_style = "thin", -- | "thick" | "thin" | { 'any', 'any' },
-    enforce_regular_tabs = true,
+    enforce_regular_tabs = false,
     always_show_bufferline = true,
     -- sort_by = 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
     --   -- add custom logic
@@ -74,7 +74,7 @@ bufferline.setup {
   },
   highlights = {
     fill = {
-      guifg = { attribute = "fg", highlight = "#ff0000" },
+      guifg = { attribute = "fg", highlight = "healthError" },
       guibg = { attribute = "bg", highlight = "TabLine" },
     },
     background = {
@@ -119,18 +119,17 @@ bufferline.setup {
       guibg = { attribute = "bg", highlight = "Normal" },
     },
 
-    duplicate_selected = {
-      guifg = { attribute = "fg", highlight = "TabLineSel" },
-      guibg = { attribute = "bg", highlight = "TabLineSel" },
-      gui = "italic",
-    },
+    -- duplicate_selected = {
+    --   guifg = { attribute = "fg", highlight = "TabLineSel" },
+    --   guibg = { attribute = "bg", highlight = "TabLineSel" },
+    --   gui = "italic",
+    -- },
     duplicate_visible = {
       guifg = { attribute = "fg", highlight = "TabLine" },
       guibg = { attribute = "bg", highlight = "TabLine" },
       gui = "italic",
     },
     duplicate = {
-      guifg = { attribute = "fg", highlight = "TabLine" },
       guibg = { attribute = "bg", highlight = "TabLine" },
       gui = "italic",
     },
