@@ -105,6 +105,7 @@ return packer.startup(function(use)
 
   -- Git
   use { "lewis6991/gitsigns.nvim" } -- Superfast Git decorations
+  use { "f-person/git-blame.nvim" } -- Git Blame
 
   -- Copilot
   -- use {"github/copilot.vim"}
