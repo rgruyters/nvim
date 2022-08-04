@@ -8,6 +8,11 @@ if not snip_status_ok then
 	return
 end
 
+local tabnine_status_ok, _ = pcall(require, "user.tabnine")
+if not tabnine_status_ok then
+  return
+end
+
 require("luasnip/loaders/from_vscode").lazy_load()
 
 local check_backspace = function()
