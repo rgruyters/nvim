@@ -28,7 +28,12 @@ local kind_icons = icons.kind
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
 vim.api.nvim_set_hl(0, "CmpItemKindTabnine", {fg ="#CA42F0"})
 
+vim.g.cmp_active = true
+
 cmp.setup({
+  enabled = function()
+    return vim.g.cmp_active
+  end,
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body) -- For `luasnip` users.
