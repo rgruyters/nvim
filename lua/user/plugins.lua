@@ -88,7 +88,6 @@ return packer.startup(function(use)
 
   -- LSP
   use { "neovim/nvim-lspconfig" } -- enable LSP
-  -- use { "williamboman/nvim-lsp-installer", commit = "e9f13d7acaa60aff91c58b923002228668c8c9e6" } -- simple to use language server installer
   use { "williamboman/mason.nvim" } -- Portable package manager for Neovim
   use { "williamboman/mason-lspconfig.nvim" } -- Bridge between LSP en Mason
   use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
@@ -106,6 +105,7 @@ return packer.startup(function(use)
   -- Git
   use { "lewis6991/gitsigns.nvim" } -- Superfast Git decorations
   use { "f-person/git-blame.nvim" } -- Git Blame
+  use { "kdheepak/lazygit.nvim" } -- Lazygit for Neovim
 
   -- Copilot
   -- use {"github/copilot.vim"}
