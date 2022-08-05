@@ -60,14 +60,14 @@ local diagnostics = {
   sources = { "nvim_diagnostic" },
   sections = { "error", "warn" },
   symbols = { error = icons.diagnostics.Error .. " ", warn = icons.diagnostics.Warning .. " " },
-  colored = false,
+  colored = true,
   update_in_insert = false,
   always_visible = true,
 }
 
 local diff = {
   "diff",
-  colored = false,
+  colored = true,
   symbols = { added = icons.git.Add .. " ", modified = icons.git.Mod .. " ", removed = icons.git.Remove .. " " }, -- changes diff symbols
   cond = hide_in_width_60,
   -- separator = "%#SLSeparator#" .. "│ " .. "%*",
