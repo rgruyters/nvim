@@ -9,6 +9,7 @@ local servers = {
   "yamlls",
   "terraformls",
   "puppet",
+  "shfmt",
 }
 
 local settings = {
