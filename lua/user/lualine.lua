@@ -52,6 +52,7 @@ local colors = {
 vim.api.nvim_set_hl(0, "SLGitIcon", { fg = colors.yellow, bg = colors.gray })
 vim.api.nvim_set_hl(0, "SLBranchName", { fg = colors.purple, bg = colors.gray })
 vim.api.nvim_set_hl(0, "SLSeparator", { fg = colors.darkest_white, bg = colors.dark_gray })
+vim.api.nvim_set_hl(0, "SLLSP", { fg = colors.light_gray_bright, bg = colors.dark_gray })
 
 local icons = require "user.icons"
 
