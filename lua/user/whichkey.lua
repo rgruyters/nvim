@@ -111,6 +111,7 @@ local mappings = {
   ["/"] = { '<cmd>lua require("Comment.api").toggle_current_linewise()<CR>', "Comment" },
   ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
+  ["C"] = { "<cmd>e ~/.config/nvim/init.lua<cr>", "Config" },
 
   p = {
     name = "Packer",
