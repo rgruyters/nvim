@@ -8,6 +8,7 @@ local servers = {
   "jsonls",
   "yamlls",
   "terraformls",
+  "tflint",
   "puppet",
   "shfmt",
 }
