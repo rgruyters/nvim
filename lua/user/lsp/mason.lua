@@ -10,7 +10,6 @@ local servers = {
   "terraformls",
   "tflint",
   "puppet",
-  "shfmt",
 }
 
 local settings = {
