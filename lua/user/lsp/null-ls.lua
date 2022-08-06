@@ -27,5 +27,6 @@ null_ls.setup {
     diagnostics.flake8,
     diagnostics.shellcheck,
     diagnostics.puppet_lint,
+    diagnostics.ansiblelint,
   },
 }
