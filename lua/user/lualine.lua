@@ -127,7 +127,7 @@ local scrollbar = {
       return chars[index]
     end,
     padding = { left = 0, right = 0 },
-    color = { fg = colors.yellow, bg = colors.black },
+    color = { fg = colors.glacier, bg = colors.black },
     cond = nil,
 }
 
