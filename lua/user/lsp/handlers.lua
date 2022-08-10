@@ -10,12 +10,13 @@ M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
 
 M.setup = function()
+  local icons = require("user.icons")
   local signs = {
 
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
+    { name = "DiagnosticSignError", text = icons.diagnostics.Error },
+    { name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
+    { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
+    { name = "DiagnosticSignInfo", text = icons.diagnostics.Information },
   }
 
   for _, sign in ipairs(signs) do
@@ -62,7 +63,7 @@ local function lsp_highlight_document(client)
 end
 
 local function attach_navic(client, bufnr)
-  vim.g.navic_silence = false
+  vim.g.navic_silence = true
   local status_ok, navic = pcall(require, "nvim-navic")
   if not status_ok then
     return
@@ -97,21 +98,21 @@ M.on_attach = function(client, bufnr)
 end
 
 function M.enable_format_on_save()
-  vim.cmd [[
+  vim.cmd([[
     augroup format_on_save
       autocmd! 
       autocmd BufWritePre * lua vim.lsp.buf.format({ async = false })
     augroup end
-  ]]
+  ]])
 end
 
 function M.disable_format_on_save()
-  M.remove_augroup "format_on_save"
-  vim.notify "Disabled formatting on save"
+  M.remove_augroup("format_on_save")
+  vim.notify("Disabled formatting on save")
 end
 
 function M.toggle_format_on_save()
-  if vim.fn.exists "#format_on_save#BufWritePre" == 0 then
+  if vim.fn.exists("#format_on_save#BufWritePre") == 0 then
     M.enable_format_on_save()
   else
     M.disable_format_on_save()
@@ -124,6 +125,6 @@ function M.remove_augroup(name)
   end
 end
 
-vim.cmd [[ command! LspToggleAutoFormat execute 'lua require("user.lsp.handlers").toggle_format_on_save()' ]]
+vim.cmd([[ command! LspToggleAutoFormat execute 'lua require("user.lsp.handlers").toggle_format_on_save()' ]])
 
 return M
