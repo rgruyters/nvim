@@ -15,6 +15,17 @@ local function contains(t, value)
   return false
 end
 
+local function diff_source()
+  local gitsigns = vim.b.gitsigns_status_dict
+  if gitsigns then
+    return {
+      added = gitsigns.added,
+      modified = gitsigns.changed,
+      removed = gitsigns.removed,
+    }
+  end
+end
+
 local hide_in_width_60 = function()
   return vim.o.columns > 60
 end
@@ -68,11 +79,24 @@ local diagnostics = {
 
 local diff = {
   "diff",
+  source = diff_source,
   colored = true,
   symbols = { added = icons.git.Add .. " ", modified = icons.git.Mod .. " ", removed = icons.git.Remove .. " " }, -- changes diff symbols
   cond = hide_in_width_60,
   -- separator = "%#SLSeparator#" .. "│ " .. "%*",
   separator = "%#SLSeparator#" .. " " .. "%*",
+}
+
+local treesitter = {
+  function()
+    return ""
+  end,
+  color = function()
+    local buf = vim.api.nvim_get_current_buf()
+    local ts = vim.treesitter.highlighter.active[buf]
+    return { fg = ts and not vim.tbl_isempty(ts) and colors.green or colors.red }
+  end,
+  cond = hide_in_width_60
 }
 
 local filetype = {
@@ -114,7 +138,7 @@ local filetype = {
 
 local location = {
   "location",
-  padding = 0,
+  padding = { left = 1, right = 1 },
 }
 
 local scrollbar = {
@@ -327,8 +351,8 @@ lualine.setup {
   sections = {
     lualine_a = { "mode", branch },
     lualine_b = { diagnostics },
-    lualine_c = { current_signature },
-    lualine_x = { diff, lanuage_server, spaces, filetype },
+    lualine_c = { current_signature, diff },
+    lualine_x = { treesitter, lanuage_server, spaces, filetype },
     lualine_y = { location },
     lualine_z = { scrollbar },
   },
