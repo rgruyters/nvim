@@ -350,9 +350,9 @@ lualine.setup {
   },
   sections = {
     lualine_a = { "mode", branch },
-    lualine_b = { diagnostics },
-    lualine_c = { current_signature, diff },
-    lualine_x = { treesitter, lanuage_server, spaces, filetype },
+    lualine_b = { diff },
+    lualine_c = { current_signature },
+    lualine_x = { diagnostics, treesitter, lanuage_server, spaces, filetype },
     lualine_y = { location },
     lualine_z = { scrollbar },
   },
