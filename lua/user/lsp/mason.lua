@@ -68,7 +68,6 @@ for _, server in pairs(servers) do
   end
 
   lspconfig[server].setup(opts)
-  ::continue::
 end
 
 -- TODO: add something to installer later
