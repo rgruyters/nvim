@@ -10,7 +10,6 @@ local servers = {
   "terraformls",
   "tflint",
   "puppet",
-  "ansiblels",
 }
 
 local settings = {
