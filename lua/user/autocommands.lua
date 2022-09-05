@@ -9,6 +9,13 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "TelescopePrompt" },
+  callback = function()
+    require("cmp").setup.buffer({ enabled = false })
+  end,
+})
+
 -- Remove statusline and tabline when in Alpha
 vim.api.nvim_create_autocmd({ "User" }, {
   pattern = { "AlphaReady" },
