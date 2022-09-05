@@ -88,19 +88,11 @@ local m_opts = {
 }
 
 local m_mappings = {
-  a = { "<cmd>BookmarkAnnotate<cr>", "Annotate" },
-  c = { "<cmd>BookmarkClear<cr>", "Clear" },
-  m = { "<cmd>BookmarkToggle<cr>", "Toggle" },
-  h = { '<cmd>lua require("harpoon.mark").add_file()<cr>', "Harpoon" },
-  j = { "<cmd>BookmarkNext<cr>", "Next" },
-  k = { "<cmd>BookmarkPrev<cr>", "Prev" },
-  s = { "<cmd>BookmarkShowAll<cr>", "Prev" },
-  -- s = {
-  --   "<cmd>lua require('telescope').extensions.vim_bookmarks.all({ hide_filename=false, prompt_title=\"bookmarks\", shorten_path=false })<cr>",
-  --   "Show",
-  -- },
-  x = { "<cmd>BookmarkClearAll<cr>", "Clear All" },
-  u = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon UI" },
+  m = { '<cmd>lua require("harpoon.mark").add_file()<cr>', "Harpoon" },
+  ["."] = { '<cmd>lua require("harpoon.ui").nav_next()<cr>', "Harpoon Next" },
+  [","] = { '<cmd>lua require("harpoon.ui").nav_prev()<cr>', "Harpoon Prev" },
+  s = { "<cmd>Telescope harpoon marks<cr>", "Search Files" },
+  [";"] = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon UI" },
 }
 
 local mappings = {
@@ -162,21 +154,22 @@ local mappings = {
 
   f = {
     name = "Find",
-    b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-    c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
     f = {
-      "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+      "<cmd>lua require('telescope.builtin').find_files()<cr>",
       "Find files",
     },
-    t = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
+    g = { "<cmd>Telescope live_grep<cr>", "Find Text" },
+    p = { "<cmd>Telescope profjects<cr>", "Projects" },
+    b = { "<cmd>Telescope buffers<cr>", "Buffers" },
     h = { "<cmd>Telescope help_tags<cr>", "Help" },
-    i = { "<cmd>lua require('telescope').extensions.media_files.media_files()<cr>", "Media" },
+    m = { "<cmd>lua require('telescope').extensions.media_files.media_files()<cr>", "Media" },
     l = { "<cmd>Telescope resume<cr>", "Last Search" },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
     r = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
+    B = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
   },
 
   g = {
