@@ -60,15 +60,15 @@ return packer.startup(function(use)
   -- UI
   use { "kyazdani42/nvim-web-devicons" } -- provide webdev icons
   use { "kyazdani42/nvim-tree.lua" } -- File Explorer
-  use { "goolord/alpha-nvim" } -- Greeter
   use { "folke/which-key.nvim" } -- Which key modal viewer
+  -- use { "goolord/alpha-nvim" } -- Greeter
   use { "rcarriga/nvim-notify" } -- Notification window
   use { "folke/todo-comments.nvim" } -- highlight todo comments
   use { "kylechui/nvim-surround" } -- Surround selections
-  use {
-    "SmiteshP/nvim-navic",
-    requires = "neovim/nvim-lspconfig",
-  } -- Winbar component show current code context
+  -- use {
+  --   "SmiteshP/nvim-navic",
+  --   requires = "neovim/nvim-lspconfig",
+  -- } -- Winbar component show current code context
 
   -- Colorschemes
   use { "shaunsingh/nord.nvim" } -- Nord theme: My theme of choise
@@ -101,6 +101,7 @@ return packer.startup(function(use)
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter" } -- Highlight and parser
+  use { "nvim-treesitter/nvim-treesitter-context" } -- Show context
 
   -- Git
   use { "lewis6991/gitsigns.nvim" } -- Superfast Git decorations
