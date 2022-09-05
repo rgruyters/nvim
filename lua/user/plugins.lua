@@ -98,6 +98,7 @@ return packer.startup(function(use)
 
   -- Telescope
   use { "nvim-telescope/telescope.nvim" } -- Fuzzy finder
+  use { "ThePrimeagen/harpoon" } -- Buffer management
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter" } -- Highlight and parser
