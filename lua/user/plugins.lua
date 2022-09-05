@@ -60,8 +60,8 @@ return packer.startup(function(use)
   -- UI
   use { "kyazdani42/nvim-web-devicons" } -- provide webdev icons
   use { "kyazdani42/nvim-tree.lua" } -- File Explorer
-  use { "folke/which-key.nvim" } -- Which key modal viewer
   -- use { "goolord/alpha-nvim" } -- Greeter
+  use { "folke/which-key.nvim", commit = "f11260251ad942ba1635db9bc25c2efaf75caf0a" } -- Which key modal viewer
   use { "rcarriga/nvim-notify" } -- Notification window
   use { "folke/todo-comments.nvim" } -- highlight todo comments
   use { "kylechui/nvim-surround" } -- Surround selections
