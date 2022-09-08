@@ -95,13 +95,14 @@ return packer.startup(function(use)
   use { "stevearc/aerial.nvim" } -- code outline window
   use { "j-hui/fidget.nvim" } -- UI LSP progress
   use { "folke/trouble.nvim" } -- Diagnostics viewer
+  use { "onsails/lspkind-nvim" } -- VSCode icons
 
   -- Telescope
   use { "nvim-telescope/telescope.nvim" } -- Fuzzy finder
   use { "ThePrimeagen/harpoon" } -- Buffer management
 
   -- Treesitter
-  use { "nvim-treesitter/nvim-treesitter" } -- Highlight and parser
+  use { "nvim-treesitter/nvim-treesitter",  run = ":TSUpdate" } -- Highlight and parser
   use { "nvim-treesitter/nvim-treesitter-context" } -- Show context
 
   -- Git
