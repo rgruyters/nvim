@@ -96,7 +96,6 @@ local m_mappings = {
 }
 
 local mappings = {
-  b = { "<cmd>lua require('user.bfs').open()<cr>", "Buffers" },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["w"] = { "<cmd>w<CR>", "Write" },
   ["q"] = { '<cmd>lua require("user.functions").smart_quit()<CR>', "Quit" },
