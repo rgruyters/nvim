@@ -147,6 +147,9 @@ return packer.startup(function(use)
   -- Alignment
   use { "Vonr/align.nvim" } -- Aligning lines
 
+  -- UndoTree
+  use{ "mbbill/undotree" }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
