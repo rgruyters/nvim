@@ -40,12 +40,18 @@ keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 -- Close buffers
 keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 
--- Better paste
-keymap("v", "p", '"_dP', opts)
+-- File Explorer
+keymap("n", "<leader>pv", ":Ex<CR>", opts)
+
+-- UndoTree
+keymap("n", "<leader>u", ":UndotreeToggle<CR>", opts)
 
 -- Insert --
 
 -- Visual --
+-- Better paste
+keymap("v", "p", '"_dP', opts)
+
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
