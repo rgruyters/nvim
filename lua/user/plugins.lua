@@ -72,6 +72,7 @@ return packer.startup(function(use)
 
   -- Colorschemes
   use { "shaunsingh/nord.nvim" } -- Nord theme: My theme of choise
+  use { "catppuccin/nvim", as = "catppuccin" } -- catppuccin theme
 
   -- cmp plugins
   use { "hrsh7th/nvim-cmp" } -- The completion plugin
