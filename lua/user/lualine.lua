@@ -60,30 +60,29 @@ local colors = {
 	purple = "#B48EAD", -- nord15 in palette
 }
 
-vim.api.nvim_set_hl(0, "SLGitIcon", { fg = colors.yellow, bg = colors.gray })
-vim.api.nvim_set_hl(0, "SLBranchName", { fg = colors.purple, bg = colors.gray })
-vim.api.nvim_set_hl(0, "SLSeparator", { fg = colors.darkest_white, bg = colors.dark_gray })
-vim.api.nvim_set_hl(0, "SLLSP", { fg = colors.light_gray_bright, bg = colors.dark_gray })
+-- vim.api.nvim_set_hl(0, "SLGitIcon", { fg = colors.yellow, bg = colors.gray })
+-- vim.api.nvim_set_hl(0, "SLBranchName", { fg = colors.yellow, bg = colors.gray })
+-- vim.api.nvim_set_hl(0, "SLSeparator", { bg = colors.dark_gray })
+vim.api.nvim_set_hl(0, "SLLSP", { fg = colors.light_gray_bright })
 
 local icons = require "user.icons"
 
-local diagnostics = {
-  "diagnostics",
-  sources = { "nvim_diagnostic" },
-  sections = { "error", "warn" },
-  symbols = { error = icons.diagnostics.Error .. " ", warn = icons.diagnostics.Warning .. " " },
-  colored = true,
-  update_in_insert = false,
-  always_visible = false,
-}
+-- local diagnostics = {
+--   "diagnostics",
+--   sources = { "nvim_diagnostic" },
+--   sections = { "error", "warn" },
+--   symbols = { error = icons.diagnostics.Error .. " ", warn = icons.diagnostics.Warning .. " " },
+--   colored = true,
+--   update_in_insert = false,
+--   always_visible = false,
+-- }
 
 local diff = {
   "diff",
   source = diff_source,
   colored = true,
-  symbols = { added = icons.git.Add .. " ", modified = icons.git.Mod .. " ", removed = icons.git.Remove .. " " }, -- changes diff symbols
+  -- symbols = { added = icons.git.Add .. " ", modified = icons.git.Mod .. " ", removed = icons.git.Remove .. " " }, -- changes diff symbols
   cond = hide_in_width_60,
-  -- separator = "%#SLSeparator#" .. "│ " .. "%*",
   separator = "%#SLSeparator#" .. " " .. "%*",
 }
 
@@ -136,36 +135,30 @@ local filetype = {
   icons_enabled = true,
 }
 
-local location = {
-  "location",
-  padding = { left = 1, right = 1 },
-}
+-- local location = {
+--   "location",
+--   padding = { left = 1, right = 1 },
+-- }
 
 local scrollbar = {
     function()
       local current_line = vim.fn.line "."
       local total_lines = vim.fn.line "$"
-      local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
+      local chars = { "  ", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
       local line_ratio = current_line / total_lines
       local index = math.ceil(line_ratio * #chars)
       return chars[index]
     end,
     padding = { left = 0, right = 0 },
-    color = { fg = colors.glacier, bg = colors.black },
     cond = nil,
 }
 
-local branch = {
-  "branch",
-  icons_enabled = true,
-  icon = "%#SLGitIcon#" .. icons.git.Branch .. "%*" .. "%#SLBranchName#",
-  -- color = "Constant",
-  colored = false,
-}
-
--- local spaces = function()
---   return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
--- end
+-- local branch = {
+--   "branch",
+--   icons_enabled = true,
+--   icon = "%#SLGitIcon#" .. icons.git.Branch .. "%*" .. "%#SLBranchName#",
+--   colored = true,
+-- }
 
 local spaces = {
   function()
@@ -197,41 +190,6 @@ local spaces = {
   separator = "%#SLSeparator#" .. " " .. "%*",
   cond = hide_in_width_100,
 }
-
--- local mode_color = {
---   n = colors.blue,
---   i = colors.orange,
---   v = colors.purple,
---   V = colors.purple,
---   c = colors.teal,
---   no = colors.red,
---   s = colors.green,
---   S = colors.orange,
---   [""] = colors.orange,
---   ic = colors.red,
---   R = colors.yellow,
---   Rv = colors.red,
---   cv = colors.blue,
---   ce = colors.blue,
---   r = colors.red,
---   rm = colors.teal,
---   ["r?"] = colors.teal,
---   ["!"] = colors.teal,
---   t = colors.red,
--- }
---
--- local mode = {
---   -- mode component
---   function()
---     -- return "▊"
---     return "  "
---   end,
---   color = function()
---     -- auto change color according to neovims mode
---     return { bg = mode_color[vim.fn.mode()] }
---   end,
---   padding = 0,
--- }
 
 local current_signature = {
   function()
@@ -349,11 +307,11 @@ lualine.setup {
     always_divide_middle = true,
   },
   sections = {
-    lualine_a = { "mode", branch },
-    lualine_b = { diff },
+    lualine_a = { "mode" },
+    lualine_b = { "branch", diff },
     lualine_c = { current_signature },
-    lualine_x = { diagnostics, treesitter, lanuage_server, spaces, filetype },
-    lualine_y = { location },
+    lualine_x = { "diagnostics", treesitter, lanuage_server, spaces, filetype },
+    lualine_y = { "location" },
     lualine_z = { scrollbar },
   },
   inactive_sections = {
