@@ -46,26 +46,6 @@ keymap("n", "<leader>pv", ":Ex<CR>", opts)
 -- UndoTree
 keymap("n", "<leader>u", ":UndotreeToggle<CR>", opts)
 
--- Insert --
-
--- Visual --
--- Better paste
-keymap("v", "p", '"_dP', opts)
-
--- Stay in indent mode
-keymap("v", "<", "<gv", opts)
-keymap("v", ">", ">gv", opts)
-keymap("v", "J", ":m '>+1<CR>gv=gv", opts) -- Move visual up
-keymap("v", "K", ":m '<-2<CR>gv=gv", opts) -- Move visual down
-
--- Plugins --
-
--- Align --
-keymap("x", "aa", function() require'align'.align_to_char(1, true) end, opts) -- Aligns to 1 character, looking left
-keymap("x", "as", function() require'align'.align_to_char(2, true, true) end, opts) -- Aligns to 2 characters, looking left and with previews
-keymap("x", "aw", function() require'align'.align_to_char(false, true, true) end, opts) -- Aligns to a string, looking left and with previews
-keymap("x", "ar", function() require'align'.align_to_char(true, true, true) end, opts) -- Aligns to a Lua pattern, looking left and with previews
-
 -- NvimTree
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
@@ -80,8 +60,33 @@ keymap("n", "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<CR>
 keymap("n", "<leader>gg", "<cmd>LazyGit<CR>", opts)
 
 -- Comment
-keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", opts)
-keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
+keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
+
+-- Harpoon
+keymap("n", "<leader>a", "<cmd>lua require('harpoon.mark').add_file()<CR>", opts) -- Harpoon add marker
+keymap("n", "<C-e>", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", opts) -- Harpoon UI
+keymap("n", "<leader>.","<cmd>lua require('harpoon.ui').nav_next()<CR>", opts ) -- Harpoon Next
+keymap("n", "<leader>,", "<cmd>lua require('harpoon.ui').nav_prev()<CR>", opts) -- Harpoon Prev
+
+-- Insert --
+
+-- Visual --
+-- Better paste
+keymap("v", "p", '"_dP', opts)
+
+-- Stay in indent mode
+keymap("v", "<", "<gv", opts)
+keymap("v", ">", ">gv", opts)
+keymap("v", "J", ":m '>+1<CR>gv=gv", opts) -- Move visual up
+keymap("v", "K", ":m '<-2<CR>gv=gv", opts) -- Move visual down
+
+-- Align --
+keymap("x", "aa", function() require'align'.align_to_char(1, true) end, opts) -- Aligns to 1 character, looking left
+keymap("x", "as", function() require'align'.align_to_char(2, true, true) end, opts) -- Aligns to 2 characters, looking left and with previews
+keymap("x", "aw", function() require'align'.align_to_char(false, true, true) end, opts) -- Aligns to a string, looking left and with previews
+keymap("x", "ar", function() require'align'.align_to_char(true, true, true) end, opts) -- Aligns to a Lua pattern, looking left and with previews
+
+keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>')
 
 -- DAP
 -- keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
