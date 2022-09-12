@@ -41,13 +41,13 @@ keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 
 -- File Explorer
-keymap("n", "<leader>pv", ":Ex<CR>", opts)
+keymap("n", "<leader>pv", "<cmd>Ex<CR>", opts)
 
 -- UndoTree
-keymap("n", "<leader>u", ":UndotreeToggle<CR>", opts)
+keymap("n", "<leader>u", "<cmd>UndotreeToggle<CR>", opts)
 
 -- NvimTree
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+keymap("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)
 
 -- Telescope
 keymap("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<CR>", opts)
@@ -68,6 +68,14 @@ keymap("n", "<C-e>", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", o
 keymap("n", "<leader>.","<cmd>lua require('harpoon.ui').nav_next()<CR>", opts ) -- Harpoon Next
 keymap("n", "<leader>,", "<cmd>lua require('harpoon.ui').nav_prev()<CR>", opts) -- Harpoon Prev
 
+-- TroubleToggle
+keymap("n", "<leader>xx", "<cmd>TroubleToggle<CR>", opts)
+keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<CR>", opts)
+keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<CR>", opts)
+keymap("n", "<leader>xl", "<cmd>TroubleToggle loclist<CR>", opts)
+keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<CR>", opts)
+keymap("n", "gR", "<cmd>TroubleToggle lsp_references<CR>", opts)
+
 -- Insert --
 
 -- Visual --
@@ -81,10 +89,10 @@ keymap("v", "J", ":m '>+1<CR>gv=gv", opts) -- Move visual up
 keymap("v", "K", ":m '<-2<CR>gv=gv", opts) -- Move visual down
 
 -- Align --
-keymap("x", "aa", function() require'align'.align_to_char(1, true) end, opts) -- Aligns to 1 character, looking left
-keymap("x", "as", function() require'align'.align_to_char(2, true, true) end, opts) -- Aligns to 2 characters, looking left and with previews
-keymap("x", "aw", function() require'align'.align_to_char(false, true, true) end, opts) -- Aligns to a string, looking left and with previews
-keymap("x", "ar", function() require'align'.align_to_char(true, true, true) end, opts) -- Aligns to a Lua pattern, looking left and with previews
+keymap("x", "aa", "<cmd>lua require('align').align_to_char(1, true)<CR>", opts) -- Aligns to 1 character, looking left
+keymap("x", "as", "<cmd>lua require('align').align_to_char(2, true, true)<CR>", opts) -- Aligns to 2 characters, looking left and with previews
+keymap("x", "aw", "<cmd>lua require('align').align_to_char(false, true, true)<CR>", opts) -- Aligns to a string, looking left and with previews
+keymap("x", "ar", "<cmd>lua require('align').align_to_char(true, true, true)<CR>", opts) -- Aligns to a Lua pattern, looking left and with previews
 
 keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>')
 
