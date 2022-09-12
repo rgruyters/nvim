@@ -15,11 +15,13 @@ end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
-local check_backspace = function()
-  local col = vim.fn.col(".") - 1
-  return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
-end
-
+local source_mapping = {
+  buffer = "[BF]",
+  nvim_lsp = "[LSP]",
+  nvim_lua = "[LUA]",
+  cmp_tabnine = "[TN]",
+  path = "[P]",
+}
 
 local icons = require "user.icons"
 
@@ -53,34 +55,6 @@ cmp.setup({
     -- Accept currently selected item. If none selected, `select` first item.
     -- Set `select` to `false` to only confirm explicitly selected items.
     ["<CR>"] = cmp.mapping.confirm({ select = true }),
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expandable() then
-        luasnip.expand()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      elseif check_backspace() then
-        fallback()
-      else
-        fallback()
-      end
-    end, {
-      "i",
-      "s",
-    }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, {
-      "i",
-      "s",
-    }),
   }),
   formatting = {
     fields = { "kind", "abbr", "menu" },
@@ -97,13 +71,7 @@ cmp.setup({
         vim_item.kind_hl_group = "CmpItemKindCopilot"
       end
 
-      vim_item.menu = ({
-        buffer = "",
-        nvim_lsp = "",
-        nvim_lua = "",
-        luasnip = "",
-        path = "",
-      })[entry.source.name]
+      vim_item.menu = source_mapping[entry.source.name]
 
       return vim_item
     end,
