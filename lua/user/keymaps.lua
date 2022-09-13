@@ -58,6 +58,7 @@ keymap("n", "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<CR>
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>LazyGit<CR>", opts)
+keymap("n", "<leader>gb", "<cmd>GitBlameToggle<CR>", opts)
 
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
