@@ -38,16 +38,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 vim.cmd "autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif"
 
-if vim.fn.has('nvim-0.8') == 1 then
-  vim.api.nvim_create_autocmd(
-    { "CursorMoved", "CursorHold", "BufWinEnter", "BufFilePost", "InsertEnter", "BufWritePost", "TabClosed" },
-    {
-    callback = function()
-      require("user.winbar").get_winbar()
-    end,
-  })
-end
-
 -- Fixes Autocomment
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   callback = function()
@@ -58,7 +48,7 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
 -- Highlight Yanked Text
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   callback = function()
-    vim.highlight.on_yank { higroup = "Visual", timeout = 200 }
+    vim.highlight.on_yank { higroup = "Visual", timeout = 80 }
   end,
 })
 

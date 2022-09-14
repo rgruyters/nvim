@@ -6,6 +6,26 @@ end
 local actions = require "telescope.actions"
 local icons = require "user.icons"
 
+local keymap = vim.keymap.set
+
+-- Silent keymap option
+local opts = { silent = true }
+
+-- Modes
+--   normal_mode = "n",
+--   insert_mode = "i",
+--   visual_mode = "v",
+--   visual_block_mode = "x",
+--   term_mode = "t",
+--   command_mode = "c",
+
+-- Telescope
+keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
+keymap("n", "<leader>fg", ":Telescope live_grep<CR>", opts)
+keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
+keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>fh", ":Telescope help_tags<CR>", opts)
+
 telescope.setup {
   defaults = {
 

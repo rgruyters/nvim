@@ -8,6 +8,20 @@ if not config_status_ok then
   return
 end
 
+-- Silent keymap option
+local opts = { silent = true }
+
+-- Modes
+--   normal_mode = "n",
+--   insert_mode = "i",
+--   visual_mode = "v",
+--   visual_block_mode = "x",
+--   term_mode = "t",
+--   command_mode = "c",
+
+-- NvimTree
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)
+
 local icons = require "user.icons"
 
 local tree_cb = nvim_tree_config.nvim_tree_callback
