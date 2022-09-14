@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "TelescopePrompt", "markdown" },
+  pattern = { "TelescopePrompt", "DiffviewFiles", "markdown" },
   callback = function()
     require("cmp").setup.buffer({ enabled = false })
   end,
