@@ -51,7 +51,6 @@ return packer.startup(function(use)
   use { "akinsho/bufferline.nvim" } -- Make bufferlines pretty
   use { "moll/vim-bbye" }
   use { "nvim-lualine/lualine.nvim" } -- Blazing fast statusline
-  use { "akinsho/toggleterm.nvim" } -- Create Terminal windows
   use { "ahmedkhalf/project.nvim" } -- Project window
   use { "lewis6991/impatient.nvim" } -- Speedup loads
   use { "lukas-reineke/indent-blankline.nvim" } -- Indentation guides
