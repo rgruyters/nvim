@@ -45,7 +45,12 @@ keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 keymap("n", "<leader>pv", "<cmd>Ex<CR>", opts)
 
 -- Better paste
-keymap("v", "p", '"_dP', opts)
+keymap("v", "<leader>p", "\"_dP")
+keymap("x", "<leader>p", "\"_dP")
+
+-- Better Yank
+keymap("n", "<leader>y", "\"+y")
+keymap("v", "<leader>y", "\"+y")
 
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
