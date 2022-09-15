@@ -56,11 +56,6 @@ for _, server in pairs(servers) do
     opts = vim.tbl_deep_extend("force", pyright_opts, opts)
   end
 
-  if server == "puppet" then
-    local puppet_opts = require "user.lsp.settings.puppet"
-    opts = vim.tbl_deep_extend("force", puppet_opts, opts)
-  end
-
   if server == "terraformls" then
     local terraformls_opts = require "user.lsp.settings.terraformls"
     opts = vim.tbl_deep_extend("force", terraformls_opts, opts)
