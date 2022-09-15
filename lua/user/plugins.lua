@@ -143,7 +143,7 @@ return packer.startup(function(use)
   use {
     "iamcco/markdown-preview.nvim",
     run = "cd app && npm install",
-    ft = "markdown",
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" },
   } -- Markdown previewer
 
   -- Alignment
