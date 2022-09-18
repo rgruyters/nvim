@@ -8,11 +8,6 @@ if not snip_status_ok then
   return
 end
 
-local tabnine_status_ok, _ = pcall(require, "user.tabnine")
-if not tabnine_status_ok then
-  return
-end
-
 require("luasnip/loaders/from_vscode").lazy_load()
 
 local source_mapping = {
@@ -25,7 +20,8 @@ local source_mapping = {
 
 local icons = require "user.icons"
 
-local kind_icons = icons.kind
+-- local kind_icons = icons.kind
+local lspkind = require("lspkind")
 
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
 vim.api.nvim_set_hl(0, "CmpItemKindTabnine", {fg ="#CA42F0"})
@@ -59,9 +55,14 @@ cmp.setup({
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
-      vim_item.kind = kind_icons[vim_item.kind]
+      vim_item.kind = lspkind.presets.default[vim_item.kind]
+      vim_item.menu = source_mapping[entry.source.name]
 
       if entry.source.name == "cmp_tabnine" then
+        if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
+         vim_item.menu = entry.completion_item.data.detail .. " " .. vim_item.menu
+        end
+
         vim_item.kind = icons.misc.Robot
         vim_item.kind_hl_group = "CmpItemKindTabnine"
       end
@@ -70,8 +71,6 @@ cmp.setup({
         vim_item.kind = icons.git.Octoface
         vim_item.kind_hl_group = "CmpItemKindCopilot"
       end
-
-      vim_item.menu = source_mapping[entry.source.name]
 
       return vim_item
     end,
@@ -98,3 +97,22 @@ cmp.setup({
     ghost_text = true,
   },
 })
+
+-- Tabnine completion
+local status_ok, tabnine = pcall(require, "cmp_tabnine.config")
+if not status_ok then
+  return
+end
+
+tabnine:setup {
+  max_lines = 1000,
+  max_num_results = 20,
+  sort = true,
+  run_on_every_keystroke = true,
+  snippet_placeholder = "..",
+  ignored_file_types = { -- default is not to ignore
+    -- uncomment to ignore in lua:
+    -- lua = true
+    mardown = true,
+  },
+}
