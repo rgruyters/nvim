@@ -101,7 +101,7 @@ function M.enable_format_on_save()
   if vim.fn.has('nvim-0.8') == 1 then
     vim.cmd([[
       augroup format_on_save
-        autocmd! 
+        autocmd!
         autocmd BufWritePre * lua vim.lsp.buf.format({ async = false })
       augroup end
     ]])
