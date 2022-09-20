@@ -16,6 +16,12 @@ local opts = { silent = true }
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 
+-- Disable arrow keys
+keymap("", "<Up>", "<Nop>")
+keymap("", "<Down>", "<Nop>")
+keymap("", "<Left>", "<Nop>")
+keymap("", "<Right>", "<Nop>")
+
 -- Normal --
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
