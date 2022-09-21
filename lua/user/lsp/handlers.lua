@@ -72,11 +72,11 @@ local function attach_navic(client, bufnr)
 end
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 -- vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 local function lsp_keymaps(bufnr)
@@ -96,7 +96,7 @@ local function lsp_keymaps(bufnr)
   vim.keymap.set("n", "<space>D", "<cmd>Telescope lsp_type_definitions<CR>", bufopts)
   vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
   vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set("n", "<space>f", "<cmd>lua vim.lsp.buf.format({ async = false })<CR>", bufopts)
+  vim.keymap.set("n", "<space>f", "<cmd>lua require('user.lsp.handlers').buf_format()<CR>", bufopts)
 end
 
 M.on_attach = function(client, bufnr)
@@ -106,21 +106,12 @@ M.on_attach = function(client, bufnr)
 end
 
 function M.enable_format_on_save()
-  if vim.fn.has("nvim-0.8") == 1 then
     vim.cmd([[
       augroup format_on_save
         autocmd!
-        autocmd BufWritePre * lua vim.lsp.buf.format({ async = false })
+        autocmd BufWritePre * lua require('user.lsp.handlers').buf_format()
       augroup end
     ]])
-  else
-    vim.cmd([[
-      augroup format_on_save
-        autocmd! 
-        autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
-      augroup end
-    ]])
-  end
 end
 
 function M.disable_format_on_save()
@@ -139,6 +130,15 @@ end
 function M.remove_augroup(name)
   if vim.fn.exists("#" .. name) == 1 then
     vim.cmd("au! " .. name)
+  end
+end
+
+-- FIXME: Check if Neovim nightly is used
+function M.buf_format()
+  if vim.fn.has("nvim-0.8") == 1 then
+    vim.cmd([[lua vim.lsp.buf.format({ async = false })]])
+  else
+    vim.cmd([[lua vim.lsp.buf.formatting()]])
   end
 end
 
