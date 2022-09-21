@@ -171,7 +171,7 @@ You can install new plugins here: [plugins](https://github.com/rgruyters/nvim/bl
 - [harpoon](https://github.com/ThePrimeagen/harpoon)
 - [diffview.nvim](https://github.com/sindrets/diffview.nvim)
 - [align.nvim](https://github.com/Vonr/align.nvim)
-- [undotree](htts://github.com/bbill/undotree)
+- [undotree](https://github.com/bbill/undotree)
 
 ### Breaking changes
 
