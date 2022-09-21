@@ -71,24 +71,32 @@ local function attach_navic(client, bufnr)
   navic.attach(client, bufnr)
 end
 
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+local opts = { noremap=true, silent=true }
+-- vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+-- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+
 local function lsp_keymaps(bufnr)
-  local opts = { noremap = true, silent = true }
-  local keymap = vim.api.nvim_buf_set_keymap
-  keymap(bufnr, "n", "gD", "<cmd>Telescope lsp_declarations<CR>", opts)
-  keymap(bufnr, "n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
-  keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  keymap(bufnr, "n", "gI", "<cmd>Telescope lsp_implementations<CR>", opts)
-  keymap(bufnr, "n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
-  keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-  keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format()<cr>", opts)
-  keymap(bufnr, "n", "<leader>li", "<cmd>LspInfo<cr>", opts)
-  keymap(bufnr, "n", "<leader>lI", "<cmd>LspInstallInfo<cr>", opts)
-  keymap(bufnr, "n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-  keymap(bufnr, "n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", opts)
-  keymap(bufnr, "n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", opts)
-  keymap(bufnr, "n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-  keymap(bufnr, "n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
+
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set("n", "gd", "<cmd>lua Telescope vim.lsp.buf.definition<CR>", bufopts)
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+  vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", bufopts)
+  vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+  vim.keymap.set("n", "gl", vim.diagnostic.open_float, bufopts)
+  vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set("n", "<space>wl", function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, bufopts)
+  vim.keymap.set("n", "<space>D", "<cmd>Telescope lsp_type_definitions<CR>", bufopts)
+  vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
+  vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set("n", "<space>f", "<cmd>lua vim.lsp.buf.format({ async = false })<CR>", bufopts)
 end
 
 M.on_attach = function(client, bufnr)
@@ -98,7 +106,7 @@ M.on_attach = function(client, bufnr)
 end
 
 function M.enable_format_on_save()
-  if vim.fn.has('nvim-0.8') == 1 then
+  if vim.fn.has("nvim-0.8") == 1 then
     vim.cmd([[
       augroup format_on_save
         autocmd!
@@ -117,7 +125,7 @@ end
 
 function M.disable_format_on_save()
   M.remove_augroup("format_on_save")
-  vim.notify("Disabled formatting on save")
+  print("Disabled formatting on save")
 end
 
 function M.toggle_format_on_save()
@@ -134,6 +142,8 @@ function M.remove_augroup(name)
   end
 end
 
+vim.cmd([[ command! LspFormatOn execute 'lua require("user.lsp.handlers").enable_format_on_save()' ]])
+vim.cmd([[ command! LspFormatOff execute 'lua require("user.lsp.handlers").disable_format_on_save()' ]])
 vim.cmd([[ command! LspToggleAutoFormat execute 'lua require("user.lsp.handlers").toggle_format_on_save()' ]])
 
 return M

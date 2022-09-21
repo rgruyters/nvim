@@ -1,1 +1,1 @@
-vim.cmd "LspToggleAutoFormat"
+vim.cmd "LspFormatOn"
