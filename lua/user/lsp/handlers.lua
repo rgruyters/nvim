@@ -75,7 +75,7 @@ local function lsp_keymaps(bufnr)
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set("n", "gd", "<cmd>lua Telescope vim.lsp.buf.definition<CR>", bufopts)
+  vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", bufopts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
   vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", bufopts)
   vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", bufopts)
@@ -125,7 +125,7 @@ function M.remove_augroup(name)
   end
 end
 
--- FIXME: Check if Neovim nightly is used
+-- FIXME: Check if Neovim nightly is used. Remove if statement when Neovim 0.8 is stable
 function M.buf_format()
   if vim.fn.has("nvim-0.8") == 1 then
     vim.cmd([[lua vim.lsp.buf.format({ async = false })]])
