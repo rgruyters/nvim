@@ -59,15 +59,10 @@ return packer.startup(function(use)
   -- UI
   use { "kyazdani42/nvim-web-devicons" } -- provide webdev icons
   use { "kyazdani42/nvim-tree.lua" } -- File Explorer
-  -- use { "goolord/alpha-nvim" } -- Greeter
-  use { "folke/which-key.nvim", commit = "f11260251ad942ba1635db9bc25c2efaf75caf0a" } -- Which key modal viewer
   use { "rcarriga/nvim-notify" } -- Notification window
   use { "folke/todo-comments.nvim" } -- highlight todo comments
   use { "kylechui/nvim-surround" } -- Surround selections
-  -- use {
-  --   "SmiteshP/nvim-navic",
-  --   requires = "neovim/nvim-lspconfig",
-  -- } -- Winbar component show current code context
+  -- use { "SmiteshP/nvim-navic" } -- Winbar component show current code context
 
   -- Colorschemes
   use { "shaunsingh/nord.nvim" } -- Nord theme: My theme of choise
@@ -92,8 +87,6 @@ return packer.startup(function(use)
   use { "williamboman/mason-lspconfig.nvim" } -- Bridge between LSP en Mason
   use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
   use { "RRethy/vim-illuminate" } -- Highlight words
-  use { "stevearc/aerial.nvim" } -- code outline window
-  use { "j-hui/fidget.nvim" } -- UI LSP progress
   use { "folke/trouble.nvim" } -- Diagnostics viewer
   use { "onsails/lspkind-nvim" } -- VSCode icons
 
@@ -108,12 +101,12 @@ return packer.startup(function(use)
   -- Git
   use { "lewis6991/gitsigns.nvim" } -- Superfast Git decorations
   use { "f-person/git-blame.nvim" } -- Git Blame
-  -- use { "kdheepak/lazygit.nvim" } -- Lazygit for Neovim
+  use { "kdheepak/lazygit.nvim" } -- Lazygit for Neovim
   use { "TimUntersberger/neogit" } -- Neogit
   use { "sindrets/diffview.nvim" } -- Diff viewer
 
   -- Copilot
-  -- use {"github/copilot.vim"}
+  -- use {"github/copilot.vim"} -- Required for initial installation
   -- use {
   --   "zbirenbaum/copilot.lua",
   --   event = { "VimEnter" },
