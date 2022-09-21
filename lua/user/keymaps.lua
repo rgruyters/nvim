@@ -63,3 +63,10 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 keymap("v", "J", ":m '>+1<CR>gv=gv", opts) -- Move visual up
 keymap("v", "K", ":m '<-2<CR>gv=gv", opts) -- Move visual down
+
+-- Diagnostics
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+local diag_opts = { noremap = true, silent = true }
+vim.keymap.set("n", "gl", vim.diagnostic.open_float, diag_opts)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, diag_opts)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, diag_opts)
