@@ -82,9 +82,9 @@ return packer.startup(function(use)
   use { "rafamadriz/friendly-snippets" } -- a bunch of snippets to use
 
   -- LSP
-  use { "neovim/nvim-lspconfig" } -- enable LSP
   use { "williamboman/mason.nvim" } -- Portable package manager for Neovim
   use { "williamboman/mason-lspconfig.nvim" } -- Bridge between LSP en Mason
+  use { "neovim/nvim-lspconfig" } -- enable LSP
   use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
   use { "RRethy/vim-illuminate" } -- Highlight words
   use { "folke/trouble.nvim" } -- Diagnostics viewer
