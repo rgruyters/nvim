@@ -21,7 +21,6 @@ null_ls.setup {
     formatting.stylua,
     formatting.shfmt,
     formatting.puppet_lint,
-    formatting.terraform_fmt,
     formatting.terrafmt,
     diagnostics.markdownlint,
     diagnostics.flake8,
