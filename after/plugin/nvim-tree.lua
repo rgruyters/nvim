@@ -27,9 +27,8 @@ local icons = require "user.icons"
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup {
-  -- update_to_buf_dir = {
-  --   enable = false,
-  -- },
+  sync_root_with_cwd = true,
+  respect_buf_cwd = true,
   ignore_ft_on_setup = {
     "startify",
     "dashboard",
