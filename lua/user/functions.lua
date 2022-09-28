@@ -9,7 +9,7 @@ end
 function M.toggle_option(option)
   local value = not vim.api.nvim_get_option_value(option, {})
   vim.opt[option] = value
-  vim.notify(option .. " set to " .. tostring(value))
+  print(option .. " set to " .. tostring(value))
 end
 
 local diagnostics_active = true
@@ -33,7 +33,7 @@ function M.toggle_tabline()
 
   vim.opt.showtabline = value
 
-  vim.notify("showtabline" .. " set to " .. tostring(value))
+  print("showtabline" .. " set to " .. tostring(value))
 end
 
 function M.isempty(s)
