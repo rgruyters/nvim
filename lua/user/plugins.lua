@@ -45,24 +45,23 @@ return packer.startup(function(use)
   -- My plugins here
   use { "wbthomason/packer.nvim" } -- Have packer manage itself
   use { "nvim-lua/plenary.nvim" } -- Useful lua functions used by lots of plugins
-  use { "windwp/nvim-autopairs" } -- Autopairs, integrates with both cmp and treesitter
+  use { "lewis6991/impatient.nvim" } -- Speedup loads
   use { "numToStr/Comment.nvim" } -- Make comments pretty
   use { "JoosepAlviste/nvim-ts-context-commentstring" } -- Commenting
-  use { "akinsho/bufferline.nvim" } -- Make bufferlines pretty
-  use { "moll/vim-bbye" }
-  use { "nvim-lualine/lualine.nvim" } -- Blazing fast statusline
-  use { "ahmedkhalf/project.nvim" } -- Project window
-  use { "lewis6991/impatient.nvim" } -- Speedup loads
-  use { "lukas-reineke/indent-blankline.nvim" } -- Indentation guides
-  use { "NvChad/nvim-colorizer.lua" } -- Show colour codes
+  use { "Vonr/align.nvim" } -- Aligning lines
+  use{ "mbbill/undotree" } -- Undotree
 
   -- UI
+  use { "akinsho/bufferline.nvim" } -- Make bufferlines pretty
+  use { "moll/vim-bbye" } -- Close buffers by keeping layout
+  use { "nvim-lualine/lualine.nvim" } -- Blazing fast statusline
+  use { "lukas-reineke/indent-blankline.nvim" } -- Indentation guides
   use { "kyazdani42/nvim-web-devicons" } -- provide webdev icons
   use { "kyazdani42/nvim-tree.lua" } -- File Explorer
   -- use { "rcarriga/nvim-notify" } -- Notification window
   use { "folke/todo-comments.nvim" } -- highlight todo comments
   use { "kylechui/nvim-surround" } -- Surround selections
-  -- use { "SmiteshP/nvim-navic" } -- Winbar component show current code context
+  use { "NvChad/nvim-colorizer.lua" } -- Show colour codes
 
   -- Colorschemes
   use { "shaunsingh/nord.nvim" } -- Nord theme: My theme of choise
@@ -73,38 +72,10 @@ return packer.startup(function(use)
   use { "hrsh7th/cmp-buffer" } -- buffer completions
   use { "hrsh7th/cmp-path" } -- path completions
   use { "hrsh7th/cmp-cmdline" }  -- cmdline completions
-  use { "saadparwaiz1/cmp_luasnip" } -- snippet completions
   use { "hrsh7th/cmp-nvim-lsp" }
   use { "hrsh7th/cmp-nvim-lua" }
-
-  -- snippets
-  use { "L3MON4D3/LuaSnip" } --snippet engine
-  use { "rafamadriz/friendly-snippets" } -- a bunch of snippets to use
-
-  -- LSP
-  use { "williamboman/mason.nvim" } -- Portable package manager for Neovim
-  use { "williamboman/mason-lspconfig.nvim" } -- Bridge between LSP en Mason
-  use { "neovim/nvim-lspconfig" } -- enable LSP
-  use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
-  use { "RRethy/vim-illuminate" } -- Highlight words
-  use { "folke/trouble.nvim" } -- Diagnostics viewer
-  use { "onsails/lspkind-nvim" } -- VSCode icons
-
-  -- Telescope
-  use { "nvim-telescope/telescope.nvim" } -- Fuzzy finder
-  use { "ThePrimeagen/harpoon" } -- Buffer management
-
-  -- Treesitter
-  use { "nvim-treesitter/nvim-treesitter",  run = ":TSUpdate" } -- Highlight and parser
-  use { "nvim-treesitter/nvim-treesitter-context" } -- Show context
-
-  -- Git
-  use { "lewis6991/gitsigns.nvim" } -- Superfast Git decorations
-  use { "f-person/git-blame.nvim" } -- Git Blame
-  use { "kdheepak/lazygit.nvim" } -- Lazygit for Neovim
-  use { "TimUntersberger/neogit" } -- Neogit
-  use { "sindrets/diffview.nvim" } -- Diff viewer
-
+  use { "saadparwaiz1/cmp_luasnip" } -- snippet completions
+  use { "windwp/nvim-autopairs" } -- Autopairs, integrates with both cmp and treesitter
   -- Copilot
   -- use {"github/copilot.vim"} -- Required for initial installation
   -- use {
@@ -127,6 +98,36 @@ return packer.startup(function(use)
     requires = "hrsh7th/nvim-cmp",
   } -- Tabnine AI completion
 
+  -- snippets
+  -- use { "L3MON4D3/LuaSnip" } --snippet engine
+  -- use { "rafamadriz/friendly-snippets" } -- a bunch of snippets to use
+
+  -- LSP
+  use { "williamboman/mason.nvim" } -- Portable package manager for Neovim
+  use { "williamboman/mason-lspconfig.nvim" } -- Bridge between LSP en Mason
+  use { "neovim/nvim-lspconfig" } -- enable LSP
+  use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
+  use { "RRethy/vim-illuminate" } -- Highlight words
+  use { "folke/trouble.nvim" } -- Diagnostics viewer
+  use { "onsails/lspkind-nvim" } -- VSCode icons
+
+  -- Treesitter
+  use { "nvim-treesitter/nvim-treesitter",  run = ":TSUpdate" } -- Highlight and parser
+  use { "nvim-treesitter/nvim-treesitter-context" } -- Show context
+
+  -- Telescope
+  use { "nvim-telescope/telescope.nvim" } -- Fuzzy finder
+  use { "ahmedkhalf/project.nvim" } -- Project window
+  use { "ThePrimeagen/harpoon" } -- Buffer management
+
+  -- Git
+  use { "lewis6991/gitsigns.nvim" } -- Superfast Git decorations
+  use { "f-person/git-blame.nvim" } -- Git Blame
+  use { "kdheepak/lazygit.nvim" } -- Lazygit for Neovim
+  use { "sindrets/diffview.nvim" } -- Diff viewer
+  use { "TimUntersberger/neogit", commit = "536ded80c32caf58c50c62ed4670b61d6a462d8e" } -- Neogit
+  -- use { "TimUntersberger/neogit" } -- Neogit
+
   -- DAP
   -- use { "mfussenegger/nvim-dap", commit = "014ebd53612cfd42ac8c131e6cec7c194572f21d" }
   -- use { "rcarriga/nvim-dap-ui", commit = "d76d6594374fb54abf2d94d6a320f3fd6e9bb2f7" }
@@ -138,12 +139,6 @@ return packer.startup(function(use)
     run = "cd app && npm install",
     setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" },
   } -- Markdown previewer
-
-  -- Alignment
-  use { "Vonr/align.nvim" } -- Aligning lines
-
-  -- UndoTree
-  use{ "mbbill/undotree" }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
