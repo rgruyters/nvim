@@ -27,9 +27,6 @@ comment.setup {
 
 local keymap = vim.keymap.set
 
-local opts = { silent = true }
-
 -- Comment
-keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)
-
+keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", { silent =true })
 keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>')
