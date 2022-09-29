@@ -1,4 +1,5 @@
 local cmp_status_ok, cmp = pcall(require, "cmp")
+
 if not cmp_status_ok then
   return
 end
@@ -99,8 +100,8 @@ cmp.setup({
 })
 
 -- Tabnine completion
-local status_ok, tabnine = pcall(require, "cmp_tabnine.config")
-if not status_ok then
+local tabnine_status_ok, tabnine = pcall(require, "cmp_tabnine.config")
+if not tabnine_status_ok then
   return
 end
 
