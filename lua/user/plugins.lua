@@ -99,8 +99,8 @@ return packer.startup(function(use)
   } -- Tabnine AI completion
 
   -- snippets
-  -- use { "L3MON4D3/LuaSnip" } --snippet engine
-  -- use { "rafamadriz/friendly-snippets" } -- a bunch of snippets to use
+  use { "L3MON4D3/LuaSnip" } --snippet engine
+  use { "rafamadriz/friendly-snippets" } -- a bunch of snippets to use
 
   -- LSP
   use { "williamboman/mason.nvim" } -- Portable package manager for Neovim
