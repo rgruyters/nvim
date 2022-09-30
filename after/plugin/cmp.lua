@@ -61,7 +61,7 @@ cmp.setup({
 
       if entry.source.name == "cmp_tabnine" then
         if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
-         vim_item.menu = entry.completion_item.data.detail .. " " .. vim_item.menu
+          vim_item.menu = entry.completion_item.data.detail .. " " .. vim_item.menu
         end
 
         vim_item.kind = icons.misc.Robot
