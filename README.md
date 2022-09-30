@@ -1,4 +1,6 @@
-# My basic IDE config for Neovim
+# My Personalized Development Environment
+
+This is my personalized config and plugins for [Neovim](https://neovim.io).
 
 ## Install Neovim
 
