@@ -49,7 +49,7 @@ return packer.startup(function(use)
   use { "numToStr/Comment.nvim" } -- Make comments pretty
   use { "JoosepAlviste/nvim-ts-context-commentstring" } -- Commenting
   use { "Vonr/align.nvim" } -- Aligning lines
-  use{ "mbbill/undotree" } -- Undotree
+  use { "mbbill/undotree" } -- Undotree
 
   -- UI
   use { "akinsho/bufferline.nvim" } -- Make bufferlines pretty
@@ -93,7 +93,6 @@ return packer.startup(function(use)
   -- }
   use {
     "tzachar/cmp-tabnine",
-    commit = "1a8fd2795e4317fd564da269cc64a2fa17ee854e",
     run = "./install.sh",
     requires = "hrsh7th/nvim-cmp",
   } -- Tabnine AI completion
