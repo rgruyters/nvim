@@ -123,14 +123,13 @@ return packer.startup(function(use)
   use { "lewis6991/gitsigns.nvim" } -- Superfast Git decorations
   use { "f-person/git-blame.nvim" } -- Git Blame
   use { "kdheepak/lazygit.nvim" } -- Lazygit for Neovim
-  use { "sindrets/diffview.nvim" } -- Diff viewer
-  use { "TimUntersberger/neogit", commit = "536ded80c32caf58c50c62ed4670b61d6a462d8e" } -- Neogit
-  -- use { "TimUntersberger/neogit" } -- Neogit
+  use { "TimUntersberger/neogit", requires = { "sindrets/diffview.nvim" } } -- Neogit
 
   -- DAP
-  -- use { "mfussenegger/nvim-dap", commit = "014ebd53612cfd42ac8c131e6cec7c194572f21d" }
-  -- use { "rcarriga/nvim-dap-ui", commit = "d76d6594374fb54abf2d94d6a320f3fd6e9bb2f7" }
-  -- use { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" }
+  use { "mfussenegger/nvim-dap" }
+  use { "rcarriga/nvim-dap-ui" }
+  use { "ravenxrz/DAPInstall.nvim" }
+  use { "theHamsta/nvim-dap-virtual-text" }
 
   -- Markdown
   use {
