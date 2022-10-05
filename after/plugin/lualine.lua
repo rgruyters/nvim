@@ -86,18 +86,6 @@ local diff = {
   separator = "%#SLSeparator#" .. " " .. "%*",
 }
 
-local treesitter = {
-  function()
-    return ""
-  end,
-  color = function()
-    local buf = vim.api.nvim_get_current_buf()
-    local ts = vim.treesitter.highlighter.active[buf]
-    return { fg = ts and not vim.tbl_isempty(ts) and colors.green or colors.red }
-  end,
-  cond = hide_in_width_60
-}
-
 local filetype = {
   "filetype",
   fmt = function(str)
@@ -310,7 +298,7 @@ lualine.setup {
     lualine_a = { "mode" },
     lualine_b = { "branch", diff },
     lualine_c = { current_signature },
-    lualine_x = { "diagnostics", treesitter, lanuage_server, spaces, filetype },
+    lualine_x = { "diagnostics", lanuage_server, spaces, filetype },
     lualine_y = { "location" },
     lualine_z = { scrollbar },
   },
