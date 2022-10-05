@@ -123,7 +123,10 @@ return packer.startup(function(use)
   use { "lewis6991/gitsigns.nvim" } -- Superfast Git decorations
   use { "f-person/git-blame.nvim" } -- Git Blame
   use { "kdheepak/lazygit.nvim" } -- Lazygit for Neovim
-  use { "TimUntersberger/neogit", requires = { "sindrets/diffview.nvim" } } -- Neogit
+  use { "TimUntersberger/neogit",
+    commit = '8adf22f103250864171f7eb087046db8ad296f78',
+    requires = { "sindrets/diffview.nvim" },
+  } -- Neogit
 
   -- DAP
   use { "mfussenegger/nvim-dap" }
