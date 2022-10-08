@@ -124,7 +124,6 @@ return packer.startup(function(use)
   use { "f-person/git-blame.nvim" } -- Git Blame
   use { "kdheepak/lazygit.nvim" } -- Lazygit for Neovim
   use { "TimUntersberger/neogit",
-    commit = '8adf22f103250864171f7eb087046db8ad296f78',
     requires = { "sindrets/diffview.nvim" },
   } -- Neogit
 
