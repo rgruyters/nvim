@@ -52,7 +52,7 @@ return packer.startup(function(use)
 	use({ "mbbill/undotree" }) -- Undotree
 
 	-- UI
-	use({ "akinsho/bufferline.nvim" }) -- Make bufferlines pretty
+	use({ "akinsho/bufferline.nvim", tag = "v2.*" }) -- Make bufferlines pretty
 	use({ "moll/vim-bbye" }) -- Close buffers by keeping layout
 	use({ "nvim-lualine/lualine.nvim" }) -- Blazing fast statusline
 	use({ "lukas-reineke/indent-blankline.nvim" }) -- Indentation guides
