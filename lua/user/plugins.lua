@@ -58,13 +58,11 @@ return packer.startup(function(use)
 	use({ "lukas-reineke/indent-blankline.nvim" }) -- Indentation guides
 	use({ "kyazdani42/nvim-web-devicons" }) -- provide webdev icons
 	use({ "kyazdani42/nvim-tree.lua" }) -- File Explorer
-	-- use { "rcarriga/nvim-notify" } -- Notification window
 	use({ "folke/todo-comments.nvim" }) -- highlight todo comments
 	use({ "kylechui/nvim-surround" }) -- Surround selections
 	use({ "NvChad/nvim-colorizer.lua" }) -- Show colour codes
 
 	-- Colorschemes
-	use({ "shaunsingh/nord.nvim" }) -- Nord theme: My theme of choise
 	use({ "catppuccin/nvim", as = "catppuccin" }) -- catppuccin theme
 
 	-- cmp plugins
