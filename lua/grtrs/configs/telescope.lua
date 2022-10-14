@@ -4,7 +4,7 @@ if not status_ok then
 end
 
 local actions = require "telescope.actions"
-local icons = require "user.icons"
+local icons = require "grtrs.icons"
 
 local keymap = vim.keymap.set
 

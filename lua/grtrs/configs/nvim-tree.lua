@@ -22,7 +22,7 @@ local opts = { silent = true }
 -- NvimTree
 vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)
 
-local icons = require "user.icons"
+local icons = require "grtrs.icons"
 
 local tree_cb = nvim_tree_config.nvim_tree_callback
 

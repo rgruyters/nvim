@@ -41,24 +41,24 @@ local opts = {}
 
 for _, server in pairs(servers) do
   opts = {
-    on_attach = require("user.lsp.handlers").on_attach,
-    capabilities = require("user.lsp.handlers").capabilities,
+    on_attach = require("grtrs.lsp.handlers").on_attach,
+    capabilities = require("grtrs.lsp.handlers").capabilities,
   }
 
   server = vim.split(server, "@")[1]
 
   if server == "sumneko_lua" then
-    local sumneko_opts = require "user.lsp.settings.sumneko_lua"
+    local sumneko_opts = require "grtrs.lsp.settings.sumneko_lua"
     opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
   end
 
   if server == "pyright" then
-    local pyright_opts = require "user.lsp.settings.pyright"
+    local pyright_opts = require "grtrs.lsp.settings.pyright"
     opts = vim.tbl_deep_extend("force", pyright_opts, opts)
   end
 
   if server == "terraformls" then
-    local terraformls_opts = require "user.lsp.settings.terraformls"
+    local terraformls_opts = require "grtrs.lsp.settings.terraformls"
     opts = vim.tbl_deep_extend("force", terraformls_opts, opts)
   end
 

@@ -65,7 +65,7 @@ local colors = {
 -- vim.api.nvim_set_hl(0, "SLSeparator", { bg = colors.dark_gray })
 vim.api.nvim_set_hl(0, "SLLSP", { fg = colors.light_gray_bright })
 
-local icons = require "user.icons"
+local icons = require "grtrs.icons"
 
 -- local diagnostics = {
 --   "diagnostics",
@@ -192,7 +192,7 @@ local current_signature = {
     local sig = require("lsp_signature").status_line(30)
     local hint = sig.hint
 
-    if not require("user.functions").isempty(hint) then
+    if not require("grtrs.functions").isempty(hint) then
       -- return "%#SLSeparator#│ " .. hint .. "%*"
       return "%#SLSeparator# " .. hint .. "%*"
     end

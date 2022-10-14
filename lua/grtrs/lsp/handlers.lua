@@ -10,7 +10,7 @@ M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
 
 M.setup = function()
-  local icons = require("user.icons")
+  local icons = require("grtrs.icons")
   local signs = {
 
     { name = "DiagnosticSignError", text = icons.diagnostics.Error },
@@ -88,7 +88,7 @@ local function lsp_keymaps(bufnr)
   vim.keymap.set("n", "<space>D", "<cmd>Telescope lsp_type_definitions<CR>", bufopts)
   vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
   vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set("n", "<space>f", "<cmd>lua require('user.lsp.handlers').buf_format()<CR>", bufopts)
+  vim.keymap.set("n", "<space>f", "<cmd>lua require('grtrs.lsp.handlers').buf_format()<CR>", bufopts)
 end
 
 M.on_attach = function(client, bufnr)
@@ -101,7 +101,7 @@ function M.enable_format_on_save()
     vim.cmd([[
       augroup format_on_save
         autocmd!
-        autocmd BufWritePre * lua require('user.lsp.handlers').buf_format()
+        autocmd BufWritePre * lua require('grtrs.lsp.handlers').buf_format()
       augroup end
     ]])
 end
@@ -134,8 +134,8 @@ function M.buf_format()
   end
 end
 
-vim.cmd([[ command! LspFormatOn execute 'lua require("user.lsp.handlers").enable_format_on_save()' ]])
-vim.cmd([[ command! LspFormatOff execute 'lua require("user.lsp.handlers").disable_format_on_save()' ]])
-vim.cmd([[ command! LspToggleAutoFormat execute 'lua require("user.lsp.handlers").toggle_format_on_save()' ]])
+vim.cmd([[ command! LspFormatOn execute 'lua require("grtrs.lsp.handlers").enable_format_on_save()' ]])
+vim.cmd([[ command! LspFormatOff execute 'lua require("grtrs.lsp.handlers").disable_format_on_save()' ]])
+vim.cmd([[ command! LspToggleAutoFormat execute 'lua require("grtrs.lsp.handlers").toggle_format_on_save()' ]])
 
 return M

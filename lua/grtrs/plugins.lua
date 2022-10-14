@@ -42,28 +42,88 @@ packer.init({
 
 -- Install your plugins here
 return packer.startup(function(use)
-	-- My plugins here
+	-- Important plugins
 	use({ "wbthomason/packer.nvim" }) -- Have packer manage itself
 	use({ "nvim-lua/plenary.nvim" }) -- Useful lua functions used by lots of plugins
-	use({ "lewis6991/impatient.nvim" }) -- Speedup loads
-	use({ "numToStr/Comment.nvim" }) -- Make comments pretty
+	use({
+    "lewis6991/impatient.nvim",
+    config = function()
+      require("grtrs.configs.impatient")
+    end
+  }) -- Speedup loads
+
+	-- Colorschemes
+	use({ "catppuccin/nvim", as = "catppuccin",
+    config = function()
+        require("grtrs.configs.colorscheme")
+    end
+  }) -- catppuccin theme
+
+  -- Standard plugins
+	use({
+    "numToStr/Comment.nvim",
+    config = function()
+      require("grtrs.configs.comment")
+    end
+  }) -- Make comments pretty
+
 	use({ "JoosepAlviste/nvim-ts-context-commentstring" }) -- Commenting
 	use({ "Vonr/align.nvim" }) -- Aligning lines
 	use({ "mbbill/undotree" }) -- Undotree
 
 	-- UI
-	use({ "akinsho/bufferline.nvim", tag = "v2.*" }) -- Make bufferlines pretty
-	use({ "moll/vim-bbye" }) -- Close buffers by keeping layout
-	use({ "nvim-lualine/lualine.nvim" }) -- Blazing fast statusline
-	use({ "lukas-reineke/indent-blankline.nvim" }) -- Indentation guides
-	use({ "kyazdani42/nvim-web-devicons" }) -- provide webdev icons
-	use({ "kyazdani42/nvim-tree.lua" }) -- File Explorer
-	use({ "folke/todo-comments.nvim" }) -- highlight todo comments
-	use({ "kylechui/nvim-surround" }) -- Surround selections
-	use({ "NvChad/nvim-colorizer.lua" }) -- Show colour codes
+	use({
+    "akinsho/bufferline.nvim",
+    tag = "v2.*",
+    after = "catppuccin",
+    require = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("grtrs.configs.bufferline")
+    end
+  }) -- Make bufferlines pretty
 
-	-- Colorschemes
-	use({ "catppuccin/nvim", as = "catppuccin" }) -- catppuccin theme
+	use({ "nvim-lualine/lualine.nvim",
+    after = "catppuccin",
+    require = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("grtrs.configs.lualine")
+    end
+  }) -- Blazing fast statusline
+
+	use({ "moll/vim-bbye" }) -- Close buffers by keeping layout
+	use({
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("grtrs.configs.indentline")
+    end
+  }) -- Indentation guides
+	use({ "kyazdani42/nvim-web-devicons" }) -- provide webdev icons
+	use({
+    "kyazdani42/nvim-tree.lua",
+    config = function()
+      require("grtrs.configs.nvim-tree")
+    end
+  }) -- File Explorer
+
+	use({
+    "folke/todo-comments.nvim",
+    config = function()
+      require("grtrs.configs.todo-comments")
+    end
+  }) -- highlight todo comments
+	use({
+    "kylechui/nvim-surround",
+    config = function()
+      require("grtrs.configs.surround")
+    end
+  }) -- Surround selections
+
+	use({
+    "NvChad/nvim-colorizer.lua",
+    config = function()
+      require("grtrs.configs.colorizer")
+    end
+  }) -- Show colour codes
 
 	-- cmp plugins
 	use({ "hrsh7th/nvim-cmp" }) -- The completion plugin
@@ -74,21 +134,6 @@ return packer.startup(function(use)
 	use({ "hrsh7th/cmp-nvim-lua" })
 	use({ "saadparwaiz1/cmp_luasnip" }) -- snippet completions
 	use({ "windwp/nvim-autopairs" }) -- Autopairs, integrates with both cmp and treesitter
-	-- Copilot
-	-- use {"github/copilot.vim"} -- Required for initial installation
-	-- use {
-	--   "zbirenbaum/copilot.lua",
-	--   event = { "VimEnter" },
-	--   config = function()
-	--     vim.defer_fn(function()
-	--       require("user.copilot")
-	--     end, 100)
-	--   end,
-	-- }
-	-- use {
-	--   "zbirenbaum/copilot-cmp",
-	--   module = "copilot_cmp",
-	-- }
 	use({
 		"tzachar/cmp-tabnine",
 		run = "./install.sh",
@@ -104,22 +149,65 @@ return packer.startup(function(use)
 	use({ "williamboman/mason-lspconfig.nvim" }) -- Bridge between LSP en Mason
 	use({ "neovim/nvim-lspconfig" }) -- enable LSP
 	use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
-	use({ "RRethy/vim-illuminate" }) -- Highlight words
+	use({
+    "RRethy/vim-illuminate",
+    config = function()
+      require("grtrs.configs.illuminate")
+    end
+  }) -- Highlight words
 	use({ "folke/trouble.nvim" }) -- Diagnostics viewer
 	use({ "onsails/lspkind-nvim" }) -- VSCode icons
 
 	-- Treesitter
-	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- Highlight and parser
-	use({ "nvim-treesitter/nvim-treesitter-context" }) -- Show context
+	use({
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+    config = function()
+      require("grtrs.configs.treesitter")
+    end
+  }) -- Highlight and parser
+	use({
+    "nvim-treesitter/nvim-treesitter-context",
+    config = function()
+      require("grtrs.configs.treesitter-context")
+    end
+  }) -- Show context
 
 	-- Telescope
-	use({ "nvim-telescope/telescope.nvim" }) -- Fuzzy finder
-	use({ "ahmedkhalf/project.nvim" }) -- Project window
-	use({ "ThePrimeagen/harpoon" }) -- Buffer management
+	use({
+    "nvim-telescope/telescope.nvim",
+    config = function()
+      require("grtrs.configs.telescope")
+    end
+  }) -- Fuzzy finder
+	use({
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require("grtrs.configs.project")
+    end
+  }) -- Project window
+	use({
+    "ThePrimeagen/harpoon",
+    config = function()
+      require("grtrs.configs.harpoon")
+    end
+  }) -- Buffer management
 
 	-- Git
-	use({ "lewis6991/gitsigns.nvim" }) -- Superfast Git decorations
-	use({ "f-person/git-blame.nvim" }) -- Git Blame
+	use({
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("grtrs.configs.gitsigns")
+    end
+  }) -- Superfast Git decorations
+
+	use({
+    "f-person/git-blame.nvim",
+    config = function()
+      require("grtrs.configs.git-blame")
+    end
+  }) -- Git Blame
+
 	use({ "kdheepak/lazygit.nvim" }) -- Lazygit for Neovim
 
 	-- DAP

@@ -3,7 +3,7 @@ if not status_ok then
   return
 end
 
-local icons = require "user.icons"
+local icons = require "grtrs.icons"
 
 local error_red = "#bf616a"
 local warning_orange = "#d08770"

@@ -19,7 +19,7 @@ local source_mapping = {
   path = "[P]",
 }
 
-local icons = require "user.icons"
+local icons = require "grtrs.icons"
 
 -- local kind_icons = icons.kind
 local lspkind = require("lspkind")
