@@ -100,6 +100,7 @@ return packer.startup(function(use)
 	use({ "kyazdani42/nvim-web-devicons" }) -- provide webdev icons
 	use({
     "kyazdani42/nvim-tree.lua",
+    after = "nvim-web-devicons",
     config = function()
       require("grtrs.configs.nvim-tree")
     end
