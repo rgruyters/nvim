@@ -11,6 +11,7 @@ local servers = {
   "tflint",
   "puppet",
   "ansiblels",
+  "gopls",
 }
 
 local settings = {

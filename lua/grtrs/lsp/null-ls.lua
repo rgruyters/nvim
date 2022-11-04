@@ -22,6 +22,7 @@ null_ls.setup {
     formatting.shfmt,
     formatting.puppet_lint,
     formatting.terrafmt,
+    formatting.gofmt,
     diagnostics.markdownlint,
     diagnostics.flake8,
     diagnostics.shellcheck,
