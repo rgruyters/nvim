@@ -1,6 +1,6 @@
 return {
-  filetypes = {
-    "terraform",
-    "tf"
-  }
+    filetypes = {
+        "terraform",
+        "tf"
+    }
 }
