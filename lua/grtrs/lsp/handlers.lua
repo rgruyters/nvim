@@ -125,13 +125,8 @@ function M.remove_augroup(name)
     end
 end
 
--- FIXME: Check if Neovim nightly is used. Remove if statement when Neovim 0.8 is stable
 function M.buf_format()
-    if vim.fn.has("nvim-0.8") == 1 then
-        vim.cmd([[lua vim.lsp.buf.format({ async = false })]])
-    else
-        vim.cmd([[lua vim.lsp.buf.formatting()]])
-    end
+    vim.cmd([[lua vim.lsp.buf.formatting()]])
 end
 
 vim.cmd([[ command! LspFormatOn execute 'lua require("grtrs.lsp.handlers").enable_format_on_save()' ]])
