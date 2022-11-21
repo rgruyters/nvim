@@ -46,26 +46,26 @@ return packer.startup(function(use)
 	use({ "wbthomason/packer.nvim" }) -- Have packer manage itself
 	use({ "nvim-lua/plenary.nvim" }) -- Useful lua functions used by lots of plugins
 	use({
-    "lewis6991/impatient.nvim",
-    config = function()
-      require("grtrs.configs.impatient")
-    end
-  }) -- Speedup loads
+		"lewis6991/impatient.nvim",
+		config = function()
+			require("grtrs.configs.impatient")
+		end
+	}) -- Speedup loads
 
 	-- Colorschemes
 	use({ "catppuccin/nvim", as = "catppuccin",
-    config = function()
-        require("grtrs.configs.colorscheme")
-    end
-  }) -- catppuccin theme
+		config = function()
+			require("grtrs.configs.colorscheme")
+		end
+	}) -- catppuccin theme
 
-  -- Standard plugins
+	-- Standard plugins
 	use({
-    "numToStr/Comment.nvim",
-    config = function()
-      require("grtrs.configs.comment")
-    end
-  }) -- Make comments pretty
+		"numToStr/Comment.nvim",
+		config = function()
+			require("grtrs.configs.comment")
+		end
+	}) -- Make comments pretty
 
 	use({ "JoosepAlviste/nvim-ts-context-commentstring" }) -- Commenting
 	use({ "Vonr/align.nvim" }) -- Aligning lines
@@ -73,58 +73,58 @@ return packer.startup(function(use)
 
 	-- UI
 	use({
-    "akinsho/bufferline.nvim",
-    tag = "v2.*",
-    after = "catppuccin",
-    require = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("grtrs.configs.bufferline")
-    end
-  }) -- Make bufferlines pretty
+		"akinsho/bufferline.nvim",
+		tag = "v2.*",
+		after = "catppuccin",
+		require = "kyazdani42/nvim-web-devicons",
+		config = function()
+			require("grtrs.configs.bufferline")
+		end
+	}) -- Make bufferlines pretty
 
 	use({ "nvim-lualine/lualine.nvim",
-    after = "catppuccin",
-    require = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("grtrs.configs.lualine")
-    end
-  }) -- Blazing fast statusline
+		after = "catppuccin",
+		require = "kyazdani42/nvim-web-devicons",
+		config = function()
+			require("grtrs.configs.lualine")
+		end
+	}) -- Blazing fast statusline
 
 	use({ "moll/vim-bbye" }) -- Close buffers by keeping layout
 	use({
-    "lukas-reineke/indent-blankline.nvim",
-    config = function()
-      require("grtrs.configs.indentline")
-    end
-  }) -- Indentation guides
+		"lukas-reineke/indent-blankline.nvim",
+		config = function()
+			require("grtrs.configs.indentline")
+		end
+	}) -- Indentation guides
 	use({ "kyazdani42/nvim-web-devicons" }) -- provide webdev icons
 	use({
-    "kyazdani42/nvim-tree.lua",
-    after = "nvim-web-devicons",
-    config = function()
-      require("grtrs.configs.nvim-tree")
-    end
-  }) -- File Explorer
+		"kyazdani42/nvim-tree.lua",
+		after = "nvim-web-devicons",
+		config = function()
+			require("grtrs.configs.nvim-tree")
+		end
+	}) -- File Explorer
 
 	use({
-    "folke/todo-comments.nvim",
-    config = function()
-      require("grtrs.configs.todo-comments")
-    end
-  }) -- highlight todo comments
+		"folke/todo-comments.nvim",
+		config = function()
+			require("grtrs.configs.todo-comments")
+		end
+	}) -- highlight todo comments
 	use({
-    "kylechui/nvim-surround",
-    config = function()
-      require("grtrs.configs.surround")
-    end
-  }) -- Surround selections
+		"kylechui/nvim-surround",
+		config = function()
+			require("grtrs.configs.surround")
+		end
+	}) -- Surround selections
 
 	use({
-    "NvChad/nvim-colorizer.lua",
-    config = function()
-      require("grtrs.configs.colorizer")
-    end
-  }) -- Show colour codes
+		"NvChad/nvim-colorizer.lua",
+		config = function()
+			require("grtrs.configs.colorizer")
+		end
+	}) -- Show colour codes
 
 	-- cmp plugins
 	use({ "hrsh7th/nvim-cmp" }) -- The completion plugin
@@ -151,63 +151,63 @@ return packer.startup(function(use)
 	use({ "neovim/nvim-lspconfig" }) -- enable LSP
 	use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
 	use({
-    "RRethy/vim-illuminate",
-    config = function()
-      require("grtrs.configs.illuminate")
-    end
-  }) -- Highlight words
+		"RRethy/vim-illuminate",
+		config = function()
+			require("grtrs.configs.illuminate")
+		end
+	}) -- Highlight words
 	use({ "folke/trouble.nvim" }) -- Diagnostics viewer
 	use({ "onsails/lspkind-nvim" }) -- VSCode icons
 
 	-- Treesitter
 	use({
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-    config = function()
-      require("grtrs.configs.treesitter")
-    end
-  }) -- Highlight and parser
+		"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate",
+		config = function()
+			require("grtrs.configs.treesitter")
+		end
+	}) -- Highlight and parser
 	use({
-    "nvim-treesitter/nvim-treesitter-context",
-    config = function()
-      require("grtrs.configs.treesitter-context")
-    end
-  }) -- Show context
+		"nvim-treesitter/nvim-treesitter-context",
+		config = function()
+			require("grtrs.configs.treesitter-context")
+		end
+	}) -- Show context
 
 	-- Telescope
 	use({
-    "nvim-telescope/telescope.nvim",
-    config = function()
-      require("grtrs.configs.telescope")
-    end
-  }) -- Fuzzy finder
+		"nvim-telescope/telescope.nvim",
+		config = function()
+			require("grtrs.configs.telescope")
+		end
+	}) -- Fuzzy finder
 	use({
-    "ahmedkhalf/project.nvim",
-    config = function()
-      require("grtrs.configs.project")
-    end
-  }) -- Project window
+		"ahmedkhalf/project.nvim",
+		config = function()
+			require("grtrs.configs.project")
+		end
+	}) -- Project window
 	use({
-    "ThePrimeagen/harpoon",
-    config = function()
-      require("grtrs.configs.harpoon")
-    end
-  }) -- Buffer management
+		"ThePrimeagen/harpoon",
+		config = function()
+			require("grtrs.configs.harpoon")
+		end
+	}) -- Buffer management
 
 	-- Git
 	use({
-    "lewis6991/gitsigns.nvim",
-    config = function()
-      require("grtrs.configs.gitsigns")
-    end
-  }) -- Superfast Git decorations
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("grtrs.configs.gitsigns")
+		end
+	}) -- Superfast Git decorations
 
 	use({
-    "f-person/git-blame.nvim",
-    config = function()
-      require("grtrs.configs.git-blame")
-    end
-  }) -- Git Blame
+		"f-person/git-blame.nvim",
+		config = function()
+			require("grtrs.configs.git-blame")
+		end
+	}) -- Git Blame
 
 	use({ "kdheepak/lazygit.nvim" }) -- Lazygit for Neovim
 
