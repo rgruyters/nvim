@@ -48,23 +48,10 @@ for _, server in pairs(servers) do
 
     server = vim.split(server, "@")[1]
 
-    if server == "sumneko_lua" then
-        local sumneko_opts = require "grtrs.lsp.settings.sumneko_lua"
-        opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
-    end
-
-    if server == "pyright" then
-        local pyright_opts = require "grtrs.lsp.settings.pyright"
-        opts = vim.tbl_deep_extend("force", pyright_opts, opts)
-    end
-
-    if server == "terraformls" then
-        local terraformls_opts = require "grtrs.lsp.settings.terraformls"
-        opts = vim.tbl_deep_extend("force", terraformls_opts, opts)
-    end
+    local require_ok, conf_opts = pcall(require, "grtrs.lsp.settings." .. server)
+	if require_ok then
+		opts = vim.tbl_deep_extend("force", conf_opts, opts)
+	end
 
     lspconfig[server].setup(opts)
 end
-
--- TODO: add something to installer later
--- require("lspconfig").motoko.setup {}
