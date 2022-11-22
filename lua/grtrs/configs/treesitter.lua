@@ -7,7 +7,6 @@ configs.setup({
   ensure_installed = {
     "hcl",
     "bash",
-    "puppet",
     "python",
     "markdown",
     "markdown_inline",
