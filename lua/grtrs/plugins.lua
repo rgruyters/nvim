@@ -98,13 +98,13 @@ return packer.startup(function(use)
         end
     }) -- Indentation guides
     use({ "kyazdani42/nvim-web-devicons" }) -- provide webdev icons
-    use({
-        "kyazdani42/nvim-tree.lua",
-        after = "nvim-web-devicons",
-        config = function()
-            require("grtrs.configs.nvim-tree")
-        end
-    }) -- File Explorer
+    -- use({
+    --     "kyazdani42/nvim-tree.lua",
+    --     after = "nvim-web-devicons",
+    --     config = function()
+    --         require("grtrs.configs.nvim-tree")
+    --     end
+    -- }) -- File Explorer
 
     use({
         "folke/todo-comments.nvim",
