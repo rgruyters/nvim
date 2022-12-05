@@ -5,13 +5,13 @@ This is my personalized config and plugins for [Neovim](https://neovim.io).
 ## Install Neovim
 
 Install Neovim from a package manager of your choice e.g. brew, apt, pacman
-etc.. For this config we need to have Neovim version 0.7 or higher.
+etc.. For this config we need to have Neovim version 0.8 or higher.
 
 On a Mac:
 
 ```sh
-brew install neovim # For Neovim version 0.7
-brew install --HEAD neovim # For Neovim Nightly (currently 0.8-dev)
+brew install neovim # For Neovim version 0.8
+brew install --HEAD neovim # For Neovim Nightly (currently 0.9-dev)
 ```
 
 If you would like to make sure Neovim only updates when you want it to
@@ -133,7 +133,6 @@ You can install new plugins here: [plugins](https://github.com/rgruyters/nvim/bl
 - [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
 - [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
 - [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
-- [nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua)
 - [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
 - [vim-bbye](https://github.com/moll/vim-bbye)
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
@@ -162,11 +161,9 @@ You can install new plugins here: [plugins](https://github.com/rgruyters/nvim/bl
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 - [git-blame.nvim](https://github.com/f-person/git-blame.nvim)
 - [lazygit](https://github.com/kdheepak/lazygit.nvim)
-- [neogit](https://github.com/TimUntersberger/neogit)
 - [nvim-notify](https://github.com/rcarriga/nvim-notify)
 - [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
 - [nvim-surround](https://github.com/kylechui/nvim-surround)
-- [shaunsingh/nord.nvim](https://github.com/shaunsingh/nord.nvim)
 - [trouble.nvim](https://github.com/folke/trouble.nvim)
 - [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
 - [lspkind-nvim](https://github.com/onsails/lspkind-nvim)
@@ -174,6 +171,7 @@ You can install new plugins here: [plugins](https://github.com/rgruyters/nvim/bl
 - [diffview.nvim](https://github.com/sindrets/diffview.nvim)
 - [align.nvim](https://github.com/Vonr/align.nvim)
 - [undotree](https://github.com/mbbill/undotree)
+- [catppucchin](https://github.com/catppuccin/nvim)
 
 ### Breaking changes
 
