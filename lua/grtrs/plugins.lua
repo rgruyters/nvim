@@ -98,13 +98,6 @@ return packer.startup(function(use)
         end
     }) -- Indentation guides
     use({ "kyazdani42/nvim-web-devicons" }) -- provide webdev icons
-    -- use({
-    --     "kyazdani42/nvim-tree.lua",
-    --     after = "nvim-web-devicons",
-    --     config = function()
-    --         require("grtrs.configs.nvim-tree")
-    --     end
-    -- }) -- File Explorer
 
     use({
         "folke/todo-comments.nvim",
@@ -135,11 +128,6 @@ return packer.startup(function(use)
     use({ "hrsh7th/cmp-nvim-lua" })
     use({ "saadparwaiz1/cmp_luasnip" }) -- snippet completions
     use({ "windwp/nvim-autopairs" }) -- Autopairs, integrates with both cmp and treesitter
-    use({
-        "tzachar/cmp-tabnine",
-        run = "./install.sh",
-        requires = "hrsh7th/nvim-cmp",
-    }) -- Tabnine AI completion
 
     -- snippets
     use({ "L3MON4D3/LuaSnip" }) --snippet engine
