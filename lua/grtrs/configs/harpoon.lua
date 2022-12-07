@@ -1,11 +1,11 @@
 local telescope_status_ok, telescope = pcall(require, "telescope")
 if not telescope_status_ok then
-  return
+    return
 end
 
 local harpoon_status_ok, harpoon = pcall(require, "harpoon")
 if not harpoon_status_ok then
-  return
+    return
 end
 
 local keymap = vim.keymap.set
