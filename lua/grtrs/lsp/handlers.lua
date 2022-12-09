@@ -88,7 +88,7 @@ local function lsp_keymaps(bufnr)
     vim.keymap.set("n", "<space>D", "<cmd>Telescope lsp_type_definitions<CR>", bufopts)
     vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
     vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set("n", "<space>f", "<cmd>lua require('grtrs.lsp.handlers').buf_format()<CR>", bufopts)
+    vim.keymap.set("n", "<space>lf", function() vim.lsp.buf.format { async = true, timeout_ms = 5000 } end, bufopts)
 end
 
 M.on_attach = function(client, bufnr)
@@ -99,20 +99,20 @@ end
 
 function M.enable_format_on_save()
     vim.cmd([[
-      augroup format_on_save
+      augroup lsp_format_on_save
       autocmd!
-      autocmd BufWritePre * lua require('grtrs.lsp.handlers').buf_format()
+      autocmd BufWritePre * lua vim.lsp.buf.format { timeout_ms = 5000 }
       augroup end
-      ]])
+    ]])
 end
 
 function M.disable_format_on_save()
-    M.remove_augroup("format_on_save")
+    M.remove_augroup("lsp_format_on_save")
     print("Disabled formatting on save")
 end
 
 function M.toggle_format_on_save()
-    if vim.fn.exists("#format_on_save#BufWritePre") == 0 then
+    if vim.fn.exists("#lsp_format_on_save#BufWritePre") == 0 then
         M.enable_format_on_save()
     else
         M.disable_format_on_save()
@@ -123,10 +123,6 @@ function M.remove_augroup(name)
     if vim.fn.exists("#" .. name) == 1 then
         vim.cmd("au! " .. name)
     end
-end
-
-function M.buf_format()
-    vim.cmd([[lua vim.lsp.buf.formatting()]])
 end
 
 vim.cmd([[ command! LspFormatOn execute 'lua require("grtrs.lsp.handlers").enable_format_on_save()' ]])
