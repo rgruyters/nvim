@@ -44,3 +44,7 @@ vim.opt.iskeyword:append("-")                   -- treats words with `-` as sing
 -- NOTE: To display end of line characters
 vim.opt.listchars:append("eol:↴")                -- when enabled show specific characters when list is enabled
 vim.opt.list = false                            -- do not show tabs, trailing spaces and returns
+--
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
