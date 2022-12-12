@@ -165,10 +165,17 @@ return packer.startup(function(use)
     -- Telescope
     use({
         "nvim-telescope/telescope.nvim",
+        branch = "0.1.x",
+        requires = { "nvim-lua/plenary.nvim" },
         config = function()
             require("grtrs.configs.telescope")
         end
     }) -- Fuzzy finder
+    use({
+        "nvim-telescope/telescope-fzf-native.nvim",
+        run = "make",
+        cond = vim.fn.executable "make" == 1
+    }) -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
     use({
         "ahmedkhalf/project.nvim",
         config = function()
