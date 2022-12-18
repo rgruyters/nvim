@@ -1,5 +1,5 @@
-local status_ok, comment = pcall(require, "Comment")
-if not status_ok then
+local comment_loaded, comment = pcall(require, "Comment")
+if not comment_loaded then
     return
 end
 
@@ -12,6 +12,7 @@ comment.setup {
 
         -- Determine the location where to calculate commentstring from
         local location = nil
+
         if ctx.ctype == U.ctype.blockwise then
             location = require("ts_context_commentstring.utils").get_cursor_location()
         elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
