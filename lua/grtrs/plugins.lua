@@ -130,12 +130,13 @@ return packer.startup(function(use)
     -- Git
     use({ "lewis6991/gitsigns.nvim" }) -- Superfast Git decorations
 
-    -- use({
-    --     "f-person/git-blame.nvim",
-    --     config = function()
-    --         require("grtrs.configs.git-blame")
-    --     end
-    -- }) -- Git Blame
+    use({
+        "f-person/git-blame.nvim",
+        config = function()
+            vim.g.gitblame_enabled = 0
+            vim.g.gitblame_message_template = "<sha> • <summary> • <date> • <author>"
+        end
+    }) -- Git Blame
 
     use({ "kdheepak/lazygit.nvim" }) -- Lazygit for Neovim
 
