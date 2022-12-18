@@ -70,7 +70,7 @@ return packer.startup(function(use)
 
     use({ "moll/vim-bbye" }) -- Close buffers by keeping layout
     use({ "lukas-reineke/indent-blankline.nvim" }) -- Indentation guides
-    -- use({ "kyazdani42/nvim-web-devicons" }) -- provide webdev icons
+    use({ "kyazdani42/nvim-web-devicons" }) -- provide webdev icons
 
     use({ "folke/todo-comments.nvim" }) -- highlight todo comments
     use({ "kylechui/nvim-surround" }) -- Surround selections
