@@ -1,7 +1,8 @@
-local status_ok, project = pcall(require, "project_nvim")
-if not status_ok then
+local project_nvim_loaded, project = pcall(require, "project_nvim")
+if not project_nvim_loaded then
     return
 end
+
 project.setup({
     ---@usage set to false to disable project.nvim.
     --- This is on by default since it's currently the expected behavior.
@@ -40,9 +41,13 @@ project.setup({
     datapath = vim.fn.stdpath("data"),
 })
 
-local tele_status_ok, telescope = pcall(require, "telescope")
-if not tele_status_ok then
+local telescope_loaded, telescope = pcall(require, "telescope")
+if not telescope_loaded then
     return
 end
 
+-- Load Projects extention
 telescope.load_extension('projects')
+
+-- Set keymap for loading project files
+vim.keymap.set("n", "<leader>sp", ":Telescope projects<CR>", { desc = "[S]earch [P]rojects" })
