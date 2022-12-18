@@ -44,13 +44,6 @@ packer.init({
 return packer.startup(function(use)
     -- Important plugins
     use({ "wbthomason/packer.nvim" }) -- Have packer manage itself
-    -- use({ "nvim-lua/plenary.nvim" }) -- Useful lua functions used by lots of plugins
-    -- use({
-    --     "lewis6991/impatient.nvim",
-    --     config = function()
-    --         require("grtrs.configs.impatient")
-    --     end
-    -- }) -- Speedup loads
 
     -- Colorschemes
     use({ "catppuccin/nvim", as = "catppuccin" }) -- catppuccin theme
@@ -68,9 +61,6 @@ return packer.startup(function(use)
         tag = "v2.*",
         after = "catppuccin",
         require = "kyazdani42/nvim-web-devicons",
-        config = function()
-            require("grtrs.configs.bufferline")
-        end
     }) -- Make bufferlines pretty
 
     use({ "nvim-lualine/lualine.nvim",
@@ -114,31 +104,8 @@ return packer.startup(function(use)
         }
     }
 
-    -- cmp plugins
-    -- use({ "hrsh7th/nvim-cmp" }) -- The completion plugin
-    -- use({ "hrsh7th/cmp-buffer" }) -- buffer completions
-    -- use({ "hrsh7th/cmp-path" }) -- path completions
-    -- use({ "hrsh7th/cmp-cmdline" }) -- cmdline completions
-    -- use({ "hrsh7th/cmp-nvim-lsp" })
-    -- use({ "hrsh7th/cmp-nvim-lua" })
-    -- use({ "saadparwaiz1/cmp_luasnip" }) -- snippet completions
-    -- use({ "windwp/nvim-autopairs" }) -- Autopairs, integrates with both cmp and treesitter
-    --
-    -- -- snippets
-    -- use({ "L3MON4D3/LuaSnip" }) --snippet engine
-    -- use({ "rafamadriz/friendly-snippets" }) -- a bunch of snippets to use
-    --
-    -- -- LSP
-    -- use({ "williamboman/mason.nvim" }) -- Portable package manager for Neovim
-    -- use({ "williamboman/mason-lspconfig.nvim" }) -- Bridge between LSP en Mason
-    -- use({ "neovim/nvim-lspconfig" }) -- enable LSP
     -- use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
-    -- use({
-    --     "RRethy/vim-illuminate",
-    --     config = function()
-    --         require("grtrs.configs.illuminate")
-    --     end
-    -- }) -- Highlight words
+    use({ "RRethy/vim-illuminate" }) -- Highlight words
     -- use({ "folke/trouble.nvim" }) -- Diagnostics viewer
     use({ "onsails/lspkind-nvim" }) -- VSCode icons
 
