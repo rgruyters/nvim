@@ -44,28 +44,19 @@ packer.init({
 return packer.startup(function(use)
     -- Important plugins
     use({ "wbthomason/packer.nvim" }) -- Have packer manage itself
-    use({ "nvim-lua/plenary.nvim" }) -- Useful lua functions used by lots of plugins
-    use({
-        "lewis6991/impatient.nvim",
-        config = function()
-            require("grtrs.configs.impatient")
-        end
-    }) -- Speedup loads
+    -- use({ "nvim-lua/plenary.nvim" }) -- Useful lua functions used by lots of plugins
+    -- use({
+    --     "lewis6991/impatient.nvim",
+    --     config = function()
+    --         require("grtrs.configs.impatient")
+    --     end
+    -- }) -- Speedup loads
 
     -- Colorschemes
-    use({ "catppuccin/nvim", as = "catppuccin",
-        config = function()
-            require("grtrs.configs.colorscheme")
-        end
-    }) -- catppuccin theme
+    use({ "catppuccin/nvim", as = "catppuccin" }) -- catppuccin theme
 
     -- Standard plugins
-    use({
-        "numToStr/Comment.nvim",
-        config = function()
-            require("grtrs.configs.comment")
-        end
-    }) -- Make comments pretty
+    use({ "numToStr/Comment.nvim" }) -- Make comments pretty
 
     use({ "JoosepAlviste/nvim-ts-context-commentstring" }) -- Commenting
     use({ "Vonr/align.nvim" }) -- Aligning lines
@@ -85,124 +76,99 @@ return packer.startup(function(use)
     use({ "nvim-lualine/lualine.nvim",
         after = "catppuccin",
         require = "kyazdani42/nvim-web-devicons",
-        config = function()
-            require("grtrs.configs.lualine")
-        end
     }) -- Blazing fast statusline
 
     use({ "moll/vim-bbye" }) -- Close buffers by keeping layout
-    use({
-        "lukas-reineke/indent-blankline.nvim",
-        config = function()
-            require("grtrs.configs.indentline")
-        end
-    }) -- Indentation guides
-    use({ "kyazdani42/nvim-web-devicons" }) -- provide webdev icons
+    use({ "lukas-reineke/indent-blankline.nvim" }) -- Indentation guides
+    -- use({ "kyazdani42/nvim-web-devicons" }) -- provide webdev icons
 
-    use({
-        "folke/todo-comments.nvim",
-        config = function()
-            require("grtrs.configs.todo-comments")
-        end
-    }) -- highlight todo comments
-    use({
-        "kylechui/nvim-surround",
-        config = function()
-            require("grtrs.configs.surround")
-        end
-    }) -- Surround selections
+    use({ "folke/todo-comments.nvim" }) -- highlight todo comments
+    use({ "kylechui/nvim-surround" }) -- Surround selections
 
-    use({
-        "NvChad/nvim-colorizer.lua",
-        config = function()
-            require("grtrs.configs.colorizer")
-        end
-    }) -- Show colour codes
+    -- use({
+    --     "NvChad/nvim-colorizer.lua",
+    --     config = function()
+    --         require("grtrs.configs.colorizer")
+    --     end
+    -- }) -- Show colour codes
+
+    use {
+        'VonHeikemen/lsp-zero.nvim',
+        requires = {
+            -- LSP Support
+            {'neovim/nvim-lspconfig'},
+            {'williamboman/mason.nvim'},
+            {'williamboman/mason-lspconfig.nvim'},
+
+            -- Autocompletion
+            {'hrsh7th/nvim-cmp'},
+            {'hrsh7th/cmp-buffer'},
+            {'hrsh7th/cmp-path'},
+            {'saadparwaiz1/cmp_luasnip'},
+            {'hrsh7th/cmp-nvim-lsp'},
+            {'hrsh7th/cmp-nvim-lua'},
+
+            -- Snippets
+            {'L3MON4D3/LuaSnip'},
+            {'rafamadriz/friendly-snippets'},
+        }
+    }
 
     -- cmp plugins
-    use({ "hrsh7th/nvim-cmp" }) -- The completion plugin
-    use({ "hrsh7th/cmp-buffer" }) -- buffer completions
-    use({ "hrsh7th/cmp-path" }) -- path completions
-    use({ "hrsh7th/cmp-cmdline" }) -- cmdline completions
-    use({ "hrsh7th/cmp-nvim-lsp" })
-    use({ "hrsh7th/cmp-nvim-lua" })
-    use({ "saadparwaiz1/cmp_luasnip" }) -- snippet completions
-    use({ "windwp/nvim-autopairs" }) -- Autopairs, integrates with both cmp and treesitter
-
-    -- snippets
-    use({ "L3MON4D3/LuaSnip" }) --snippet engine
-    use({ "rafamadriz/friendly-snippets" }) -- a bunch of snippets to use
-
-    -- LSP
-    use({ "williamboman/mason.nvim" }) -- Portable package manager for Neovim
-    use({ "williamboman/mason-lspconfig.nvim" }) -- Bridge between LSP en Mason
-    use({ "neovim/nvim-lspconfig" }) -- enable LSP
-    use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
-    use({
-        "RRethy/vim-illuminate",
-        config = function()
-            require("grtrs.configs.illuminate")
-        end
-    }) -- Highlight words
-    use({ "folke/trouble.nvim" }) -- Diagnostics viewer
+    -- use({ "hrsh7th/nvim-cmp" }) -- The completion plugin
+    -- use({ "hrsh7th/cmp-buffer" }) -- buffer completions
+    -- use({ "hrsh7th/cmp-path" }) -- path completions
+    -- use({ "hrsh7th/cmp-cmdline" }) -- cmdline completions
+    -- use({ "hrsh7th/cmp-nvim-lsp" })
+    -- use({ "hrsh7th/cmp-nvim-lua" })
+    -- use({ "saadparwaiz1/cmp_luasnip" }) -- snippet completions
+    -- use({ "windwp/nvim-autopairs" }) -- Autopairs, integrates with both cmp and treesitter
+    --
+    -- -- snippets
+    -- use({ "L3MON4D3/LuaSnip" }) --snippet engine
+    -- use({ "rafamadriz/friendly-snippets" }) -- a bunch of snippets to use
+    --
+    -- -- LSP
+    -- use({ "williamboman/mason.nvim" }) -- Portable package manager for Neovim
+    -- use({ "williamboman/mason-lspconfig.nvim" }) -- Bridge between LSP en Mason
+    -- use({ "neovim/nvim-lspconfig" }) -- enable LSP
+    -- use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
+    -- use({
+    --     "RRethy/vim-illuminate",
+    --     config = function()
+    --         require("grtrs.configs.illuminate")
+    --     end
+    -- }) -- Highlight words
+    -- use({ "folke/trouble.nvim" }) -- Diagnostics viewer
     use({ "onsails/lspkind-nvim" }) -- VSCode icons
 
     -- Treesitter
-    use({
-        "nvim-treesitter/nvim-treesitter",
-        run = ":TSUpdate",
-        config = function()
-            require("grtrs.configs.treesitter")
-        end
-    }) -- Highlight and parser
-    use({
-        "nvim-treesitter/nvim-treesitter-context",
-        config = function()
-            require("grtrs.configs.treesitter-context")
-        end
-    }) -- Show context
+    use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- Highlight and parser
+    use({ "nvim-treesitter/nvim-treesitter-context" }) -- Show context
 
     -- Telescope
     use({
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
         requires = { "nvim-lua/plenary.nvim" },
-        config = function()
-            require("grtrs.configs.telescope")
-        end
     }) -- Fuzzy finder
     use({
         "nvim-telescope/telescope-fzf-native.nvim",
         run = "make",
         cond = vim.fn.executable "make" == 1
     }) -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-    use({
-        "ahmedkhalf/project.nvim",
-        config = function()
-            require("grtrs.configs.project")
-        end
-    }) -- Project window
-    use({
-        "ThePrimeagen/harpoon",
-        config = function()
-            require("grtrs.configs.harpoon")
-        end
-    }) -- Buffer management
+    use({ "ahmedkhalf/project.nvim" }) -- Project window
+    use({ "ThePrimeagen/harpoon" }) -- Buffer management
 
     -- Git
-    use({
-        "lewis6991/gitsigns.nvim",
-        config = function()
-            require("grtrs.configs.gitsigns")
-        end
-    }) -- Superfast Git decorations
+    use({ "lewis6991/gitsigns.nvim" }) -- Superfast Git decorations
 
-    use({
-        "f-person/git-blame.nvim",
-        config = function()
-            require("grtrs.configs.git-blame")
-        end
-    }) -- Git Blame
+    -- use({
+    --     "f-person/git-blame.nvim",
+    --     config = function()
+    --         require("grtrs.configs.git-blame")
+    --     end
+    -- }) -- Git Blame
 
     use({ "kdheepak/lazygit.nvim" }) -- Lazygit for Neovim
 
