@@ -1,7 +1,7 @@
 local M = {}
 
-local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_cmp_ok then
+local cmp_nvim_lsp_loaded, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if not cmp_nvim_lsp_loaded then
     return
 end
 
@@ -31,102 +31,54 @@ M.setup = function()
         update_in_insert = true,
         underline = true,
         severity_sort = true,
-        float = {
-            focusable = true,
-            style = "minimal",
-            border = "rounded",
-            source = "always",
-            header = "",
-            prefix = "",
-        },
     }
 
     vim.diagnostic.config(config)
-
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = "rounded",
-    })
-
-    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = "rounded",
-    })
-end
-
-local function lsp_highlight_document(client)
-    -- if client.server_capabilities.document_highlight then
-    local status_ok, illuminate = pcall(require, "illuminate")
-    if not status_ok then
-        return
-    end
-    illuminate.on_attach(client)
-    -- end
-end
-
-local function attach_navic(client, bufnr)
-    vim.g.navic_silence = true
-    local status_ok, navic = pcall(require, "nvim-navic")
-    if not status_ok then
-        return
-    end
-    navic.attach(client, bufnr)
 end
 
 local function lsp_keymaps(bufnr)
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    local nmap = function(keys, func, desc)
+        if desc then
+            desc = 'LSP: ' .. desc
+        end
 
-    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", bufopts)
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-    vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", bufopts)
-    vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", bufopts)
-    vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
-    vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
-    vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
-    vim.keymap.set("n", "<space>wl", function()
+        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+    end
+
+    nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+    nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+
+    nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+    nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+    nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+    nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+    nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+    nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+
+    -- See `:help K` for why this keymap
+    nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+    nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+
+    -- Lesser used LSP functionality
+    nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+    nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+    nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+    nmap('<leader>wl', function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, bufopts)
-    vim.keymap.set("n", "<space>D", "<cmd>Telescope lsp_type_definitions<CR>", bufopts)
-    vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
-    vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set("n", "<space>lf", function() vim.lsp.buf.format { async = true, timeout_ms = 5000 } end, bufopts)
+    end, '[W]orkspace [L]ist Folders')
+
+    -- Create a command `:Format` local to the LSP buffer
+    vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+        if vim.lsp.buf.format then
+            vim.lsp.buf.format()
+        elseif vim.lsp.buf.formatting then
+            vim.lsp.buf.formatting()
+        end
+    end, { desc = 'Format current buffer with LSP' })
 end
 
-M.on_attach = function(client, bufnr)
+M.on_attach = function(_, bufnr)
     lsp_keymaps(bufnr)
-    lsp_highlight_document(client)
-    attach_navic(client, bufnr)
 end
-
-function M.enable_format_on_save()
-    vim.cmd([[
-      augroup lsp_format_on_save
-      autocmd!
-      autocmd BufWritePre * lua vim.lsp.buf.format { timeout_ms = 5000 }
-      augroup end
-    ]])
-end
-
-function M.disable_format_on_save()
-    M.remove_augroup("lsp_format_on_save")
-    print("Disabled formatting on save")
-end
-
-function M.toggle_format_on_save()
-    if vim.fn.exists("#lsp_format_on_save#BufWritePre") == 0 then
-        M.enable_format_on_save()
-    else
-        M.disable_format_on_save()
-    end
-end
-
-function M.remove_augroup(name)
-    if vim.fn.exists("#" .. name) == 1 then
-        vim.cmd("au! " .. name)
-    end
-end
-
-vim.cmd([[ command! LspFormatOn execute 'lua require("grtrs.lsp.handlers").enable_format_on_save()' ]])
-vim.cmd([[ command! LspFormatOff execute 'lua require("grtrs.lsp.handlers").disable_format_on_save()' ]])
-vim.cmd([[ command! LspToggleAutoFormat execute 'lua require("grtrs.lsp.handlers").toggle_format_on_save()' ]])
 
 return M
