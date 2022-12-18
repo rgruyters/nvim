@@ -67,14 +67,8 @@ local function lsp_keymaps(bufnr)
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, '[W]orkspace [L]ist Folders')
 
-    -- Create a command `:Format` local to the LSP buffer
-    vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-        if vim.lsp.buf.format then
-            vim.lsp.buf.format()
-        elseif vim.lsp.buf.formatting then
-            vim.lsp.buf.formatting()
-        end
-    end, { desc = 'Format current buffer with LSP' })
+    -- LSP Formatting
+    nmap('<leader>f', vim.lsp.buf.format, '[F]ormat current buffer with LSP')
 end
 
 M.on_attach = function(_, bufnr)
