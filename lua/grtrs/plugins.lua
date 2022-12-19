@@ -104,7 +104,7 @@ return packer.startup(function(use)
         }
     }
 
-    -- use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
+    use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
     use({ "RRethy/vim-illuminate" }) -- Highlight words
     -- use({ "folke/trouble.nvim" }) -- Diagnostics viewer
     use({ "onsails/lspkind-nvim" }) -- VSCode icons

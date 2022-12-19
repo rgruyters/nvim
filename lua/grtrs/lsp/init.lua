@@ -57,3 +57,4 @@ for _, server in pairs(servers) do
 end
 
 require("grtrs.lsp.handlers").setup()
+require("grtrs.lsp.null-ls")
