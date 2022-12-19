@@ -3,6 +3,7 @@ if not status_ok then
     return
 end
 
+local actions = require "telescope.actions"
 local icons = require "grtrs.icons"
 
 -- Telescope
@@ -76,5 +77,27 @@ telescope.setup {
             "%.flac",
             "%.tar.gz",
         },
-    },
+        mappings = {
+            i = {
+                ["<C-n>"] = actions.cycle_history_next,
+                ["<C-p>"] = actions.cycle_history_prev,
+
+                ["<C-j>"] = actions.move_selection_next,
+                ["<C-k>"] = actions.move_selection_previous,
+            },
+            n = {
+                ["<esc>"] = actions.close,
+                ["<CR>"] = actions.select_default,
+
+                ["j"] = actions.move_selection_next,
+                ["k"] = actions.move_selection_previous,
+                ["H"] = actions.move_to_top,
+                ["M"] = actions.move_to_middle,
+                ["L"] = actions.move_to_bottom,
+
+                ["gg"] = actions.move_to_top,
+                ["G"] = actions.move_to_bottom,
+            }
+        }
+    }
 }
