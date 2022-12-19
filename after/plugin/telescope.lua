@@ -8,15 +8,23 @@ local icons = require "grtrs.icons"
 
 -- Telescope
 -- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+local nmap = function(keys, func, desc)
+    if desc then
+        desc = 'Telescope: ' .. desc
+    end
 
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>sk', require('telescope.builtin').keymaps, { desc = '[S]earch [K]eymaps' })
+    vim.keymap.set('n', keys, func, { silent = true, desc = desc })
+end
+
+nmap('<leader>?', require('telescope.builtin').oldfiles, '[?] Find recently opened files')
+nmap('<leader><space>', require('telescope.builtin').buffers, '[ ] Find existing buffers')
+
+nmap('<leader>sf', require('telescope.builtin').find_files, '[S]earch [F]iles')
+nmap('<leader>sh', require('telescope.builtin').help_tags, '[S]earch [H]elp')
+nmap('<leader>sw', require('telescope.builtin').grep_string, '[S]earch current [W]ord')
+nmap('<leader>sg', require('telescope.builtin').live_grep, '[S]earch by [G]rep')
+nmap('<leader>sd', require('telescope.builtin').diagnostics, '[S]earch [D]iagnostics')
+nmap('<leader>sk', require('telescope.builtin').keymaps, '[S]earch [K]eymaps')
 
 telescope.setup {
     defaults = {
