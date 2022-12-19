@@ -68,16 +68,12 @@ return packer.startup(function(use)
     use { "moll/vim-bbye" } -- Close buffers by keeping layout
     use { "lukas-reineke/indent-blankline.nvim" } -- Indentation guides
 
-    use { "folke/todo-comments.nvim" } -- highlight todo comments
+    use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim" } -- highlight todo comments
     use { "kylechui/nvim-surround" } -- Surround selections
 
-    -- use({
-    --     "NvChad/nvim-colorizer.lua",
-    --     config = function()
-    --         require("grtrs.configs.colorizer")
-    --     end
-    -- }) -- Show colour codes
+    use({ "NvChad/nvim-colorizer.lua" }) -- Show colour codes
 
+    -- LSP
     use {
         'VonHeikemen/lsp-zero.nvim',
         requires = {
@@ -99,7 +95,6 @@ return packer.startup(function(use)
             {'rafamadriz/friendly-snippets'},
         }
     }
-
     use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
     use { "RRethy/vim-illuminate" } -- Highlight words
     use { "onsails/lspkind-nvim" } -- VSCode icons
