@@ -71,7 +71,18 @@ local function lsp_keymaps(bufnr)
     nmap('<leader>f', vim.lsp.buf.format, '[F]ormat current buffer with LSP')
 end
 
-M.on_attach = function(_, bufnr)
+local function lsp_highlight_document(client)
+    -- if client.server_capabilities.document_highlight then
+    local illuminate_loaded, illuminate = pcall(require, "illuminate")
+    if not illuminate_loaded then
+        return
+    end
+    illuminate.on_attach(client)
+    -- end
+end
+
+M.on_attach = function(client, bufnr)
+    lsp_highlight_document(client)
     lsp_keymaps(bufnr)
 end
 
