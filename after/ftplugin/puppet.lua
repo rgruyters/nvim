@@ -1,5 +1,5 @@
-local config_ok, parsers = pcall(require, "nvim-treesitter.parsers")
-if not config_ok then
+local parsers_loaded, parsers = pcall(require, "nvim-treesitter.parsers")
+if not parsers_loaded then
     return
 end
 

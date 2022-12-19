@@ -1,7 +1,7 @@
 M = {}
 
-local status_ok, lualine = pcall(require, "lualine")
-if not status_ok then
+local lualine_loaded, lualine = pcall(require, "lualine")
+if not lualine_loaded then
     return
 end
 

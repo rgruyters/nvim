@@ -1,5 +1,5 @@
-local catppuccin_status_ok, catppuccin = pcall(require, "catppuccin")
-if not catppuccin_status_ok then
+local catppuccin_loaded, catppuccin = pcall(require, "catppuccin")
+if not catppuccin_loaded then
     return
 end
 
@@ -8,7 +8,7 @@ local colorscheme = "catppuccin"
 vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
 catppuccin.setup()
 
-local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
-if not status_ok then
+local colorscheme_loaded, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+if not colorscheme_loaded then
     return
 end

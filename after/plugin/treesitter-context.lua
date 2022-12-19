@@ -1,5 +1,5 @@
-local status_ok, treesitter_context = pcall(require, "treesitter-context")
-if not status_ok then
+local treesitter_context_loaded, treesitter_context = pcall(require, "treesitter-context")
+if not treesitter_context_loaded then
     return
 end
 

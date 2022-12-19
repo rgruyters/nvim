@@ -1,5 +1,5 @@
-local status_ok, todo_comments = pcall(require, "todo-comments")
-if not status_ok then
+local todo_comments_loaded, todo_comments = pcall(require, "todo-comments")
+if not todo_comments_loaded then
     return
 end
 
@@ -10,7 +10,6 @@ local warning_orange = "#d08770"
 local info_yellow = "#ebcb8b"
 local hint_blue = "#5e81ac"
 local perf_purple = "#b48ead"
-local note_green = '#a3be8c'
 
 todo_comments.setup {
     signs = true, -- show icons in the signs column

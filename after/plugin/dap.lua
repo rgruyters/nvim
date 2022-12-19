@@ -1,15 +1,15 @@
-local dap_status_ok, dap = pcall(require, "dap")
-if not dap_status_ok then
+local dap_loaded, dap = pcall(require, "dap")
+if not dap_loaded then
     return
 end
 
-local dap_ui_status_ok, dapui = pcall(require, "dapui")
-if not dap_ui_status_ok then
+local dapui_loaded, dapui = pcall(require, "dapui")
+if not dapui_loaded then
     return
 end
 
-local dap_install_status_ok, dap_install = pcall(require, "dap-install")
-if not dap_install_status_ok then
+local dap_install_loaded, dap_install = pcall(require, "dap-install")
+if not dap_install_loaded then
 	return
 end
 
