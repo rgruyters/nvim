@@ -50,4 +50,4 @@ end
 telescope.load_extension('projects')
 
 -- Set keymap for loading project files
-vim.keymap.set("n", "<leader>sp", ":Telescope projects<CR>", { desc = "[S]earch [P]rojects" })
+vim.keymap.set("n", "<leader>sp", ":Telescope projects<CR>", { desc = "Telescope: [S]earch [P]rojects", silent = true })
