@@ -1,9 +1,7 @@
-local fn = vim.fn
-
 -- Automatically install packer
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-    PACKER_BOOTSTRAP = fn.system({
+local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+    PACKER_BOOTSTRAP = vim.fn.system({
         "git",
         "clone",
         "--depth",
@@ -24,14 +22,14 @@ vim.cmd([[
 ]])
 
 -- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
+local packer_loaded, packer = pcall(require, "packer")
+if not packer_loaded then
     return
 end
 
 -- Have packer use a popup window
 packer.init({
-    snapshot_path = fn.stdpath("config") .. "/snapshots",
+    snapshot_path = vim.fn.stdpath("config") .. "/snapshots",
     max_jobs = 50,
     display = {
         open_fn = function()
@@ -43,37 +41,35 @@ packer.init({
 -- Install your plugins here
 return packer.startup(function(use)
     -- Important plugins
-    use({ "wbthomason/packer.nvim" }) -- Have packer manage itself
+    use { "wbthomason/packer.nvim" } -- Have packer manage itself
 
     -- Colorschemes
-    use({ "catppuccin/nvim", as = "catppuccin" }) -- catppuccin theme
-
-    -- Standard plugins
-    use({ "numToStr/Comment.nvim" }) -- Make comments pretty
-
-    use({ "JoosepAlviste/nvim-ts-context-commentstring" }) -- Commenting
-    use({ "Vonr/align.nvim" }) -- Aligning lines
-    use({ "mbbill/undotree" }) -- Undotree
+    use { "catppuccin/nvim", as = "catppuccin" } -- catppuccin theme
 
     -- UI
-    use({
+    use {
         "akinsho/bufferline.nvim",
-        tag = "v2.*",
+        tag = "v3.*",
         after = "catppuccin",
-        require = "kyazdani42/nvim-web-devicons",
-    }) -- Make bufferlines pretty
+        requires = "kyazdani42/nvim-web-devicons",
+    } -- Make bufferlines pretty
 
-    use({ "nvim-lualine/lualine.nvim",
+    use { "nvim-lualine/lualine.nvim",
         after = "catppuccin",
-        require = "kyazdani42/nvim-web-devicons",
-    }) -- Blazing fast statusline
+        requires = "kyazdani42/nvim-web-devicons",
+    } -- Blazing fast statusline
 
-    use({ "moll/vim-bbye" }) -- Close buffers by keeping layout
-    use({ "lukas-reineke/indent-blankline.nvim" }) -- Indentation guides
-    use({ "kyazdani42/nvim-web-devicons" }) -- provide webdev icons
+    -- Standard plugins
+    use { "numToStr/Comment.nvim" } -- Make comments pretty
+    use { "JoosepAlviste/nvim-ts-context-commentstring" } -- Commenting
+    use { "Vonr/align.nvim" } -- Aligning lines
+    use { "mbbill/undotree" } -- Undotree
 
-    use({ "folke/todo-comments.nvim" }) -- highlight todo comments
-    use({ "kylechui/nvim-surround" }) -- Surround selections
+    use { "moll/vim-bbye" } -- Close buffers by keeping layout
+    use { "lukas-reineke/indent-blankline.nvim" } -- Indentation guides
+
+    use { "folke/todo-comments.nvim" } -- highlight todo comments
+    use { "kylechui/nvim-surround" } -- Surround selections
 
     -- use({
     --     "NvChad/nvim-colorizer.lua",
@@ -104,57 +100,55 @@ return packer.startup(function(use)
         }
     }
 
-    use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
-    use({ "RRethy/vim-illuminate" }) -- Highlight words
-    -- use({ "folke/trouble.nvim" }) -- Diagnostics viewer
-    use({ "onsails/lspkind-nvim" }) -- VSCode icons
+    use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
+    use { "RRethy/vim-illuminate" } -- Highlight words
+    use { "onsails/lspkind-nvim" } -- VSCode icons
 
     -- Treesitter
-    use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- Highlight and parser
-    use({ "nvim-treesitter/nvim-treesitter-context" }) -- Show context
+    use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" } -- Highlight and parser
+    use { "nvim-treesitter/nvim-treesitter-context" } -- Show context
 
     -- Telescope
-    use({
+    use {
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
         requires = { "nvim-lua/plenary.nvim" },
-    }) -- Fuzzy finder
-    use({
+    } -- Fuzzy finder
+    use {
         "nvim-telescope/telescope-fzf-native.nvim",
         run = "make",
         cond = vim.fn.executable "make" == 1
-    }) -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-    use({ "ahmedkhalf/project.nvim" }) -- Project window
-    use({ "ThePrimeagen/harpoon" }) -- Buffer management
+    } -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
+    use { "ahmedkhalf/project.nvim" } -- Project window
+
+    use { "ThePrimeagen/harpoon" } -- Buffer management
 
     -- Git
-    use({ "lewis6991/gitsigns.nvim" }) -- Superfast Git decorations
-
-    use({
+    use { "lewis6991/gitsigns.nvim" } -- Superfast Git decorations
+    use {
         "f-person/git-blame.nvim",
         config = function()
             vim.g.gitblame_enabled = 0
             vim.g.gitblame_message_template = "<sha> • <summary> • <date> • <author>"
         end
-    }) -- Git Blame
-
-    use({ "kdheepak/lazygit.nvim" }) -- Lazygit for Neovim
+    } -- Git Blame
+    use { "kdheepak/lazygit.nvim" } -- Lazygit for Neovim
 
     -- DAP
-    use({ "mfussenegger/nvim-dap" })
-    use({ "rcarriga/nvim-dap-ui" })
-    use({ "ravenxrz/DAPInstall.nvim" })
-    use({ "theHamsta/nvim-dap-virtual-text" })
+    use { "mfussenegger/nvim-dap" }
+    use { "rcarriga/nvim-dap-ui" }
+    use { "ravenxrz/DAPInstall.nvim" }
+    use { "theHamsta/nvim-dap-virtual-text" }
 
     -- Markdown
-    use({
+    use {
         "iamcco/markdown-preview.nvim",
         run = "cd app && npm install",
         setup = function()
             vim.g.mkdp_filetypes = { "markdown" }
         end,
         ft = { "markdown" },
-    }) -- Markdown previewer
+    } -- Markdown previewer
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
