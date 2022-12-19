@@ -16,3 +16,5 @@ todo_comments.setup {
         exclude = {}, -- list of file types to exclude highlighting
     },
 }
+
+vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope keywords=TODO,FIX,HACK<CR>", { silent = true, desc = "Telescope: [F]ind [T]odo" })
