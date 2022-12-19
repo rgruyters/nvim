@@ -19,12 +19,12 @@ end
 nmap('<leader>?', require('telescope.builtin').oldfiles, '[?] Find recently opened files')
 nmap('<leader><space>', require('telescope.builtin').buffers, '[ ] Find existing buffers')
 
-nmap('<leader>sf', require('telescope.builtin').find_files, '[S]earch [F]iles')
-nmap('<leader>sh', require('telescope.builtin').help_tags, '[S]earch [H]elp')
-nmap('<leader>sw', require('telescope.builtin').grep_string, '[S]earch current [W]ord')
-nmap('<leader>sg', require('telescope.builtin').live_grep, '[S]earch by [G]rep')
-nmap('<leader>sd', require('telescope.builtin').diagnostics, '[S]earch [D]iagnostics')
-nmap('<leader>sk', require('telescope.builtin').keymaps, '[S]earch [K]eymaps')
+nmap('<leader>ff', require('telescope.builtin').find_files, '[F]ind [F]iles')
+nmap('<leader>fh', require('telescope.builtin').help_tags, '[F]ind [H]elp')
+nmap('<leader>fw', require('telescope.builtin').grep_string, '[F]ind current [W]ord')
+nmap('<leader>fg', require('telescope.builtin').live_grep, '[F]ind by [G]rep')
+nmap('<leader>fd', require('telescope.builtin').diagnostics, '[F]ind [D]iagnostics')
+nmap('<leader>fk', require('telescope.builtin').keymaps, '[F]ind [K]eymaps')
 
 telescope.setup {
     defaults = {
