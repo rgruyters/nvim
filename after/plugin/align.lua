@@ -4,7 +4,7 @@ local nmap = function(keys, func, desc)
         desc = 'align: ' .. desc
     end
 
-    vim.keymap.set('n', keys, func, { noremap = true, silent = true, desc = desc })
+    vim.keymap.set('x', keys, func, { noremap = true, silent = true, desc = desc })
 end
 
 nmap("aa", "<cmd>lua require('align').align_to_char(1, true)<CR>", "Align 1 character") -- Aligns to 1 character, looking left
