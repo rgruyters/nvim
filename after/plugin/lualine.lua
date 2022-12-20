@@ -5,6 +5,16 @@ if not lualine_loaded then
     return
 end
 
+local icons = require "grtrs.icons"
+
+local hide_in_width = function()
+    return vim.o.columns > 80
+end
+
+local hide_in_width_100 = function()
+    return vim.o.columns > 100
+end
+
 -- check if value in table
 local function contains(t, value)
     for _, v in pairs(t) do
@@ -15,118 +25,18 @@ local function contains(t, value)
     return false
 end
 
-local function diff_source()
-    local gitsigns = vim.b.gitsigns_status_dict
-    if gitsigns then
-        return {
-            added = gitsigns.added,
-            modified = gitsigns.changed,
-            removed = gitsigns.removed,
-        }
-    end
-end
-
-local hide_in_width_60 = function()
-    return vim.o.columns > 60
-end
-
-local hide_in_width = function()
-    return vim.o.columns > 80
-end
-
-local hide_in_width_100 = function()
-    return vim.o.columns > 100
-end
-
--- Nord theme colors
-local colors = {
-    --16 colors
-    black = "#2E3440", -- nord0 in palette
-    dark_gray = "#3B4252", -- nord1 in palette
-    gray = "#434C5E", -- nord2 in palette
-    light_gray = "#4C566A", -- nord3 in palette
-    light_gray_bright = "#616E88", -- out of palette
-    darkest_white = "#D8DEE9", -- nord4 in palette
-    darker_white = "#E5E9F0", -- nord5 in palette
-    white = "#ECEFF4", -- nord6 in palette
-    teal = "#8FBCBB", -- nord7 in palette
-    off_blue = "#88C0D0", -- nord8 in palette
-    glacier = "#81A1C1", -- nord9 in palette
-    blue = "#5E81AC", -- nord10 in palette
-    red = "#BF616A", -- nord11 in palette
-    orange = "#D08770", -- nord12 in palette
-    yellow = "#EBCB8B", -- nord13 in palette
-    green = "#A3BE8C", -- nord14 in palette
-    purple = "#B48EAD", -- nord15 in palette
+local ui_disable_filetypes = {
+    "help",
+    "packer",
+    "neogitstatus",
+    "NvimTree",
+    "Trouble",
+    "lir",
+    "Outline",
+    "spectre_panel",
+    "DressingSelect",
+    "",
 }
-
--- vim.api.nvim_set_hl(0, "SLGitIcon", { fg = colors.yellow, bg = colors.gray })
--- vim.api.nvim_set_hl(0, "SLBranchName", { fg = colors.yellow, bg = colors.gray })
--- vim.api.nvim_set_hl(0, "SLSeparator", { bg = colors.dark_gray })
-vim.api.nvim_set_hl(0, "SLLSP", { fg = colors.light_gray_bright })
-
-local icons = require "grtrs.icons"
-
--- local diagnostics = {
---   "diagnostics",
---   sources = { "nvim_diagnostic" },
---   sections = { "error", "warn" },
---   symbols = { error = icons.diagnostics.Error .. " ", warn = icons.diagnostics.Warning .. " " },
---   colored = true,
---   update_in_insert = false,
---   always_visible = false,
--- }
-
-local diff = {
-    "diff",
-    source = diff_source,
-    colored = true,
-    -- symbols = { added = icons.git.Add .. " ", modified = icons.git.Mod .. " ", removed = icons.git.Remove .. " " }, -- changes diff symbols
-    cond = hide_in_width_60,
-    separator = "%#SLSeparator#" .. " " .. "%*",
-}
-
-local filetype = {
-    "filetype",
-    fmt = function(str)
-        local ui_filetypes = {
-            "help",
-            "packer",
-            "neogitstatus",
-            "NvimTree",
-            "Trouble",
-            "lir",
-            "Outline",
-            "spectre_panel",
-            "toggleterm",
-            "DressingSelect",
-            "",
-        }
-
-        if str == "toggleterm" then
-            -- 
-            local term = "%#SLTermIcon#"
-            .. " "
-            .. "%*"
-            .. "%#SLFG#"
-            .. vim.api.nvim_buf_get_var(0, "toggle_number")
-            .. "%*"
-            return term
-        end
-
-        if contains(ui_filetypes, str) then
-            return ""
-        else
-            return str
-        end
-    end,
-    icons_enabled = true,
-}
-
--- local location = {
---   "location",
---   padding = { left = 1, right = 1 },
--- }
 
 local scrollbar = {
     function()
@@ -141,86 +51,29 @@ local scrollbar = {
     cond = nil,
 }
 
--- local branch = {
---   "branch",
---   icons_enabled = true,
---   icon = "%#SLGitIcon#" .. icons.git.Branch .. "%*" .. "%#SLBranchName#",
---   colored = true,
--- }
-
 local spaces = {
     function()
         local buf_ft = vim.bo.filetype
 
-local ui_filetypes = {
-            "help",
-            "packer",
-            "neogitstatus",
-            "NvimTree",
-            "Trouble",
-            "lir",
-            "Outline",
-            "spectre_panel",
-            "DressingSelect",
-            "",
-        }
         local space = ""
 
-        if contains(ui_filetypes, buf_ft) then
+        if contains(ui_disable_filetypes, buf_ft) then
             space = " "
         end
 
-        -- TODO: update codicons and use their indent
         return "  " .. vim.api.nvim_buf_get_option(0, "shiftwidth") .. space
     end,
+
     padding = 0,
-    -- separator = "%#SLSeparator#" .. " │" .. "%*",
     separator = "%#SLSeparator#" .. " " .. "%*",
     cond = hide_in_width_100,
-}
-
-local current_signature = {
-    function()
-        local buf_ft = vim.bo.filetype
-
-        if buf_ft == "toggleterm" then
-            return ""
-        end
-        if not pcall(require, "lsp_signature") then
-            return ""
-end
-        local sig = require("lsp_signature").status_line(30)
-        local hint = sig.hint
-
-        if not require("grtrs.functions").isempty(hint) then
-            -- return "%#SLSeparator#│ " .. hint .. "%*"
-            return "%#SLSeparator# " .. hint .. "%*"
-        end
-
-        return ""
-    end,
-    cond = hide_in_width_100,
-    padding = 0,
 }
 
 local lanuage_server = {
     function()
         local buf_ft = vim.bo.filetype
-        local ui_filetypes = {
-            "help",
-            "packer",
-            "neogitstatus",
-            "NvimTree",
-            "Trouble",
-            "lir",
-            "Outline",
-            "spectre_panel",
-            "toggleterm",
-            "DressingSelect",
-            "",
-        }
 
-        if contains(ui_filetypes, buf_ft) then
+        if contains(ui_disable_filetypes, buf_ft) then
             return M.language_servers
         end
 
@@ -279,37 +132,26 @@ local lanuage_server = {
         end
     end,
     padding = 0,
-    cond = hide_in_width,
-    -- separator = "%#SLSeparator#" .. " │" .. "%*",
     separator = "%#SLSeparator#" .. " " .. "%*",
+    cond = hide_in_width,
 }
+
+-- Change text color for lanuage_server output
+vim.api.nvim_set_hl(0, "SLLSP", { fg = "#616E88" })
 
 lualine.setup {
     options = {
-        globalstatus = true,
         icons_enabled = true,
-        theme = "auto",
-        component_separators = { left = "", right = "" },
-        section_separators = { left = "", right = "" },
-        disabled_filetypes = { "alpha", "dashboard" },
-        always_divide_middle = true,
+        theme = 'auto',
+        component_separators = '|',
+        section_separators = '',
     },
-sections = {
-    lualine_a = { "mode" },
-    lualine_b = { "branch", diff },
-    lualine_c = { current_signature },
-    lualine_x = { "diagnostics", lanuage_server, spaces, filetype },
-    lualine_y = { "location" },
-    lualine_z = { scrollbar },
-},
-    inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = {},
-        lualine_x = { "location" },
-        lualine_y = {},
-        lualine_z = {},
+    sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'branch', 'diff', 'diagnostics' },
+        lualine_c = { 'filename' },
+        lualine_x = { lanuage_server, spaces, 'filetype' },
+        lualine_y = { 'location' },
+        lualine_z = { scrollbar }
     },
-    tabline = {},
-    extensions = {},
 }
