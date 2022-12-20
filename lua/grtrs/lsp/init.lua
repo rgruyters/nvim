@@ -30,9 +30,8 @@ lsp.ensure_installed(servers)
 -- Update completion via lsp-zero
 lsp.setup_nvim_cmp({
     sources = {
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
         { name = 'buffer' },
+        { name = 'nvim_lsp' },
         { name = 'path', keyword_length = 3 },
     },
 })
