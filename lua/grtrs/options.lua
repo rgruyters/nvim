@@ -32,7 +32,7 @@ vim.opt.undofile = true                         -- enable persistent undo
 vim.opt.expandtab = true                        -- convert tabs to spaces
 vim.opt.shiftwidth = 4                          -- the number of spaces inserted for each indentation
 vim.opt.shiftround = true                       -- honour indenting
-vim.opt.tabstop = 4                             -- insert 2 spaces for a tab
+vim.opt.tabstop = 4                             -- insert spaces for a tab
 vim.opt.softtabstop = 4                         -- Number of spaces that a tab counts for while performing editing operations
 
 vim.opt.cursorline = true                       -- highlight the current line
