@@ -69,32 +69,37 @@ local spaces = {
     cond = hide_in_width_100,
 }
 
-local lanuage_server = {
-    function()
-        local buf_ft = vim.bo.filetype
-
-        if contains(ui_disable_filetypes, buf_ft) then
-            return M.language_servers
+local lsp = {
+    function(msg)
+        msg = msg or "LS Inactive"
+        local buf_clients = vim.lsp.buf_get_clients()
+        if next(buf_clients) == nil then
+            if type(msg) == "boolean" or #msg == 0 then
+                return "LS Inactive"
+            end
+            return msg
         end
 
-        local clients = vim.lsp.buf_get_clients()
-        local client_names = {}
+        local buf_ft = vim.bo.filetype
+        local buf_client_names = {}
         local copilot_active = false
 
         -- add client
-        for _, client in pairs(clients) do
+        for _, client in pairs(buf_clients) do
             if client.name ~= "copilot" and client.name ~= "null-ls" then
-                table.insert(client_names, client.name)
+                table.insert(buf_client_names, client.name)
             end
+
             if client.name == "copilot" then
                 copilot_active = true
             end
         end
 
         -- add formatter
-        local s = require "null-ls.sources"
-        local available_sources = s.get_available(buf_ft)
+        local sources = require "null-ls.sources"
+        local available_sources = sources.get_available(buf_ft)
         local registered = {}
+
         for _, source in ipairs(available_sources) do
             for method in pairs(source.methods) do
                 registered[method] = registered[method] or {}
@@ -104,27 +109,30 @@ local lanuage_server = {
 
         local formatter = registered["NULL_LS_FORMATTING"]
         local linter = registered["NULL_LS_DIAGNOSTICS"]
+
         if formatter ~= nil then
-            vim.list_extend(client_names, formatter)
+            vim.list_extend(buf_client_names, formatter)
         end
+
         if linter ~= nil then
-            vim.list_extend(client_names, linter)
+            vim.list_extend(buf_client_names, linter)
         end
 
         -- join client names with commas
-        local client_names_str = table.concat(client_names, ", ")
+        local client_names_str = table.concat(buf_client_names, ", ")
 
         -- check client_names_str if empty
         local language_servers = ""
-        local client_names_str_len = #client_names_str
-        if client_names_str_len ~= 0 then
+
+        if #client_names_str ~= 0 then
             language_servers = "%#SLLSP#" .. "[" .. client_names_str .. "]" .. "%*"
         end
+
         if copilot_active then
             language_servers = language_servers .. "%#SLCopilot#" .. " " .. icons.git.Octoface .. "%*"
         end
 
-        if client_names_str_len == 0 and not copilot_active then
+        if #client_names_str == 0 and not copilot_active then
             return ""
         else
             M.language_servers = language_servers
@@ -150,7 +158,7 @@ lualine.setup {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
         lualine_c = { 'filename' },
-        lualine_x = { lanuage_server, spaces, 'filetype' },
+        lualine_x = { lsp, spaces, 'filetype' },
         lualine_y = { 'location' },
         lualine_z = { scrollbar }
     },
