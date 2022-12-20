@@ -7,8 +7,6 @@ lsp.preset("recommended")
 
 local servers = {
     "sumneko_lua",
-    "cssls",
-    "html",
     "tsserver",
     "pyright",
     "bashls",
@@ -26,17 +24,18 @@ local settings = {
     max_concurrent_installers = 4,
 }
 
+-- install preferred LSP servers
 lsp.ensure_installed(servers)
 
-lsp.setup()
-
-require("mason").setup(settings)
-
--- nvim-cmp supports additional completion capabilities
-local lspconfig_loaded, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_loaded then
-    return
-end
+-- Update completion via lsp-zero
+lsp.setup_nvim_cmp({
+    sources = {
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+        { name = 'buffer' },
+        { name = 'path', keyword_length = 3 },
+    },
+})
 
 local opts = {}
 
@@ -53,8 +52,12 @@ for _, server in pairs(servers) do
         opts = vim.tbl_deep_extend("force", conf_opts, opts)
     end
 
-    lspconfig[server].setup(opts)
+    lsp.configure(server, opts)
 end
+
+lsp.setup()
+
+require("mason").setup(settings)
 
 require("grtrs.lsp.handlers").setup()
 require("grtrs.lsp.null-ls")
