@@ -17,7 +17,6 @@ require("lazy").setup({
     { "catppuccin/nvim", name = "catppuccin", lazy = false },
     {
         "akinsho/bufferline.nvim",
-        tag = "~v3",
         lazy = false,
         dependencies = "kyazdani42/nvim-web-devicons",
     }, -- Make bufferlines pretty
