@@ -29,6 +29,13 @@ require("lazy").setup({
     "JoosepAlviste/nvim-ts-context-commentstring", -- Commenting
     "Vonr/align.nvim", -- Aligning lines
     "mbbill/undotree", -- Undotree
+    -- Undotree
+    {
+        "mbbill/undotree",
+        config = function()
+            vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<CR>", { silent = true })
+        end
+    },
 
     "lukas-reineke/indent-blankline.nvim", -- Indentation guides
 
@@ -88,9 +95,13 @@ require("lazy").setup({
         init = function()
             vim.g.gitblame_enabled = 0
             vim.g.gitblame_message_template = "<sha> • <summary> • <date> • <author>"
+    -- Lazygit for Neovim
+    {
+        "kdheepak/lazygit.nvim",
+        config = function()
+           vim.keymap.set("n", "<leader>lg", "<cmd>LazyGit<CR>", { desc = "[L]azy [G]it"})
         end
-    }, -- Git Blame
-    "kdheepak/lazygit.nvim", -- Lazygit for Neovim
+    },
 
     -- DAP
     "mfussenegger/nvim-dap",
