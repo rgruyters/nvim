@@ -14,7 +14,13 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup({
-    { "catppuccin/nvim", name = "catppuccin", lazy = true },
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        config = function()
+            vim.cmd.colorscheme "catppuccin-macchiato"
+        end
+    },
 
     -- Make bufferlines pretty
     {
