@@ -50,6 +50,8 @@ require("lazy").setup({
     "moll/vim-bbye",
     -- Aligning lines
     "Vonr/align.nvim",
+    -- Autopair
+    "windwp/nvim-autopairs",
     -- Indentation guides
     { "lukas-reineke/indent-blankline.nvim", lazy = true },
 
