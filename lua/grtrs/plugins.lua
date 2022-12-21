@@ -85,7 +85,7 @@ require("lazy").setup({
     "lewis6991/gitsigns.nvim", -- Superfast Git decorations
     {
         "f-person/git-blame.nvim",
-        config = function()
+        init = function()
             vim.g.gitblame_enabled = 0
             vim.g.gitblame_message_template = "<sha> • <summary> • <date> • <author>"
         end
