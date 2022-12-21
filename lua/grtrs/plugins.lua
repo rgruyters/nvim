@@ -14,21 +14,30 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup({
-    { "catppuccin/nvim", name = "catppuccin", lazy = false },
+    { "catppuccin/nvim", name = "catppuccin", lazy = true },
+
+    -- Make bufferlines pretty
     {
         "akinsho/bufferline.nvim",
-        lazy = false,
+        lazy = true,
         dependencies = "kyazdani42/nvim-web-devicons",
-    }, -- Make bufferlines pretty
+    },
+    -- Blazing fast statusline
     { "nvim-lualine/lualine.nvim",
-        lazy = false,
+        lazy = true,
         dependencies = "kyazdani42/nvim-web-devicons",
-    }, -- Blazing fast statusline
+    },
 
-    "numToStr/Comment.nvim", -- Make comments pretty
-    "JoosepAlviste/nvim-ts-context-commentstring", -- Commenting
-    "Vonr/align.nvim", -- Aligning lines
-    "mbbill/undotree", -- Undotree
+    -- Make comments pretty
+    {
+        "numToStr/Comment.nvim",
+        dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
+        config = function()
+            require("Comment").setup({
+                pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+            })
+        end
+    },
     -- Undotree
     {
         "mbbill/undotree",
@@ -37,16 +46,25 @@ require("lazy").setup({
         end
     },
 
-    "lukas-reineke/indent-blankline.nvim", -- Indentation guides
+    -- Close buffers by keeping layout
+    "moll/vim-bbye",
+    -- Aligning lines
+    "Vonr/align.nvim",
+    -- Indentation guides
+    { "lukas-reineke/indent-blankline.nvim", lazy = true },
 
-    { "folke/todo-comments.nvim", dependencies = "nvim-lua/plenary.nvim" }, -- highlight todo comments
-    "kylechui/nvim-surround", -- Surround selections
+    -- highlight todo comments
+    { "folke/todo-comments.nvim", dependencies = "nvim-lua/plenary.nvim", lazy = true },
+    -- Surround selections
+    { "kylechui/nvim-surround", lazy = true },
 
-    "NvChad/nvim-colorizer.lua", -- Show colour codes
+    -- Show colour codes
+    { "NvChad/nvim-colorizer.lua", lazy = true },
 
     -- LSP
     {
         'VonHeikemen/lsp-zero.nvim',
+        lazy = true,
         dependencies = {
             -- LSP Support
             'neovim/nvim-lspconfig',
@@ -63,38 +81,53 @@ require("lazy").setup({
 
             -- Snippets
             'L3MON4D3/LuaSnip',
-            -- 'rafamadriz/friendly-snippets',
+            'rafamadriz/friendly-snippets',
         },
     },
-    "jose-elias-alvarez/null-ls.nvim", -- for formatters and linters
-    "RRethy/vim-illuminate", -- Highlight words
-    "onsails/lspkind-nvim", -- VSCode icons
+    -- for formatters and linters
+    { "jose-elias-alvarez/null-ls.nvim", lazy = true },
+    -- Highlight words
+    { "RRethy/vim-illuminate", lazy = true },
+    -- VSCode icons
+    "onsails/lspkind-nvim",
 
     -- Treesitter
-    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }, -- Highlight and parser
-    "nvim-treesitter/nvim-treesitter-context", -- Show context
+    {
+        "nvim-treesitter/nvim-treesitter",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter-context" -- Show context
+        },
+        build = ":TSUpdate"
+    },
 
     -- Telescope
     {
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
-        dependencies = { "nvim-lua/plenary.nvim" },
-    }, -- Fuzzy finder
-    {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-    }, -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-    "ahmedkhalf/project.nvim", -- Project window
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, -- Fuzzy Finder Algorithm
+        },
+        lazy = true,
+    },
+    -- Project window
+    { "ahmedkhalf/project.nvim", lazy = true },
 
-    "ThePrimeagen/harpoon", -- Buffer management
+    -- Buffer management
+    { "ThePrimeagen/harpoon", lazy = true },
 
     -- Git
-    "lewis6991/gitsigns.nvim", -- Superfast Git decorations
+    -- Superfast Git decorations
+    "lewis6991/gitsigns.nvim",
+    -- Git Blame
     {
         "f-person/git-blame.nvim",
         init = function()
             vim.g.gitblame_enabled = 0
             vim.g.gitblame_message_template = "<sha> • <summary> • <date> • <author>"
+            require("gitblame")
+        end
+    },
     -- Lazygit for Neovim
     {
         "kdheepak/lazygit.nvim",
@@ -104,12 +137,12 @@ require("lazy").setup({
     },
 
     -- DAP
-    "mfussenegger/nvim-dap",
-    "rcarriga/nvim-dap-ui",
-    "ravenxrz/DAPInstall.nvim",
-    "theHamsta/nvim-dap-virtual-text",
+    { "mfussenegger/nvim-dap", lazy = true },
+    { "rcarriga/nvim-dap-ui", lazy = true },
+    { "ravenxrz/DAPInstall.nvim", lazy = true },
+    { "theHamsta/nvim-dap-virtual-text", lazy = true },
 
-    -- Markdown
+    -- Markdown Previewer
     {
         "iamcco/markdown-preview.nvim",
         build = "cd app && npm install",
@@ -117,5 +150,5 @@ require("lazy").setup({
             vim.g.mkdp_filetypes = { "markdown" }
         end,
         ft = { "markdown" },
-    }, -- Markdown previewer
+    },
 })
