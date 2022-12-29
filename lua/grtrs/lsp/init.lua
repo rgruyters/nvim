@@ -27,13 +27,19 @@ local settings = {
 -- install preferred LSP servers
 lsp.ensure_installed(servers)
 
+-- Disable default keybindings (optional)
+lsp.set_preferences({
+  set_lsp_keymaps = false
+})
+
 -- Update completion via lsp-zero
 lsp.setup_nvim_cmp({
     sources = {
-        { name = 'buffer' },
-        { name = 'nvim_lsp' },
-        { name = 'path', keyword_length = 3 },
-    },
+        { name = 'path' },
+        { name = 'nvim_lsp', keyword_length = 3 },
+        { name = 'buffer', keyword_length = 3 },
+        { name = 'luasnip', keyword_length = 2 },
+    }
 })
 
 local opts = {}
