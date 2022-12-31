@@ -12,7 +12,6 @@ M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 M.setup = function()
     local icons = require("grtrs.icons")
     local signs = {
-
         { name = "DiagnosticSignError", text = icons.diagnostics.Error },
         { name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
         { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
