@@ -38,7 +38,7 @@ Run `nvim` and wait for the plugins to be installed
 next time you open Neovim)
 
 **NOTE** Checkout this file for some predefined keymaps:
-[keymaps](https://github.com/rgruyters/nvim/tree/main/after/plugin/keymaps)
+[keymaps](https://github.com/rgruyters/nvim/blob/main/lua/grtrs/keymaps.lua)
 
 ## Get healthy
 
@@ -103,9 +103,9 @@ I recommend using the following repo to get a "[Nerd Font](https://github.com/ry
 
 ### LSP
 
-To add a new LSP
-
-First Enter:
+When opening a file [LSP zero](https://github.com/VonHeikemen/lsp-zero.nvim)
+will notify when a lspserver is available for the current file. You can also
+install a LSP yourself by using:
 
 ```neovim
 :Mason
@@ -113,18 +113,18 @@ First Enter:
 
 and press `i` on the Language Server you wish to install
 
-Next you will need to add the server to this list: [servers](https://github.com/rgruyters/nvim/blob/main/lua/user/lsp/mason.lua#L1)
+Next you will need to add the server to this list: [servers](https://github.com/rgruyters/nvim/blob/main/lua/grtrs/lsp/init.lua)
 
 ### Formatters and linters
 
 Make sure the formatter or linter is installed and add it to this setup function:
-[null-ls](https://github.com/rgruyters/nvim/blob/main/lua/user/lsp/null-ls.lua#L13)
+[null-ls](https://github.com/rgruyters/nvim/blob/main/lua/grtrs/lsp/null-ls.lua)
 
 **NOTE** Some are already setup as examples, remove them if you want
 
 ### Plugins
 
-You can install new plugins here: [plugins](https://github.com/rgruyters/nvim/blob/main/lua/user/plugins.lua#L44)
+You can install new plugins here: [plugins](https://github.com/rgruyters/nvim/blob/main/lua/grtrs/plugins.lua)
 
 - [lazy](https://github.com/folke/lazy.nvim)
 - [plenary](https://github.com/nvim-lua/plenary.nvim)
