@@ -145,6 +145,9 @@ require("lazy").setup({
         end
     },
 
+    -- editorconfig
+    { "gpanders/editorconfig.nvim" },
+
     -- DAP
     { "mfussenegger/nvim-dap", lazy = true },
     { "rcarriga/nvim-dap-ui", lazy = true },
