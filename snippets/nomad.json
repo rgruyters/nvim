@@ -3,7 +3,7 @@
         "prefix": "job",
         "body": [
             "job \"$1\" {",
-            "\ttype = \"service\"",
+            "\ttype = \"${2|service,system|}\"",
             "\tdatacenters = [\"dc1\"]",
             "",
             "\tupdate {",
@@ -14,22 +14,57 @@
             "\t}",
             "",
             "\t// GROUPS",
-            "\tgroup \"$2\" {",
-            "\t}",
+            "\tgroup \"$3\" {",
+            "\t\t// network",
             "",
-            "\t// TASKS",
-            "\ttask \"$3\" {",
+            "\t\t// services",
+            "",
+            "\t\t// TASKS",
+            "\t\ttask \"$4\" {",
+            "\t\t\t$0",
+            "\t\t\t// artifacts",
+            "",
+            "\t\t\t// templates",
+            "",
+            "\t\t\t// resources",
+            "\t\t}",
             "\t}",
             "}"
         ],
         "description": "declarative specification of tasks that Nomad should run"
     },
+    "nomad_group": {
+        "prefix": "group",
+        "body": [
+            "\tgroup \"$1\" {",
+            "\t\t$0",
+            "\t\t// network",
+            "",
+            "\t\t// services",
+            "\t}"
+        ],
+        "description": "defines a series of tasks that should be co-located on the same Nomad client"
+    },
+    "nomad_task": {
+        "prefix": "task",
+        "body": [
+            "\ttask \"$1\" {",
+            "\t\t$0",
+            "\t\t// artifacts",
+            "",
+            "\t\t// templates",
+            "",
+            "\t\t// resources",
+            "\t}"
+        ],
+        "description": "creates an individual unit of work, such as a Docker container, web application, or batch processing"
+    },
     "nomad_variables": {
         "prefix": "variable",
         "body": [
-            "variable \"$1\" {",
+            "variable \"${1:variable-name}\" {",
             "\tdescription = \"$2\"",
-            "\ttype = $3",
+            "\ttype = ${3:type-of-variable}",
             "}"
         ],
         "description": "define variable for the job"
@@ -52,7 +87,7 @@
             "",
             "\tcheck {",
             "\t\tport = \"$2\"",
-            "\t\ttype = \"$3\"",
+            "\t\ttype = \"${3|http,tcp,script|}\"",
             "\t\tinterval = \"10s\"",
             "\t\ttimeout = \"5s\"",
             "\t}",
@@ -109,5 +144,29 @@
             "}"
         ],
         "description": "allows a task to specify that it requires a token from a HashiCorp Vault server"
+    },
+    "nomad_template_source": {
+        "prefix": "template_source",
+        "body": [
+            "template {",
+            "\tsource = \"${1:source-template-file}\"",
+            "\tdestination = \"${2:destination}\"",
+            "}"
+        ],
+        "description": "creates a convenient way to ship configuration files that are populated from environment variables"
+    },
+    "nomad_template_env": {
+        "prefix": "template_data",
+        "body": [
+            "template {",
+            "\tdata = <<-EOH",
+            "\t\t$1",
+            "\tEOH",
+            "",
+            "\tdestination = \"${2:destination}\"",
+            "}"
+        ],
+        "description": "creates a convenient way to ship configuration files that are populated from environment variables"
+
     }
 }
