@@ -41,6 +41,17 @@ if not luasnip_loaded then
     return
 end
 
+vim.keymap.set({ "i", "s" }, "<C-j>", function()
+    if luasnip.choice_active() then
+        luasnip.change_choice(1)
+    end
+end)
+vim.keymap.set({ "i", "s" }, "<C-k>", function()
+    if luasnip.choice_active() then
+        luasnip.change_choice(-1)
+    end
+end)
+
 -- Update completion via lsp-zero
 lsp.setup_nvim_cmp({
     snippet = {
