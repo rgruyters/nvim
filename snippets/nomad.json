@@ -1,6 +1,6 @@
 {
     "nomad_job": {
-        "prefix": "nomad_job",
+        "prefix": "job",
         "body": [
             "job \"$1\" {",
             "\ttype = \"service\"",
@@ -26,7 +26,7 @@
         "description": "declarative specification of tasks that Nomad should run"
     },
     "nomad_variables": {
-        "prefix": "nomad_var",
+        "prefix": "variable",
         "body": [
             "variable \"$1\" {",
             "\tdescription = \"$2\"",
@@ -36,7 +36,7 @@
         "description": "define variable for the job"
     },
     "nomad_network": {
-        "prefix": "nomad_nw",
+        "prefix": "network",
         "body": [
             "network {",
             "\tmode = \"bridge\"",
@@ -46,7 +46,7 @@
         "description": "specify the networking requirements for the task group"
     },
     "nomad_service": {
-        "prefix": "nomad_srv",
+        "prefix": "service",
         "body": [
             "service {",
             "\tport = \"$1\"",
@@ -62,7 +62,7 @@
         "description": "to register a service with the specified provider"
     },
     "nomad_sidecar_service": {
-        "prefix": "nomad_sidecar",
+        "prefix": "connect_sidecar",
         "body": [
             "connect {",
             "\tsidecar_service {}",
@@ -71,7 +71,7 @@
         "description": "allows configuring various options for the sidecar proxy managed by Nomad for Consul Connect integration"
     },
     "nomad_resources": {
-        "prefix": "nomad_resource",
+        "prefix": "resources",
         "body": [
             "resources {",
             "\tcpu = 1000",
@@ -81,7 +81,7 @@
         "description": "resource requirements"
     },
     "nomad_ephemeral_disk": {
-        "prefix": "nomad_ephemeral",
+        "prefix": "ephemeral",
         "body": [
             "ephemeral_disk {",
             "\tmirate = true",
@@ -92,7 +92,7 @@
         "description": "ephemeral disk requirements of the group"
     },
     "nomad_docker": {
-        "prefix": "nomad_docker",
+        "prefix": "docker",
         "body": [
             "driver = \"docker\"",
             "",
@@ -103,7 +103,7 @@
         "description": "use docker plugin for running Docker images"
     },
     "nomad_vault": {
-        "prefix": "nomad_vault",
+        "prefix": "vault",
         "body": [
             "vault {",
             "\tpolicies = [$1]",
