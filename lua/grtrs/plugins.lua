@@ -48,9 +48,9 @@ require("lazy").setup({
     -- Undotree
     {
         "mbbill/undotree",
-        config = function()
-            vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<CR>", { silent = true })
-        end
+        keys = {
+            { "<leader>u", "<cmd>UndotreeToggle<CR>", desc = "Toggle Undotree" },
+        },
     },
 
     -- Close buffers by keeping layout
@@ -98,7 +98,7 @@ require("lazy").setup({
     -- Highlight words
     { "RRethy/vim-illuminate", lazy = true },
     -- VSCode icons
-    "onsails/lspkind-nvim",
+    { "onsails/lspkind-nvim", lazy = true },
 
     -- Treesitter
     {
@@ -131,6 +131,9 @@ require("lazy").setup({
     -- Git Blame
     {
         "f-person/git-blame.nvim",
+        keys = {
+            { "<leader>gb", "<cmd>GitBlameToggle<CR>", desc = "[G]it [B]lame toggle" },
+        },
         init = function()
             vim.g.gitblame_enabled = 0
             vim.g.gitblame_message_template = "<sha> • <summary> • <date> • <author>"
@@ -140,9 +143,9 @@ require("lazy").setup({
     -- Lazygit for Neovim
     {
         "kdheepak/lazygit.nvim",
-        config = function()
-           vim.keymap.set("n", "<leader>lg", "<cmd>LazyGit<CR>", { desc = "[L]azy [G]it"})
-        end
+        keys = {
+            { "<leader>lg", "<cmd>LazyGit<CR>", desc = "[L]azy [G]it" },
+        },
     },
 
     -- editorconfig
