@@ -74,7 +74,8 @@
         "body": [
             "network {",
             "\tmode = \"bridge\"",
-            "\tport \"$1\" {}",
+            "\tport \"$1\" {",
+            "\t\tto = ${2:map-to-container-port}",
             "}"
         ],
         "description": "specify the networking requirements for the task group"
