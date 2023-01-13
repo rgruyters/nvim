@@ -144,6 +144,12 @@ local lsp = {
     cond = hide_in_width,
 }
 
+local filename = {
+    'filename',
+    path = 1,
+    shorting_target = 40,
+}
+
 -- Change text color for lanuage_server output
 vim.api.nvim_set_hl(0, "SLLSP", { fg = "#616E88" })
 
@@ -157,7 +163,7 @@ lualine.setup {
     sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
-        lualine_c = { 'filename' },
+        lualine_c = { filename },
         lualine_x = { lsp, spaces, 'filetype' },
         lualine_y = { 'location' },
         lualine_z = { scrollbar }
