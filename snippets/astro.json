@@ -1,0 +1,22 @@
+{
+    "astro_post": {
+        "prefix": "astro_post",
+        "body": [
+            "---",
+            "author: $1",
+            "datetime: $2",
+            "title: $3",
+            "slug: $4",
+            "featured: false",
+            "draft: false",
+            "tags:",
+            "\t- $5",
+            "ogImage: \"\"",
+            "description:",
+            "\t $6",
+            "---",
+            "$0"
+        ],
+        "description": "Astro syntax for creating a post in Markdown"
+    }
+}
