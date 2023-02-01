@@ -126,7 +126,7 @@ require("lazy").setup({
     { "ThePrimeagen/harpoon", lazy = true },
 
     -- Git
-    -- Fugitive from the godfather of Vim
+    -- Fugitive, from the godfather of Vim
     {
         "tpope/vim-fugitive"
     },
