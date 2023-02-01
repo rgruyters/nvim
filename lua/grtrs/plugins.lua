@@ -126,6 +126,10 @@ require("lazy").setup({
     { "ThePrimeagen/harpoon", lazy = true },
 
     -- Git
+    -- Fugitive from the godfather of Vim
+    {
+        "tpope/vim-fugitive"
+    },
     -- Superfast Git decorations
     "lewis6991/gitsigns.nvim",
     -- Git Blame
