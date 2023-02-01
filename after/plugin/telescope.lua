@@ -26,6 +26,11 @@ nmap('<leader>fg', require('telescope.builtin').live_grep, '[F]ind by [G]rep')
 nmap('<leader>fd', require('telescope.builtin').diagnostics, '[F]ind [D]iagnostics')
 nmap('<leader>fk', require('telescope.builtin').keymaps, '[F]ind [K]eymaps')
 
+-- Git related
+nmap('<leader>go', require('telescope.builtin').git_status, '[G]it [O]pen changed files')
+nmap('<leader>gb', require('telescope.builtin').git_branches, '[G]it [B]ranches')
+nmap('<leader>gc', require('telescope.builtin').git_commits, '[G]it [C]ommits')
+
 telescope.setup {
     defaults = {
 
