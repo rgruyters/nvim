@@ -37,6 +37,8 @@ telescope.setup {
         prompt_prefix = icons.ui.Telescope .. " ",
         selection_caret = " ",
         path_display = { "smart" },
+        color_devicons = true,
+        set_env = { ["COLORTERM"] = "truecolor" },
         file_ignore_patterns = {
             ".git/",
             "target/",
@@ -112,6 +114,19 @@ telescope.setup {
                 ["G"] = actions.move_to_bottom,
             }
         }
+    },
+    pickers = {
+        find_files = {
+            hidden = true,
+            theme = "dropdown",
+        }
+    },
+    git_files = {
+        hidden = true,
+        show_untracked = true,
+    },
+    colorscheme = {
+        enable_preview = true,
     }
 }
 
