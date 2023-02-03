@@ -42,7 +42,6 @@ telescope.setup {
         file_ignore_patterns = {
             ".git/",
             "target/",
-            "docs/",
             "vendor/*",
             "%.lock",
             "__pycache__/*",
