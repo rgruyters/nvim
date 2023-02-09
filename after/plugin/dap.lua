@@ -10,7 +10,7 @@ end
 
 local dap_install_loaded, dap_install = pcall(require, "dap-install")
 if not dap_install_loaded then
-	return
+    return
 end
 
 local nmap = function(keys, func, desc)
@@ -21,10 +21,12 @@ local nmap = function(keys, func, desc)
     vim.keymap.set('n', keys, func, { silent = true, desc = desc })
 end
 
+nmap("<F5>", require("dap").continue, "Continue")
+nmap("<F10>", require("dap").step_over, "Step Over")
+nmap("<F11>", require("dap").step_into, "Step Into")
+nmap("<F12>", require("dap").step_out, "Step Out")
 nmap("<leader>db", require("dap").toggle_breakpoint, "[D]ap [B]breakpoint")
-nmap("<leader>dc", require("dap").continue, "[D]ap [C]ontinue")
-nmap("<leader>do", require("dap").step_over, "[D]ap Step [O]ver")
-nmap("<leader>di", require("dap").step_into, "[D]ap Step [I]nto")
+-- nmap("<leader>dB", require("dap").set_breakpoint, "[D]ap [B]breakpoint")
 nmap("<leader>dw", require("dap.ui.widgets").hover, "[D]ap [W]idgets")
 nmap("<leader>dr", require("dap").repl.open, "[D]ap [R]epl")
 nmap("<leader>du", require("dapui").toggle, "[D]ap [U]I")
@@ -36,36 +38,36 @@ dap_install.config("python", {})
 
 dapui.setup({
     expand_lines = true,
-	icons = { expanded = "", collapsed = "", circular = "" },
-	mappings = {
-		-- Use a table to apply multiple mappings
-		expand = { "<CR>" },
-		open = "o",
-		remove = "d",
-		edit = "e",
-		repl = "r",
-		toggle = "t",
-	},
-	layouts = {
-		{
-			elements = {
-				{ id = "scopes", size = 0.33 },
-				{ id = "breakpoints", size = 0.17 },
-				{ id = "stacks", size = 0.25 },
-				{ id = "watches", size = 0.25 },
-			},
-			size = 0.33,
-			position = "right",
-		},
-		{
-			elements = {
-				{ id = "repl", size = 0.45 },
-				{ id = "console", size = 0.55 },
-			},
-			size = 0.27,
-			position = "bottom",
-		},
-	},
+    icons = { expanded = "", collapsed = "", circular = "" },
+    mappings = {
+        -- Use a table to apply multiple mappings
+        expand = { "<CR>" },
+        open = "o",
+        remove = "d",
+        edit = "e",
+        repl = "r",
+        toggle = "t",
+    },
+    layouts = {
+        {
+            elements = {
+                { id = "scopes", size = 0.33 },
+                { id = "breakpoints", size = 0.17 },
+                { id = "stacks", size = 0.25 },
+                { id = "watches", size = 0.25 },
+            },
+            size = 0.33,
+            position = "right",
+        },
+        {
+            elements = {
+                { id = "repl", size = 0.45 },
+                { id = "console", size = 0.55 },
+            },
+            size = 0.27,
+            position = "bottom",
+        },
+    },
 })
 
 vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "" })
