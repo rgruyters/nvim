@@ -160,6 +160,11 @@ require("lazy").setup({
     { "rcarriga/nvim-dap-ui", lazy = true },
     { "ravenxrz/DAPInstall.nvim", lazy = true },
     { "theHamsta/nvim-dap-virtual-text", lazy = true },
+    { "nvim-telescope/telescope-dap.nvim",
+        config = function()
+            require('telescope').load_extension('dap')
+        end
+    },
 
     -- Markdown Previewer
     {

@@ -13,6 +13,22 @@ if not dap_install_loaded then
 	return
 end
 
+local nmap = function(keys, func, desc)
+    if desc then
+        desc = 'DAP: ' .. desc
+    end
+
+    vim.keymap.set('n', keys, func, { silent = true, desc = desc })
+end
+
+nmap("<leader>db", require("dap").toggle_breakpoint, "[D]ap [B]breakpoint")
+nmap("<leader>dc", require("dap").continue, "[D]ap [C]ontinue")
+nmap("<leader>do", require("dap").step_over, "[D]ap Step [O]ver")
+nmap("<leader>di", require("dap").step_into, "[D]ap Step [I]nto")
+nmap("<leader>dw", require("dap.ui.widgets").hover, "[D]ap [W]idgets")
+nmap("<leader>dr", require("dap").repl.open, "[D]ap [R]epl")
+nmap("<leader>du", require("dapui").toggle, "[D]ap [U]I")
+
 dap_install.setup({})
 
 dap_install.config("python", {})
