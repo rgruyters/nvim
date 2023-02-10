@@ -13,6 +13,13 @@ if not dap_install_loaded then
     return
 end
 
+local mason_dap_loaded, mason_dap = pcall(require, "mason-nvim-dap")
+if not mason_dap_loaded then
+    return
+end
+
+mason_dap.setup()
+
 local nmap = function(keys, func, desc)
     if desc then
         desc = 'DAP: ' .. desc
