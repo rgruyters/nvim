@@ -6,7 +6,7 @@ end
 lsp.preset("recommended")
 
 local servers = {
-    "sumneko_lua",
+    "lua_ls",
     "tsserver",
     "pyright",
     "bashls",
