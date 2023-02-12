@@ -17,8 +17,7 @@ configs.setup({
         "vim",
         "yaml",
         "go",
-        "rust",
-        "typescript",
+        "terraform",
     }, -- one of "all" or a list of languages
     ignore_install = { "" }, -- List of parsers to ignore installing
     matchup = {
