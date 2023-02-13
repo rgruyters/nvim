@@ -1,22 +1,8 @@
--- Automatically install packer
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "--single-branch",
-        "https://github.com/folke/lazy.nvim.git",
-        lazypath,
-    })
-end
-
-vim.opt.runtimepath:prepend(lazypath)
-
-require("lazy").setup({
+return {
     {
         "catppuccin/nvim",
         name = "catppuccin",
+        lazy = false,
         priority = 1000, -- make sure to load this before all the other start plugins
         config = function()
             vim.cmd.colorscheme "catppuccin-macchiato"
@@ -54,11 +40,11 @@ require("lazy").setup({
     },
 
     -- Close buffers by keeping layout
-    "moll/vim-bbye",
+    { "moll/vim-bbye" },
     -- Aligning lines
-    "Vonr/align.nvim",
+    { "Vonr/align.nvim", lazy = true },
     -- Autopair
-    "windwp/nvim-autopairs",
+    { "windwp/nvim-autopairs" },
     -- Indentation guides
     { "lukas-reineke/indent-blankline.nvim", lazy = true },
 
@@ -122,16 +108,25 @@ require("lazy").setup({
     -- Project window
     { "ahmedkhalf/project.nvim", lazy = true },
 
+    {
+        "cshuaimin/ssr.nvim",
+        -- init is always executed during startup, but doesn't load the plugin yet.
+        init = function()
+            vim.keymap.set({ "n", "x" }, "<leader>cR", function()
+                -- this require will automatically load the plugin
+                require("ssr").open()
+            end, { desc = "Structural Replace" })
+        end,
+    },
+
     -- Buffer management
     { "ThePrimeagen/harpoon", lazy = true },
 
     -- Git
     -- Fugitive, from the godfather of Vim
-    {
-        "tpope/vim-fugitive"
-    },
+    { "tpope/vim-fugitive", event = "VeryLazy" },
     -- Superfast Git decorations
-    "lewis6991/gitsigns.nvim",
+    { "lewis6991/gitsigns.nvim", event = "VeryLazy" },
     -- Git Blame
     {
         "f-person/git-blame.nvim",
@@ -183,4 +178,4 @@ require("lazy").setup({
         end,
         ft = { "markdown" },
     },
-})
+}
