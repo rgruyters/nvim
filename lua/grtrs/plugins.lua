@@ -127,18 +127,10 @@ return {
     { "tpope/vim-fugitive", event = "VeryLazy" },
     -- Superfast Git decorations
     { "lewis6991/gitsigns.nvim", event = "VeryLazy" },
-    -- Git Blame
-    {
-        "f-person/git-blame.nvim",
-        keys = {
-            { "<leader>gb", "<cmd>GitBlameToggle<CR>", desc = "[G]it [B]lame toggle" },
-        },
-        init = function()
-            vim.g.gitblame_enabled = 0
-            vim.g.gitblame_message_template = "<sha> • <summary> • <date> • <author>"
-            require("gitblame")
-        end
-    },
+    -- Nice diffviewer
+    { "sindrets/diffview.nvim", dependencies = "nvim-lua/plenary.nvim", event = "VeryLazy" },
+    -- View Git messages in a window
+    { "rhysd/git-messenger.vim" },
     -- Lazygit for Neovim
     {
         "kdheepak/lazygit.nvim",
