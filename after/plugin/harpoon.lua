@@ -1,3 +1,5 @@
+local nmap = require("grtrs.functions").nmap
+
 local telescope_loaded, telescope = pcall(require, "telescope")
 if not telescope_loaded then
     return
@@ -6,14 +8,6 @@ end
 local harpoon_loaded, harpoon = pcall(require, "harpoon")
 if not harpoon_loaded then
     return
-end
-
-local nmap = function(keys, func, desc)
-    if desc then
-        desc = "Harpoon: " .. desc
-    end
-
-    vim.keymap.set("n", keys, func, { silent = true, desc = desc })
 end
 
 -- Harpoon

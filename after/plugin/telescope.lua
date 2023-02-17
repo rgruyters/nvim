@@ -1,3 +1,5 @@
+local nmap = require("grtrs.functions").nmap
+
 local telescope_loaded, telescope = pcall(require, "telescope")
 if not telescope_loaded then
     return
@@ -8,14 +10,6 @@ local icons = require "grtrs.icons"
 
 -- Telescope
 -- See `:help telescope.builtin`
-local nmap = function(keys, func, desc)
-    if desc then
-        desc = 'Telescope: ' .. desc
-    end
-
-    vim.keymap.set('n', keys, func, { silent = true, desc = desc })
-end
-
 nmap('<leader>?', require('telescope.builtin').oldfiles, '[?] Find recently opened files')
 nmap('<leader><space>', require('telescope.builtin').buffers, '[ ] Find existing buffers')
 

@@ -1,3 +1,5 @@
+local nmap = require("grtrs.functions").nmap
+
 local project_nvim_loaded, project = pcall(require, "project_nvim")
 if not project_nvim_loaded then
     return
@@ -50,4 +52,4 @@ end
 telescope.load_extension('projects')
 
 -- Set keymap for loading project files
-vim.keymap.set("n", "<leader>fp", ":Telescope projects<CR>", { desc = "Telescope: [F]ind [P]rojects", silent = true })
+nmap("<leader>fp", ":Telescope projects<CR>", "[F]ind [P]rojects")

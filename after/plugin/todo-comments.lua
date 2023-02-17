@@ -1,3 +1,5 @@
+local nmap = require("grtrs.functions").nmap
+
 local todo_comments_loaded, todo_comments = pcall(require, "todo-comments")
 if not todo_comments_loaded then
     return
@@ -17,4 +19,4 @@ todo_comments.setup {
     },
 }
 
-vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope keywords=TODO,FIX,HACK<CR>", { silent = true, desc = "Telescope: [F]ind [T]odo" })
+nmap("<leader>ft", "<cmd>TodoTelescope keywords=TODO,FIX,HACK<CR>", "Telescope: [F]ind [T]odo")

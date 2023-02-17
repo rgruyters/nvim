@@ -1,3 +1,5 @@
+local nmap = require("grtrs.functions").nmap
+
 local dap_loaded, dap = pcall(require, "dap")
 if not dap_loaded then
     return
@@ -19,14 +21,6 @@ if not mason_dap_loaded then
 end
 
 mason_dap.setup()
-
-local nmap = function(keys, func, desc)
-    if desc then
-        desc = 'DAP: ' .. desc
-    end
-
-    vim.keymap.set('n', keys, func, { silent = true, desc = desc })
-end
 
 nmap("<F5>", require("dap").continue, "Continue")
 nmap("<F10>", require("dap").step_over, "Step Over")
