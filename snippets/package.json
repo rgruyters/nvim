@@ -13,6 +13,12 @@
                     "markdown"
                 ],
                 "path": "./astro.json"
+            },
+            {
+                "language": [
+                    "yaml"
+                ],
+                "path": "./pf.json"
             }
 		]
 	}
