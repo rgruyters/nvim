@@ -39,25 +39,6 @@ return {
         },
     },
 
-    -- DAP
-    { "mfussenegger/nvim-dap", lazy = true },
-    { "mfussenegger/nvim-dap-python", lazy = true },
-    { "rcarriga/nvim-dap-ui", lazy = true },
-    { "theHamsta/nvim-dap-virtual-text", lazy = true },
-    {
-        "nvim-telescope/telescope-dap.nvim",
-        config = function()
-            require('telescope').load_extension('dap')
-        end
-    },
-    {
-        "jay-babu/mason-nvim-dap.nvim",
-        dependencies = { "williamboman/mason.nvim" },
-        config = function()
-            require("mason-nvim-dap").setup({ automatic_setup = true })
-        end
-    },
-
     -- Markdown Previewer
     {
         "iamcco/markdown-preview.nvim",
