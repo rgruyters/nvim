@@ -36,10 +36,6 @@ local luasnip_loaded, luasnip = pcall(require, "luasnip")
 if not luasnip_loaded then
     return
 end
-local lspkind_loaded, lspkind = pcall(require, "lspkind")
-if not lspkind_loaded then
-    return
-end
 
 vim.keymap.set({ "i", "s" }, "<C-j>", function()
     if luasnip.choice_active() then
@@ -91,12 +87,13 @@ lsp.setup_nvim_cmp({
         { name = 'luasnip' },
     },
     formatting = {
-        format = lspkind.cmp_format({
-            mode = 'symbol_text', -- show only symbol annotations
-            maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-            ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-            preset = 'codicons',
-        })
+        format = function(_, item)
+            local icons = require("grtrs.icons").kind
+            if icons[item.kind] then
+                item.kind = icons[item.kind] .. " " .. item.kind
+            end
+            return item
+        end,
     }
 })
 

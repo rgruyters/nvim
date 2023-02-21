@@ -74,8 +74,6 @@ return {
 
     -- for formatters and linters
     { "jose-elias-alvarez/null-ls.nvim", lazy = true },
-    -- VSCode icons for completion
-    { "onsails/lspkind-nvim", lazy = true },
 
     -- Treesitter
     { "nvim-treesitter/nvim-treesitter", dependencies = "nvim-treesitter/nvim-treesitter-context", build = ":TSUpdate" },
