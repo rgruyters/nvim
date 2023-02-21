@@ -7,16 +7,12 @@ lsp.preset("recommended")
 
 local servers = {
     "lua_ls",
-    "tsserver",
     "pyright",
     "bashls",
     "jsonls",
     "yamlls",
     "terraformls",
     "tflint",
-    "puppet",
-    "ansiblels",
-    "gopls",
 }
 
 local settings = {
@@ -29,7 +25,7 @@ lsp.ensure_installed(servers)
 
 -- Disable default keybindings (optional)
 lsp.set_preferences({
-  set_lsp_keymaps = false
+    set_lsp_keymaps = false
 })
 
 local cmp_loaded, cmp = pcall(require, "cmp")
@@ -52,7 +48,7 @@ vim.keymap.set({ "i", "s" }, "<C-j>", function()
 end)
 vim.keymap.set({ "i", "s" }, "<C-k>", function()
     if luasnip.choice_active() then
-        luasnip.change_choice(-1)
+        luasnip.change_choice( -1)
     end
 end)
 
@@ -64,7 +60,7 @@ lsp.setup_nvim_cmp({
         end,
     },
     mapping = cmp.mapping.preset.insert({
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-b>'] = cmp.mapping.scroll_docs( -4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
@@ -81,8 +77,8 @@ lsp.setup_nvim_cmp({
         ['<S-Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
+            elseif luasnip.jumpable( -1) then
+                luasnip.jump( -1)
             else
                 fallback()
             end
