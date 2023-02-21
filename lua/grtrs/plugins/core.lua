@@ -47,13 +47,14 @@ return {
     -- LSP
     {
         "VonHeikemen/lsp-zero.nvim",
-        lazy = true,
         dependencies = {
             -- LSP Support
             "neovim/nvim-lspconfig",
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
+            "hrsh7th/cmp-nvim-lsp",
         },
+        lazy = true,
     },
 
     -- Autocompletion
@@ -62,20 +63,18 @@ return {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
             "saadparwaiz1/cmp_luasnip",
-            "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-nvim-lua",
 
             -- Snippets
             "L3MON4D3/LuaSnip",
             "rafamadriz/friendly-snippets",
-        }
+        },
+        lazy = true,
     },
 
     -- for formatters and linters
     { "jose-elias-alvarez/null-ls.nvim", lazy = true },
-    -- Highlight words
-    { "RRethy/vim-illuminate", lazy = true },
-    -- VSCode icons
+    -- VSCode icons for completion
     { "onsails/lspkind-nvim", lazy = true },
 
     -- Treesitter

@@ -13,21 +13,22 @@ return {
     -- Show colour codes
     { "NvChad/nvim-colorizer.lua", lazy = true },
 
+    -- Highlight words
+    { "RRethy/vim-illuminate", lazy = true },
+
     {
         "cshuaimin/ssr.nvim",
-        -- init is always executed during startup, but doesn't load the plugin yet.
-        init = function()
-            vim.keymap.set({ "n", "x" }, "<leader>cR", function()
-                -- this require will automatically load the plugin
-                require("ssr").open()
-            end, { desc = "Structural Replace" })
-        end,
+        keys = {
+            { "<leader>cR", function() require("ssr").open() end, mode = { "n", "x" }, desc = "Structural Replace" },
+        },
     },
 
     -- Buffer management
     { "ThePrimeagen/harpoon", lazy = true },
 
     -- Git
+    -- Github extention for Git (fugitive.vim)
+    { "tpope/vim-rhubarb" },
     { "sindrets/diffview.nvim", dependencies = "nvim-lua/plenary.nvim", event = "VeryLazy" },
     -- View Git messages in a window
     { "rhysd/git-messenger.vim" },
