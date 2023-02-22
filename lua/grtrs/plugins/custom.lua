@@ -16,6 +16,10 @@ return {
     -- Highlight words
     { "RRethy/vim-illuminate", lazy = true },
 
+    -- A list of diagnostics, references, telescope results, quickfix and
+    -- location lists to help you solve your problems
+    { "folke/trouble.nvim", config = true, event = "VeryLazy" },
+
     {
         "cshuaimin/ssr.nvim",
         keys = {
