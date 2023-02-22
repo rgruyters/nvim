@@ -18,7 +18,14 @@ return {
 
     -- A list of diagnostics, references, telescope results, quickfix and
     -- location lists to help you solve your problems
-    { "folke/trouble.nvim", config = true, event = "VeryLazy" },
+    { "folke/trouble.nvim",
+        cmd = { "TroubleToggle", "Trouble" },
+        opts = { use_diagnostic_signs = true },
+        keys = {
+            { "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
+            { "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
+        },
+    },
 
     {
         "cshuaimin/ssr.nvim",
