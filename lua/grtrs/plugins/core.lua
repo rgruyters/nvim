@@ -42,7 +42,7 @@ return {
     -- highlight todo comments
     { "folke/todo-comments.nvim", dependencies = "nvim-lua/plenary.nvim", lazy = true },
     -- Surround selections
-    { "kylechui/nvim-surround", lazy = true },
+    { "kylechui/nvim-surround", config = true, event = "VeryLazy" },
 
     -- LSP
     {
