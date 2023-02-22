@@ -86,7 +86,13 @@ return {
 
     -- Git
     -- Fugitive, from the godfather of Vim
-    { "tpope/vim-fugitive", event = "VeryLazy" },
+    { "tpope/vim-fugitive",
+        init = function()
+            vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+            vim.keymap.set("n", "<leader>p", function() vim.cmd.Git('push') end)
+            vim.keymap.set("n", "<leader>P", function() vim.cmd.Git({'pull',  '--rebase'}) end )
+        end,
+        event = "VeryLazy" },
     -- Superfast Git decorations
     { "lewis6991/gitsigns.nvim", event = "VeryLazy" },
 
