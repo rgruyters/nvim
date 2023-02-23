@@ -1,6 +1,7 @@
 return {
     filetypes = {
         "terraform",
-        "tf"
+        "tf",
+        "terraform-vars"
     }
 }
