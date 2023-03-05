@@ -22,7 +22,6 @@ null_ls.setup {
         formatting.terrafmt,
         formatting.gofmt,
         diagnostics.markdownlint,
-        diagnostics.shellcheck,
         diagnostics.ansiblelint,
     },
 }
