@@ -69,7 +69,6 @@ return {
             "L3MON4D3/LuaSnip",
             "rafamadriz/friendly-snippets",
         },
-        event = "InsertEnter",
     },
 
     -- for formatters and linters
