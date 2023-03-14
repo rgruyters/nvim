@@ -7,6 +7,15 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     end,
 })
 
+-- Allow using q key to quit buffer for some filytypes
+vim.api.nvim_create_autocmd({ "FileType" }, {
+    pattern = { "qf", "help", "man", "lspinfo", "fugitive" },
+    callback = function()
+        vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = true })
+        vim.opt_local.buflisted = false
+    end,
+})
+
 -- Fixes Autocomment
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
     callback = function()
