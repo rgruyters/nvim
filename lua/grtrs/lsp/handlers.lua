@@ -9,6 +9,8 @@ M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 
+local skipped_filetypes = { "markdown", "rst", "plaintext", "toml", "proto" }
+
 M.setup = function()
     local icons = require("grtrs.icons")
     local signs = {
@@ -23,13 +25,17 @@ M.setup = function()
     end
 
     local config = {
-        virtual_text = true, -- disable virtual text
+        virtual_text = true,
         signs = {
             active = signs, -- show signs
         },
         update_in_insert = true,
         underline = true,
         severity_sort = true,
+        automatic_configuration = {
+            ---@usage list of filetypes that the automatic installer will skip
+            skipped_filetypes = skipped_filetypes,
+        },
     }
 
     vim.diagnostic.config(config)
