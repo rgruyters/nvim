@@ -32,6 +32,7 @@ local cmp_loaded, cmp = pcall(require, "cmp")
 if not cmp_loaded then
     return
 end
+
 local luasnip_loaded, luasnip = pcall(require, "luasnip")
 if not luasnip_loaded then
     return
@@ -42,11 +43,14 @@ vim.keymap.set({ "i", "s" }, "<C-j>", function()
         luasnip.change_choice(1)
     end
 end)
+
 vim.keymap.set({ "i", "s" }, "<C-k>", function()
     if luasnip.choice_active() then
         luasnip.change_choice( -1)
     end
 end)
+
+local icons = require("grtrs.icons")
 
 -- Update completion via lsp-zero
 lsp.setup_nvim_cmp({
@@ -83,14 +87,15 @@ lsp.setup_nvim_cmp({
     sources = {
         { name = 'path' },
         { name = 'nvim_lsp' },
+        { name = 'nvim_lsp_signature_help' },
         { name = 'buffer' },
         { name = 'luasnip' },
     },
     formatting = {
+        kind_icons = icons.kind,
         format = function(_, item)
-            local icons = require("grtrs.icons").kind
-            if icons[item.kind] then
-                item.kind = icons[item.kind] .. " " .. item.kind
+            if icons.kind[item.kind] then
+                item.kind = icons.kind[item.kind] .. " " .. item.kind
             end
             return item
         end,
