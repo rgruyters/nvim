@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 -- Allow using q key to quit buffer for some filytypes
 vim.api.nvim_create_autocmd({ "FileType" }, {
-    pattern = { "qf", "help", "man", "lspinfo", "fugitive" },
+    pattern = { "qf", "help", "man", "lspinfo", "fugitive", "git" },
     callback = function()
         vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = true })
         vim.opt_local.buflisted = false
