@@ -10,14 +10,14 @@ M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 
 local skipped_filetypes = { "markdown", "rst", "plaintext", "toml", "proto" }
+local icons = require("grtrs.icons")
 
 M.setup = function()
-    local icons = require("grtrs.icons")
     local signs = {
         { name = "DiagnosticSignError", text = icons.diagnostics.Error },
-        { name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
-        { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
-        { name = "DiagnosticSignInfo", text = icons.diagnostics.Information },
+        { name = "DiagnosticSignWarn",  text = icons.diagnostics.Warning },
+        { name = "DiagnosticSignHint",  text = icons.diagnostics.Hint },
+        { name = "DiagnosticSignInfo",  text = icons.diagnostics.Information },
     }
 
     for _, sign in ipairs(signs) do
@@ -62,13 +62,14 @@ local function lsp_keymaps(bufnr)
 
     -- See `:help K` for why this keymap
     kmap('n', 'K', vim.lsp.buf.hover, 'Hover Documentation')
-    kmap({'n', 'i'}, '<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+    kmap({ 'n', 'i' }, '<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
     -- Lesser used LSP functionality
     kmap('n', 'gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
     kmap('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
     kmap('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-    kmap('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, '[W]orkspace [L]ist Folders')
+    kmap('n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
+    '[W]orkspace [L]ist Folders')
 
     -- LSP Formatting
     kmap('n', '<leader>f', vim.lsp.buf.format, '[F]ormat current buffer with LSP')
