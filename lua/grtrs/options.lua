@@ -20,8 +20,8 @@ vim.opt.splitright = true                       -- force all vertical splits to 
 
 vim.opt.termguicolors = true                    -- set term gui colors (most terminals support this)
 
-vim.opt.timeoutlen = 250                        -- time to wait for a mapped sequence to complete (in milliseconds)
-vim.opt.updatetime = 300                        -- faster completion (4000ms default)
+vim.opt.timeoutlen = 300                        -- time to wait for a mapped sequence to complete (in milliseconds)
+vim.opt.updatetime = 250                        -- faster completion (4000ms default)
 
 vim.opt.swapfile = false                        -- creates a swapfile
 vim.opt.backup = false                          -- creates a backup file
