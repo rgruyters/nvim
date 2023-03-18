@@ -1,5 +1,3 @@
-require("neodev").setup()
-
 local mason_loaded, mason = pcall(require, "mason")
 if not mason_loaded then
     return
@@ -57,3 +55,4 @@ end
 
 require("grtrs.lsp.handlers").setup()
 require("grtrs.lsp.null-ls")
+pcall(require("neodev").setup())
