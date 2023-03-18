@@ -1,3 +1,5 @@
+require("neodev").setup()
+
 local mason_loaded, mason = pcall(require, "mason")
 if not mason_loaded then
     return
