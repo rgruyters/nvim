@@ -50,7 +50,7 @@ keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 
 -- File Explorer
-keymap("n", "<leader>e", "<cmd>Vexplore<CR>", opts)
+keymap("n", "<leader>e", "<cmd>Ex<CR>", opts)
 
 -- Better paste
 keymap("v", "<leader>p", "\"_dP")
