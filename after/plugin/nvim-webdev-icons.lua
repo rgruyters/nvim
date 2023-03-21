@@ -56,4 +56,10 @@ nvim_web_devicons.set_icon {
         color = "#FFA61A",
         name = "Epp",
     },
+    ["tf"] = {
+        icon = "󱁢",
+        color = "#5F43E9",
+        cterm_color = "57",
+        name = "Terraform",
+    },
 }
