@@ -34,7 +34,10 @@ cmp.setup({
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<CR>'] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true
+        }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
@@ -58,15 +61,22 @@ cmp.setup({
         { name = 'path' },
         { name = 'nvim_lsp' },
         { name = 'nvim_lsp_signature_help' },
+        { name = "copilot", },
         { name = 'buffer' },
         { name = 'luasnip' },
     },
     formatting = {
         kind_icons = icons.kind,
-        format = function(_, item)
+        format = function(entry, item)
             if icons.kind[item.kind] then
                 item.kind = icons.kind[item.kind] .. " " .. item.kind
             end
+
+            if entry.source.name == "copilot" then
+                item.kind = icons.git.Octoface .. " " .. item.kind
+                item.kind_hl_group = "CmpItemKindCopilot"
+            end
+
             return item
         end,
     }
