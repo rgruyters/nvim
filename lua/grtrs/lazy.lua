@@ -14,7 +14,8 @@ vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup({
     spec = {
-        { import = "grtrs.plugins" },
+        { import = "grtrs.plugins.core" },
+        { import = "grtrs.plugins.custom" },
     },
     install = { colorscheme = { "catppuccin" } },
     checker = { enabled = false }, -- do not check automatically for plugin updates
