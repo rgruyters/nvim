@@ -10,9 +10,9 @@ return {
             "hrsh7th/cmp-nvim-lsp-signature-help",
             "folke/neodev.nvim",
         },
-        lazy = true,
+        lazy = true, -- load lsp config from grtrs.lsp
     },
-      -- Plugin: Snippets
+    -- Plugin: Snippets
     {
         "L3MON4D3/LuaSnip",
         dependencies = {
@@ -118,5 +118,8 @@ return {
         end
     },
     -- Plugin: for formatters and linters
-    { "jose-elias-alvarez/null-ls.nvim", lazy = true },
+    {
+        "jose-elias-alvarez/null-ls.nvim",
+        lazy = true, -- load null-ls config from grtrs.null-ls
+    },
 }
