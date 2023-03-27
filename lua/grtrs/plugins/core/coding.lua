@@ -6,8 +6,6 @@ return {
             -- LSP Support
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-nvim-lsp-signature-help",
             "folke/neodev.nvim",
         },
         lazy = true, -- load lsp config from grtrs.lsp
@@ -57,8 +55,9 @@ return {
         dependencies = {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-nvim-lsp-signature-help",
             "saadparwaiz1/cmp_luasnip",
-            "hrsh7th/cmp-nvim-lua",
         },
         opts = function()
             local cmp = require("cmp")
