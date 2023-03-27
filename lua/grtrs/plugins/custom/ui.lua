@@ -95,6 +95,10 @@ return {
             vim.api.nvim_create_autocmd({'FileType'}, {
                 pattern = {"lir"},
                 callback = function()
+                    -- disable (relative) numbering
+                    vim.opt_local.number = false
+                    vim.opt_local.relativenumber = false
+
                     -- use visual mode
                     vim.api.nvim_buf_set_keymap(
                         0,
