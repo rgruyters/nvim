@@ -4,6 +4,7 @@ return {
         "nvim-treesitter/nvim-treesitter",
         event = { "BufReadPost", "BufNewFile" },
         build = ":TSUpdate",
+        dependencies = "nvim-treesitter/nvim-treesitter-textobjects",
         opts = {
             ensure_installed = {
                 "help",
@@ -251,7 +252,12 @@ return {
         },
     },
     -- Plugin: Surround selections
-    { "kylechui/nvim-surround",    config = true, event = "VeryLazy" },
+    {
+        "kylechui/nvim-surround",
+        version = "*", -- Use for stability; omit to use `main` branch for the latest features
+        config = true,
+        event = "VeryLazy"
+    },
     -- Plugin: editorconfig
     -- NOTE: this plugin will be obsolete with Neovim version 0.9
     { "gpanders/editorconfig.nvim" },

@@ -29,8 +29,7 @@ return {
         opts = function()
             local cmp = require("cmp")
 
-            local luasnip_loaded, luasnip = pcall(require, "luasnip")
-            if not luasnip_loaded then return end
+            local luasnip = require("luasnip")
 
             require("luasnip.loaders.from_vscode").lazy_load()
             require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" }})
