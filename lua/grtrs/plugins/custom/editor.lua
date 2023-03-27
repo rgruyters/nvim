@@ -1,12 +1,12 @@
 return {
-    -- Undotree
+    -- Plugin: Undotree
     {
         "mbbill/undotree",
         keys = {
             { "<leader>u", "<cmd>UndotreeToggle<CR>", desc = "Toggle Undotree" },
         },
     },
-    -- Close buffers by keeping layout
+    -- Plugin: Close buffers by keeping layout
     { "moll/vim-bbye" },
     -- A list of diagnostics, references, telescope results, quickfix and
     -- location lists to help you solve your problems
@@ -18,14 +18,14 @@ return {
             { "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
         },
     },
-
+    -- Plugin: Structual Search & Replace
     {
         "cshuaimin/ssr.nvim",
         keys = {
             { "<leader>cR", function() require("ssr").open() end, mode = { "n", "x" }, desc = "Structural Replace" },
         },
     },
-    -- Highlight words
+    -- Plugin: Highlight words
     {
         "RRethy/vim-illuminate",
         config = function()

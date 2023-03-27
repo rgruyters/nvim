@@ -1,5 +1,5 @@
 return {
-    -- GitHub Copilot
+    -- Plugin: GitHub Copilot
     {
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",
@@ -22,6 +22,7 @@ return {
             })
         end,
     },
+    -- Plugin: GitHub Copilot completion integration
     {
         "zbirenbaum/copilot-cmp",
         dependencies = {

@@ -1,5 +1,5 @@
 return {
-    -- Make bufferlines pretty
+    -- Plugin: Make bufferlines pretty
     {
         "akinsho/bufferline.nvim",
         event = "VeryLazy",
@@ -13,7 +13,7 @@ return {
             }
         },
     },
-    -- Blazing fast statusline
+    -- Plugin: Blazing fast statusline
     {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
@@ -185,7 +185,7 @@ return {
             }
         end,
     },
-    -- Indentation guides
+    -- Plugin: Indentation guides
     {
         "lukas-reineke/indent-blankline.nvim",
         event = { "BufReadPost", "BufNewFile" },
@@ -214,6 +214,7 @@ return {
             },
         },
     },
+    -- Plugin: Web devicons
     {
         "kyazdani42/nvim-web-devicons",
         opts = {

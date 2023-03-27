@@ -1,5 +1,5 @@
 return {
-    -- Show colour codes
+    -- Plugin: Show colour codes
     {
         "NvChad/nvim-colorizer.lua",
         lazy = true,
@@ -19,7 +19,7 @@ return {
             },
         }
     },
-    -- Alternative File Explorer
+    -- Plugin: Alternative File Explorer
     {
         "tamago324/lir.nvim",
         keys = {
@@ -124,5 +124,6 @@ return {
 
         end,
     },
+    -- Plugin: Git status for Lir
     { "tamago324/lir-git-status.nvim", dependencies = "tamago324/lir.nvim" },
 }

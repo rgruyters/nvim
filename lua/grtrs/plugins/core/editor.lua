@@ -1,5 +1,5 @@
 return {
-    -- Treesitter
+    -- Plugin: Treesitter
     {
         "nvim-treesitter/nvim-treesitter",
         event = { "BufReadPost", "BufNewFile" },
@@ -36,6 +36,7 @@ return {
             require("nvim-treesitter.configs").setup(opts)
         end,
     },
+    -- Plugin: Treesitter Context
     {
         "nvim-treesitter/nvim-treesitter-context",
         dependencies = "nvim-treesitter/nvim-treesitter",
@@ -46,7 +47,7 @@ return {
             max_lines = 0,   -- How many lines the window should span. Values <= 0 mean no limit.
         },
     },
-    -- Telescope
+    -- Plugin: Telescope
     {
         "nvim-telescope/telescope.nvim",
         cmd = "Telescope",
@@ -167,6 +168,7 @@ return {
             require("telescope").setup(opts)
         end,
     },
+    -- Plugin: Telescope Fuzzy Finder Algorithm
     {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
@@ -174,8 +176,8 @@ return {
         config = function()
             require("telescope").load_extension("fzf")
         end,
-    }, -- Fuzzy Finder Algorithm
-    -- Project window
+    },
+    -- Plugin: Project window
     {
         "ahmedkhalf/project.nvim",
         event = "VeryLazy",
@@ -199,7 +201,7 @@ return {
             require("telescope").load_extension('projects')
         end,
     },
-    -- Make comments pretty
+    -- Plugin: Make comments pretty
     {
         "numToStr/Comment.nvim",
         dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
@@ -210,7 +212,7 @@ return {
             return commentstring_avail and commentstring and { pre_hook = commentstring.create_pre_hook() } or {}
         end,
     },
-    -- Aligning lines
+    -- Plugin: Aligning lines
     {
         "Vonr/align.nvim",
         lazy = true,
@@ -221,12 +223,15 @@ return {
             { "ar", "<cmd>lua require('align').align_to_char(true, true, true)<CR>",  desc = "Align to Lua pattern" }, -- Aligns to a Lua pattern, looking left and with previews
         },
     },
-    -- Autopair
+    -- Plugin: Autopair
     { "windwp/nvim-autopairs" },
-    -- highlight todo comments
+    -- Plugin: highlight todo comments
     {
         "folke/todo-comments.nvim",
         dependencies = "nvim-lua/plenary.nvim",
+        cmd = { "TodoTrouble", "TodoTelescope" },
+        event = { "BufReadPost", "BufNewFile" },
+        config = true,
         opts = {
             highlight = {
                 before = "",                     -- "fg" or "bg" or empty
@@ -239,11 +244,15 @@ return {
             },
         },
         keys = {
-            { "<leader>ft", "<cmd>TodoTelescope keywords=TODO,FIX,HACK<CR>", desc = "Telescope: [F]ind [T]odo" }
+            { "]t",         function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
+            { "[t",         function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
+            { "<leader>xt", "<cmd>TodoTrouble<cr>",                              desc = "Todo (Trouble)" },
+            { "<leader>ft", "<cmd>TodoTelescope keywords=TODO,FIX,HACK<CR>",     desc = "Telescope: [F]ind [T]odo" }
         },
     },
-    -- Surround selections
+    -- Plugin: Surround selections
     { "kylechui/nvim-surround",    config = true, event = "VeryLazy" },
-    -- editorconfig
+    -- Plugin: editorconfig
+    -- NOTE: this plugin will be obsolete with Neovim version 0.9
     { "gpanders/editorconfig.nvim" },
 }

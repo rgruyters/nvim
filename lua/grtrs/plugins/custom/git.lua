@@ -1,11 +1,11 @@
 return {
-    -- Git
-    -- Github extention for Git (fugitive.vim)
+    -- Plugin: Github extention for Git (fugitive.vim)
     { "tpope/vim-rhubarb" },
+    -- Plugin: Git diff viewer
     { "sindrets/diffview.nvim", dependencies = "nvim-lua/plenary.nvim", event = "VeryLazy" },
-    -- View Git messages in a window
+    -- Plugin: View Git messages in a window
     { "rhysd/git-messenger.vim" },
-    -- Lazygit for Neovim
+    -- Plugin: Lazygit for Neovim
     {
         "kdheepak/lazygit.nvim",
         keys = {

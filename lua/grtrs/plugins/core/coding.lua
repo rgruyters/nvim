@@ -1,5 +1,5 @@
 return {
-    -- LSP
+    -- Plugin: LSP
     {
         "neovim/nvim-lspconfig",
         dependencies = {
@@ -12,7 +12,7 @@ return {
         },
         lazy = true,
     },
-    -- Autocompletion
+    -- Plugin: Autocompletion
     { "hrsh7th/nvim-cmp",
         event = { "InsertEnter", "CmdlineEnter" },
         version = false, -- last release is way too old
@@ -110,6 +110,6 @@ return {
             }
         end
     },
-    -- for formatters and linters
+    -- Plugin: for formatters and linters
     { "jose-elias-alvarez/null-ls.nvim", lazy = true },
 }
