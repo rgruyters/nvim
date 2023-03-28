@@ -164,6 +164,22 @@ return {
                 shorting_target = 40,
             }
 
+            local branch = {
+                'branch',
+                icon = icons.git.Branch,
+                color = { gui = "bold" },
+                cond = hide_in_width,
+            }
+
+            local diff = {
+                "diff",
+                symbols = {
+                    added = icons.git.Add .. " ",
+                    modified = icons.git.Mod .. " ",
+                    removed = icons.git.Remove .. " ",
+                },
+            }
+
             -- Change text color for lanuage_server output
             vim.api.nvim_set_hl(0, "SLLSP", { fg = "#616E88" })
 
@@ -176,7 +192,7 @@ return {
                 },
                 sections = {
                     lualine_a = { 'mode' },
-                    lualine_b = { 'branch', 'diff', 'diagnostics' },
+                    lualine_b = { branch, diff, 'diagnostics' },
                     lualine_c = { filename },
                     lualine_x = { lsp, spaces, 'filetype' },
                     lualine_y = { 'location' },
