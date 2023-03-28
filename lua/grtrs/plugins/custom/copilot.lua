@@ -20,21 +20,27 @@ return {
     },
     -- Plugin: GitHub Copilot completion integration
     {
-        "zbirenbaum/copilot-cmp",
+        "nvim-cmp",
         dependencies = {
-            "copilot.lua",
-            "nvim-cmp",
+            "zbirenbaum/copilot-cmp",
+            dependencies = {
+                "copilot.lua",
+            },
+            config = function(_, opts)
+                local copilot_cmp = require("copilot_cmp")
+                copilot_cmp.setup(opts)
+                -- attach cmp source whenever copilot attaches
+                -- fixes lazy-loading issues with the copilot cmp source
+                require("grtrs.functions").on_attach(function(client)
+                    if client.name == "copilot" then
+                        copilot_cmp._on_insert_enter()
+                    end
+                end)
+            end,
         },
-        config = function(_, opts)
-            local copilot_cmp = require("copilot_cmp")
-            copilot_cmp.setup(opts)
-            -- attach cmp source whenever copilot attaches
-            -- fixes lazy-loading issues with the copilot cmp source
-            require("grtrs.functions").on_attach(function(client)
-                if client.name == "copilot" then
-                    copilot_cmp._on_insert_enter()
-                end
-            end)
+        opts = function(_, opts)
+            local cmp = require("cmp")
+            opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "copilot" } }))
         end,
     },
 }
