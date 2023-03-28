@@ -20,17 +20,18 @@ mason_lspconfig.setup({
     automatic_installation = true,
 })
 
-local opts = {
-    on_attach = require("grtrs.lsp.handlers").on_attach,
-    capabilities = require("grtrs.lsp.handlers").capabilities,
-}
-
 mason_lspconfig.setup_handlers {
     function(server)
+        local opts = {
+            on_attach = require("grtrs.lsp.handlers").on_attach,
+            capabilities = require("grtrs.lsp.handlers").capabilities,
+        }
+
         local conf_opts_loaded, conf_opts = pcall(require, "grtrs.lsp.settings." .. server)
         if conf_opts_loaded then
             opts = vim.tbl_deep_extend("force", conf_opts, opts)
         end
+
         require("lspconfig")[server].setup(opts)
     end
 }
