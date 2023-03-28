@@ -2,7 +2,7 @@ return {
     -- Plugin: Show colour codes
     {
         "NvChad/nvim-colorizer.lua",
-        lazy = true,
+        event = "VeryLazy",
         opts = {
             filetypes = { "*" },
             user_default_options = {
