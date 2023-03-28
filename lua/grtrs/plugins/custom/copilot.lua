@@ -8,19 +8,15 @@ return {
         opts = {
             suggestion = { enabled = false },
             panel = { enabled = false },
+            filetypes = {
+                lua = true,
+                python = true,
+                terraform = true,
+                go = true,
+                puppet = true,
+                ["*"] = false,
+            },
         },
-        config = function()
-            require("copilot").setup({
-                filetypes = {
-                    lua = true,
-                    python = true,
-                    terraform = true,
-                    go = true,
-                    puppet = true,
-                    ["*"] = false,
-                },
-            })
-        end,
     },
     -- Plugin: GitHub Copilot completion integration
     {
