@@ -30,6 +30,7 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
     end,
 })
 
+-- Add project name to titlebar of terminal
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
     pattern = { "" },
     callback = function()
