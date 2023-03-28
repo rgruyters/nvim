@@ -1,6 +1,4 @@
 return {
-    -- Plugin: Github extention for Git (fugitive.vim)
-    { "tpope/vim-rhubarb" },
     -- Plugin: Git diff viewer
     { "sindrets/diffview.nvim", dependencies = "nvim-lua/plenary.nvim", event = "VeryLazy" },
     -- Plugin: View Git messages in a window
