@@ -66,7 +66,6 @@ return {
 
             local icons = require("grtrs.icons")
 
-            -- Update completion via lsp-zero
             return {
                 snippet = {
                     expand = function(args)
@@ -123,6 +122,6 @@ return {
     -- Plugin: for formatters and linters
     {
         "jose-elias-alvarez/null-ls.nvim",
-        lazy = true, -- load null-ls config from grtrs.null-ls
+        lazy = true, -- load null-ls config from grtrs.lsp.null-ls
     },
 }

@@ -103,17 +103,14 @@ I recommend using the following repo to get a "[Nerd Font](https://github.com/ry
 
 ### LSP
 
-When opening a file [LSP zero](https://github.com/VonHeikemen/lsp-zero.nvim)
-will notify when a lspserver is available for the current file. You can also
-install a LSP yourself by using:
+To install a LSP, open "Mason" and find the list of all available LSP plugins.
 
 ```neovim
 :Mason
 ```
 
-and press `i` on the Language Server you wish to install
-
-Next you will need to add the server to this list: [servers](https://github.com/rgruyters/nvim/blob/main/lua/grtrs/lsp/init.lua)
+and press `i` on the Language Server you wish to install. The current setup will
+automatically enable the LSP for the particular file type.
 
 ### Formatters and linters
 
@@ -124,7 +121,15 @@ Make sure the formatter or linter is installed and add it to this setup function
 
 ### Plugins
 
-You can install new plugins here: [plugins](https://github.com/rgruyters/nvim/blob/main/lua/grtrs/plugins.lua)
+The current setup uses two files for installing and implementing plugins:
+
+- [core][1] - The minimum of plugins to use within Neovim
+- [custom][2] - Any extra plugins that I want to use or test out
+
+If you want to add more plugins, the best place is to add them in the
+[custom][2] plugin folder.
+
+The following plugins are availabile in the current setup:
 
 - [lazy](https://github.com/folke/lazy.nvim)
 - [plenary](https://github.com/nvim-lua/plenary.nvim)
@@ -144,29 +149,28 @@ You can install new plugins here: [plugins](https://github.com/rgruyters/nvim/bl
 - [cmp-cmdline](https://github.com/hrsh7th/cmp-cmdline)
 - [cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)
 - [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
-- [cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua)
 - [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
 - [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [mason.nvim](https://github.com/williamboman/mason.nvim)
 - [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
-- [lsp-zero](https://github.com/VonHeikemen/lsp-zero.nvim)
 - [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)
 - [vim-illuminate](https://github.com/RRethy/vim-illuminate)
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context)
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
-- [git-blame.nvim](https://github.com/f-person/git-blame.nvim)
 - [lazygit](https://github.com/kdheepak/lazygit.nvim)
 - [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
 - [nvim-surround](https://github.com/kylechui/nvim-surround)
 - [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
 - [lspkind-nvim](https://github.com/onsails/lspkind-nvim)
-- [harpoon](https://github.com/ThePrimeagen/harpoon)
 - [align.nvim](https://github.com/Vonr/align.nvim)
 - [undotree](https://github.com/mbbill/undotree)
 - [catppucchin](https://github.com/catppuccin/nvim)
+- [diffview.nvim](https://github.com/sindrets/diffview.nvim)
+- [git-messenger.vim](https://github.com/rhysd/git-messenger.vim)
+- [vim-fugitive](https://github.com/tpope/vim-fugitive)
 
 ### Breaking changes
 
@@ -190,3 +194,6 @@ more information:
 > complexities of his own making.
 
 \- Edsger W. Dijkstra
+
+[1]: https://github.com/rgruyters/nvim/tree/main/lua/grtrs/plugins/core
+[2]: https://github.com/rgruyters/nvim/tree/main/lua/grtrs/plugins/custom
