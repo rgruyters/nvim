@@ -1,7 +1,9 @@
 return {
-    yaml = {
-        schemaStore = {
-            enable = true,
+    settings = {
+        yaml = {
+            schemaStore = {
+                enable = true,
+            }
         }
     }
 }
