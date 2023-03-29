@@ -180,6 +180,16 @@ return {
                 },
             }
 
+            local diagnostics = {
+                "diagnostics",
+                symbols = {
+                    error = icons.diagnostics.Error .. " ",
+                    warn = icons.diagnostics.Warning .. " ",
+                    info = icons.diagnostics.Information .. " ",
+                    hint = icons.diagnostics.Hint .. " ",
+                },
+            }
+
             -- Change text color for lanuage_server output
             vim.api.nvim_set_hl(0, "SLLSP", { fg = "#616E88" })
 
@@ -192,7 +202,7 @@ return {
                 },
                 sections = {
                     lualine_a = { 'mode' },
-                    lualine_b = { branch, diff, 'diagnostics' },
+                    lualine_b = { branch, diff, diagnostics },
                     lualine_c = { filename },
                     lualine_x = { lsp, spaces, 'filetype' },
                     lualine_y = { 'location' },
