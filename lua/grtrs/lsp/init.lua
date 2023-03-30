@@ -38,4 +38,3 @@ mason_lspconfig.setup_handlers {
 
 require("grtrs.lsp.handlers").setup()
 require("grtrs.lsp.null-ls")
-pcall(require("neodev").setup())

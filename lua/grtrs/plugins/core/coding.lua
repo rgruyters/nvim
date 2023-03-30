@@ -6,7 +6,6 @@ return {
             -- LSP Support
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
-            "folke/neodev.nvim",
         },
         lazy = true, -- load lsp config from grtrs.lsp
     },
