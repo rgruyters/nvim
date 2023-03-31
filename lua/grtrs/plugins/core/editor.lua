@@ -66,6 +66,7 @@ return {
             { "<leader>go",      "<cmd>Telescope git_status<CR>",               desc = "[G]it [O]pen changed files" },
             { "<leader>gb",      "<cmd>Telescope git_branches<CR>",             desc = "[G]it [B]ranches" },
             { "<leader>gc",      "<cmd>Telescope git_commits<CR>",              desc = "[G]it [C]ommits" },
+            { "<leader>gf",      "<cmd>Telescope git_files<CR>",              desc = "[G]it [F]iles" },
         },
         opts = function()
             local actions = require "telescope.actions"
