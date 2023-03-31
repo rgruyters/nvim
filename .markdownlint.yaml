@@ -1,0 +1,15 @@
+# Default state for all rules
+default: true
+
+# MD013/line-length - Allow long lines
+MD013: false
+
+# MD033 - Inline HTML.
+MD033: false
+
+# MD041 - Display Caution block before a top-level heading
+MD041: false
+
+MD024:
+  siblings_only: true
+  allow_different_nesting: true
