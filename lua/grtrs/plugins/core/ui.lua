@@ -166,7 +166,7 @@ return {
 
             local branch = {
                 'branch',
-                icon = icons.git.Branch,
+                icon = icons.git.branch,
                 color = { gui = "bold" },
                 cond = hide_in_width,
             }
@@ -174,9 +174,9 @@ return {
             local diff = {
                 "diff",
                 symbols = {
-                    added = icons.git.Add .. " ",
-                    modified = icons.git.Mod .. " ",
-                    removed = icons.git.Remove .. " ",
+                    added = icons.git.added .. " ",
+                    modified = icons.git.modified .. " ",
+                    removed = icons.git.removed .. " ",
                 },
             }
 

@@ -73,7 +73,7 @@ return {
 
             return {
                 defaults = {
-                    prompt_prefix = icons.ui.Telescope .. " ",
+                    prompt_prefix = icons.misc.Telescope .. " ",
                     selection_caret = " ",
                     path_display = { "smart" },
                     color_devicons = true,
