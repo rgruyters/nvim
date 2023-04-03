@@ -20,21 +20,6 @@ return {
                 require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
             end,
         },
-        init = function()
-            local luasnip = require("luasnip")
-
-            vim.keymap.set({ "i", "s" }, "<C-j>", function()
-                if luasnip.choice_active() then
-                    luasnip.change_choice(1)
-                end
-            end)
-
-            vim.keymap.set({ "i", "s" }, "<C-k>", function()
-                if luasnip.choice_active() then
-                    luasnip.change_choice(-1)
-                end
-            end)
-        end,
         keys = {
             {
                 "<tab>",
@@ -45,6 +30,24 @@ return {
             },
             { "<tab>",   function() require("luasnip").jump(1) end,  mode = "s" },
             { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+            {
+                "<C-j>",
+                function()
+                    if require("luasnip").choice_active() then
+                        require("luasnip").change_choice(1)
+                    end
+                end,
+                mode = { "i", "s" }
+            },
+            {
+                "<C-k>",
+                function()
+                    if require("luasnip").choice_active() then
+                        require("luasnip").change_choice(-1)
+                    end
+                end,
+                mode = { "i", "s" }
+            },
         },
     },
     -- Plugin: Autocompletion
