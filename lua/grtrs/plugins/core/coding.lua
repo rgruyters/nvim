@@ -107,15 +107,12 @@ return {
                     end,
                 },
                 enabled = function()
-                    -- disable completion in comments
-                    -- https://github.com/hrsh7th/nvim-cmp/wiki/Advanced-techniques#disabling-completion-in-certain-contexts-such-as-comments
-                    local context = require 'cmp.config.context'
-                    -- keep command mode completion enabled when cursor is in a comment
-                    if vim.api.nvim_get_mode().mode == 'c' then
-                        return true
+                    if require('cmp.config.context').in_treesitter_capture('comment') == true
+                        or require('cmp.config.context').in_syntax_group('Comment')
+                        or vim.bo.filetype == "TelescopePrompt" then -- HACK: disable completion when using Telescope
+                        return false
                     else
-                        return not context.in_treesitter_capture("comment")
-                            and not context.in_syntax_group("Comment")
+                        return true
                     end
                 end,
             }
