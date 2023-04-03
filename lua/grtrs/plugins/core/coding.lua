@@ -12,7 +12,7 @@ return {
     -- Plugin: Snippets
     {
         "L3MON4D3/LuaSnip",
-        event = { "InsertEnter", "CmdlineEnter" },
+        event = { "InsertEnter" },
         dependencies = {
             "rafamadriz/friendly-snippets",
             config = function()
