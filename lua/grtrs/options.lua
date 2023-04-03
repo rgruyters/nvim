@@ -1,4 +1,4 @@
-vim.opt.completeopt = { "menuone", "noselect" } -- Set completeopt to have a better completion experience
+vim.opt.completeopt = { "menu", "menuone", "noselect" } -- Set completeopt to have a better completion experience
 vim.opt.conceallevel = 0                        -- so that `` is visible in markdown files
 vim.opt.fileencoding = "utf-8"                  -- the encoding written to a file
 
