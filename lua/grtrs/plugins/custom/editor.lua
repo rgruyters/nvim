@@ -28,8 +28,16 @@ return {
     -- Plugin: Highlight words
     {
         "RRethy/vim-illuminate",
-        config = function()
-            require("illuminate").configure({ delay = 200 })
+        opts = {
+            delay =200,
+            filetypes_denylist = {
+                'fugitive',
+                'lir',
+                'TelescopePrompt',
+            },
+        },
+        config = function(_, opts)
+            require("illuminate").configure(opts)
 
             -- disables illuminate on very large files as it slowd down the editor
             vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
