@@ -40,18 +40,21 @@ return {
                 return false
             end
 
+            -- List of filetypes to disable part of the statusline
             local ui_disable_filetypes = {
                 "help",
-                "packer",
-                "neogitstatus",
-                "NvimTree",
+                "lazy",
+                "fugitive",
                 "Trouble",
                 "lir",
-                "Outline",
-                "spectre_panel",
-                "DressingSelect",
+                "mason",
                 "",
             }
+
+            -- return false if should be disabled
+            local disable_filetype = function()
+                return not contains(ui_disable_filetypes, vim.bo.filetype)
+            end
 
             local scrollbar = {
                 function()
@@ -178,6 +181,7 @@ return {
                     modified = icons.git.modified .. " ",
                     removed = icons.git.removed .. " ",
                 },
+                cond = disable_filetype,
             }
 
             local diagnostics = {
