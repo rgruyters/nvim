@@ -22,6 +22,7 @@ return {
     -- Plugin: Alternative File Explorer
     {
         "tamago324/lir.nvim",
+        event = { "BufEnter" },
         keys = {
             { "<leader>e", "<cmd>execute 'e ' .. expand('%:p:h')<CR>", desc = "Lir File Explorer"}
         },
