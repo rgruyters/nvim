@@ -53,7 +53,7 @@ return {
     -- Plugin: Autocompletion
     {
         "hrsh7th/nvim-cmp",
-        event = { "InsertEnter", "CmdlineEnter" },
+        event = "InsertEnter",
         version = false, -- last release is way too old
         dependencies = {
             "hrsh7th/cmp-buffer",

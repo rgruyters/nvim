@@ -228,6 +228,7 @@ return {
     -- Plugin: Autopair
     {
         "windwp/nvim-autopairs",
+        event = { "BufReadPost", "BufNewFile" },
         dependencies = { "nvim-cmp"},
         opts = {
             check_ts = true, -- treesitter integration
@@ -260,7 +261,7 @@ return {
         "kylechui/nvim-surround",
         version = "*", -- Use for stability; omit to use `main` branch for the latest features
         config = true,
-        event = "VeryLazy"
+        event = { "BufReadPost", "BufNewFile" },
     },
     -- Plugin: editorconfig
     -- NOTE: this plugin will be obsolete with Neovim version 0.9

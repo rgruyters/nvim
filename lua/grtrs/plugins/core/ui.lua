@@ -160,7 +160,7 @@ return {
 
             local filename = {
                 'filename',
-                path = 1,
+                path = 1, -- display relative path
                 shorting_target = 40,
             }
 

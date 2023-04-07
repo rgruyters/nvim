@@ -28,6 +28,7 @@ return {
     -- Plugin: Highlight words
     {
         "RRethy/vim-illuminate",
+        event = { "BufReadPost", "BufNewFile" },
         opts = {
             delay =200,
             filetypes_denylist = {
