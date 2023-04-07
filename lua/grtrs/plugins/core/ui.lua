@@ -43,9 +43,6 @@ return {
             -- List of filetypes to disable part of the statusline
             local ui_disable_filetypes = {
                 "help",
-                "lazy",
-                "fugitive",
-                "Trouble",
                 "lir",
                 "mason",
                 "",
@@ -212,6 +209,7 @@ return {
                     lualine_y = { 'location' },
                     lualine_z = { scrollbar }
                 },
+                extensions = { "fugitive", "lazy", "nvim-dap-ui", "trouble" },
             }
         end,
     },
