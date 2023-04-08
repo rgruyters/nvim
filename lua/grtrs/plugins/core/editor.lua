@@ -263,7 +263,4 @@ return {
         config = true,
         event = { "BufReadPost", "BufNewFile" },
     },
-    -- Plugin: editorconfig
-    -- NOTE: this plugin will be obsolete with Neovim version 0.9
-    { "gpanders/editorconfig.nvim" },
 }
