@@ -20,10 +20,6 @@ return {
 
         require("mason-nvim-dap").setup {}
 
-        -- You can provide additional configuration to the handlers,
-        -- see mason-nvim-dap README for more information
-        require("mason-nvim-dap").setup_handlers()
-
         -- Basic debugging keymaps, feel free to change to your liking!
         vim.keymap.set('n', '<F5>', dap.continue)
         vim.keymap.set('n', '<F1>', dap.step_into)
