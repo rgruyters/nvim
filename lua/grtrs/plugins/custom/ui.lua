@@ -39,7 +39,9 @@ return {
                     highlight_dirname = false
                 },
                 mappings = {
-                    ['<CR>']     = actions.edit,
+                    ['l']     = actions.edit,
+                    ['<CR>']  = actions.edit, -- use as fallback keymap
+
                     ['<C-s>'] = actions.split,
                     ['<C-v>'] = actions.vsplit,
                     ['<C-t>'] = actions.tabedit,
