@@ -51,4 +51,8 @@ return {
             })
         end,
     },
+    { -- Plugin: schemastore
+        "b0o/schemastore.nvim",
+        lazy = true,
+    },
 }

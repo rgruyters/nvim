@@ -1,10 +1,12 @@
+local schemastore_loaded, schemastore = pcall(require, "schemastore")
+if not schemastore_loaded then
+    return
+end
+
 return {
     settings = {
         yaml = {
-            schemaStore = {
-                enable = true,
-                url = "https://www.schemastore.org/api/json/catalog.json",
-            },
+            schemas = schemastore.yaml.schemas(),
         },
     },
 }
