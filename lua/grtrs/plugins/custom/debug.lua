@@ -11,10 +11,13 @@ return {
 
         -- use own debugging language
         "mfussenegger/nvim-dap-python",
+        "nvim-neotest/neotest",
+        "nvim-neotest/neotest-python",
     },
     config = function()
         local dap = require("dap")
         local dapui = require("dapui")
+        local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
 
         require("telescope").load_extension("dap")
 
@@ -29,6 +32,13 @@ return {
         vim.keymap.set('n', '<leader>B', function()
             dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
         end)
+
+        -- keymaps for neotest
+        vim.keymap.set('n', '<leader>tm', "<cmd>lua require('neotest').run.run()<cr>", { desc = "Test Method" })
+        vim.keymap.set('n', '<leader>tM', "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", { desc = "Test Method DAP" })
+        vim.keymap.set('n', '<leader>tf', "<cmd>lua require('neotest').run.run({vim.fn.expand('%')})<cr>", { desc = "Test Class" })
+        vim.keymap.set('n', '<leader>tF', "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>", { desc = "Test Class DAP" })
+        vim.keymap.set('n', '<leader>tS', "<cmd>lua require('neotest').summary.toggle()<cr>", { desc = "Test Summary" })
 
         -- Dap UI setup
         -- For more information, see |:help nvim-dap-ui|
@@ -59,14 +69,21 @@ return {
         -- use custom language settings
         local dap_python = require("dap-python")
 
-        dap_python.setup("python", {
-            -- So if configured correctly, this will open up new terminal.
-            --    Could probably get this to target a particular terminal
-            --    and/or add a tab to kitty or something like that as well.
-            console = "externalTerminal",
-            include_configs = true,
-        })
+        dap_python.setup(mason_path .. "packages/debugpy/venv/bin/python")
 
         dap_python.test_runner = "pytest"
+
+        require("neotest").setup({
+            adapters = {
+                require("neotest-python")({
+                    dap = {
+                        justMyCode = false,
+                        console = "integratedTerminal",
+                    },
+                    args = { "--log-level", "DEBUG", "--quiet" },
+                    runner = "pytest",
+                })
+            }
+        })
     end,
 }
