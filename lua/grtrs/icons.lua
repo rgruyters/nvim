@@ -40,18 +40,19 @@ return {
         branch = "",
         modified = "",
         removed = "",
-        Octoface = "",
+        Octoface = "",
     },
     diagnostics = {
         Error = "",
-        Hint = "",
+        Hint = "󰌵",
         Information = "",
         Question = "",
         Warning = "",
     },
     misc = {
-        Robot = "ﮧ",
+        Robot = "󰚩",
         Tag = "",
         Telescope = "",
+        Spaces = "󰞔",
     },
 }

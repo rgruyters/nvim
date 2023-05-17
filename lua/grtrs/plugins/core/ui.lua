@@ -68,18 +68,10 @@ return {
 
             local spaces = {
                 function()
-                    local buf_ft = vim.bo.filetype
-
-                    local space = ""
-
-                    if contains(ui_disable_filetypes, buf_ft) then
-                        space = " "
-                    end
-
-                    return "  " .. vim.api.nvim_buf_get_option(0, "shiftwidth") .. space
+                    return icons.misc.Spaces .. " " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
                 end,
-                padding = 0,
-                separator = "%#SLSeparator#" .. " " .. "%*",
+                padding = 1,
+                separator = "",
                 cond = hide_in_width_100,
             }
 
