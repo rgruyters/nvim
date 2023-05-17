@@ -8,18 +8,20 @@ if not mason_lsp_loaded then
     return
 end
 
-local settings = {
+-- Setup Mason package manager
+mason.setup({
     log_level = vim.log.levels.INFO,
     max_concurrent_installers = 4,
-}
+})
 
-mason.setup(settings)
-
+-- Setup Mason LSP
 mason_lspconfig.setup({
     ensure_installed = {},
     automatic_installation = true,
 })
 
+-- LSP setup handler for setting each language server
+-- Load the custom settings file when available and merge/extend it with default opts
 mason_lspconfig.setup_handlers {
     function(server)
         local opts = {
