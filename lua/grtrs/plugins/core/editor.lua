@@ -7,7 +7,6 @@ return {
         dependencies = "nvim-treesitter/nvim-treesitter-textobjects",
         opts = {
             ensure_installed = {
-                "help",
                 "hcl",
                 "bash",
                 "python",
