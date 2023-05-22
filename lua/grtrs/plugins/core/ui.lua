@@ -281,6 +281,12 @@ return {
                     cterm_color = "57",
                     name = "Terraform",
                 },
+                ["tfvars"] = {
+                    icon = "󱁢",
+                    color = "#5F43E9",
+                    cterm_color = "57",
+                    name = "TFVars",
+                },
                 ["astro"] = {
                     --  󱓟 
                     icon = "󱓞",
