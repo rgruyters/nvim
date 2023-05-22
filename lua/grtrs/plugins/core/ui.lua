@@ -259,23 +259,11 @@ return {
                     cterm_color = "59",
                     name = "GitIgnore",
                 },
-                [".gitlab-ci.yml"] = {
-                    icon = "",
-                    color = "#e24329",
-                    cterm_color = "166",
-                    name = "GitlabCI",
-                },
                 [".gitmodules"] = {
                     icon = "",
                     color = "#e24329",
                     cterm_color = "59",
                     name = "GitModules",
-                },
-                ["diff"] = {
-                    icon = "",
-                    color = "#e24329",
-                    cterm_color = "59",
-                    name = "Diff",
                 },
                 ["pp"] = {
                     icon = "",
@@ -292,6 +280,12 @@ return {
                     color = "#5F43E9",
                     cterm_color = "57",
                     name = "Terraform",
+                },
+                ["astro"] = {
+                    --  󱓟 
+                    icon = "󱓞",
+                    color = "#FF7E33",
+                    name = "Astro",
                 },
             },
         },
