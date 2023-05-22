@@ -184,7 +184,7 @@ return {
             }
 
             -- Change text color for lanuage_server output
-            vim.api.nvim_set_hl(0, "SLLSP", { fg = "#616E88" })
+            vim.api.nvim_set_hl(0, "SLLSP", { fg = "#616E88", bg = "#1E1E2E" })
 
             return {
                 options = {
