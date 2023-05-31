@@ -3,14 +3,16 @@ return {
     {
         "sindrets/diffview.nvim",
         dependencies = "nvim-lua/plenary.nvim",
-        event = "VeryLazy",
         keys = {
             { "<leader>gh", "<cmd>diffget //2<CR>", desc = "Commit Left Side" },
             { "<leader>gl", "<cmd>diffget //3<CR>", desc = "Commit Right Side" },
         }
     },
     -- Plugin: View Git messages in a window
-    { "rhysd/git-messenger.vim" },
+    {
+        "rhysd/git-messenger.vim",
+        event = { "BufReadPost", "BufNewFile" },
+    },
     -- Plugin: Lazygit for Neovim
     {
         "kdheepak/lazygit.nvim",

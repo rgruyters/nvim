@@ -119,5 +119,11 @@ return {
         end,
     },
     -- Plugin: Git status for Lir
-    { "tamago324/lir-git-status.nvim", dependencies = "tamago324/lir.nvim" },
+    {
+        "lir.nvim",
+        dependencies = {
+            "tamago324/lir-git-status.nvim",
+            event = { "BufEnter" },
+        },
+    },
 }

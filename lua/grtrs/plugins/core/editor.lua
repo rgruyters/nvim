@@ -171,36 +171,42 @@ return {
     },
     -- Plugin: Telescope Fuzzy Finder Algorithm
     {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-        dependencies = "nvim-telescope/telescope.nvim",
-        config = function()
-            require("telescope").load_extension("fzf")
-        end,
+        "telescope.nvim",
+        dependencies = {
+           "nvim-telescope/telescope-fzf-native.nvim",
+            event = "VeryLazy",
+            build = "make",
+            config = function()
+                require("telescope").load_extension("fzf")
+            end,
+        },
     },
     -- Plugin: Project window
     {
-        "ahmedkhalf/project.nvim",
-        event = "VeryLazy",
-        keys = {
-            { "<leader>fp", "<cmd>Telescope projects<CR>", desc = "[F]ind [P]rojects" },
+        "telescope.nvim",
+        dependencies = {
+            "ahmedkhalf/project.nvim",
+            event = "VeryLazy",
+            keys = {
+                { "<leader>fp", "<cmd>Telescope projects<CR>", desc = "[F]ind [P]rojects" },
+            },
+            opts = {
+                active = true,
+                on_config_done = nil,
+                manual_mode = false,
+                -- detection_methods = { "lsp", "pattern" }, -- NOTE: lsp detection will get annoying with multiple langs in one project
+                detection_methods = { "pattern" },
+                patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" },
+                show_hidden = true,
+                silent_chdir = true,
+                ignore_lsp = {},
+                datapath = vim.fn.stdpath("data"),
+            },
+            config = function(_, opts)
+                require("project_nvim").setup(opts)
+                require("telescope").load_extension('projects')
+            end,
         },
-        opts = {
-            active = true,
-            on_config_done = nil,
-            manual_mode = false,
-            -- detection_methods = { "lsp", "pattern" }, -- NOTE: lsp detection will get annoying with multiple langs in one project
-            detection_methods = { "pattern" },
-            patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" },
-            show_hidden = true,
-            silent_chdir = true,
-            ignore_lsp = {},
-            datapath = vim.fn.stdpath("data"),
-        },
-        config = function(_, opts)
-            require("project_nvim").setup(opts)
-            require("telescope").load_extension('projects')
-        end,
     },
     -- Plugin: Make comments pretty
     {
