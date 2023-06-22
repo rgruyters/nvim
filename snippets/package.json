@@ -19,6 +19,12 @@
                     "yaml"
                 ],
                 "path": "./pf.json"
+            },
+            {
+                "language": [
+                    "terraform"
+                ],
+                "path": "./terraform.json"
             }
 		]
 	}
