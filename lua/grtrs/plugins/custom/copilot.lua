@@ -27,7 +27,6 @@ return {
             dependencies = {
                 "copilot.lua",
             },
-            commit = "bd494553b550213c2c1f1ad43f566ba50ee42c58",
             config = function(_, opts)
                 local copilot_cmp = require("copilot_cmp")
                 copilot_cmp.setup(opts)
