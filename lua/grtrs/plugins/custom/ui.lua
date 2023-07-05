@@ -23,6 +23,7 @@ return {
     {
         "tamago324/lir.nvim",
         event = { "BufEnter" },
+        enabled = false,
         keys = {
             { "<leader>e", "<cmd>execute 'e ' .. expand('%:p:h')<CR>", desc = "Lir File Explorer"}
         },
