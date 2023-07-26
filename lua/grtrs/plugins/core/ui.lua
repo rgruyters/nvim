@@ -1,19 +1,4 @@
 return {
-    -- Plugin: Make bufferlines pretty
-    {
-        "akinsho/bufferline.nvim",
-        event = "VeryLazy",
-        enabled = false,
-        dependencies = "nvim-web-devicons",
-        opts = {
-            options = {
-                separator_style = "thin", -- | "thick" | "thin" | { 'any', 'any' },
-                show_buffer_close_icons = false,
-                show_close_icon = false,
-                diagnostics = false,
-            }
-        },
-    },
     -- Plugin: Blazing fast statusline
     {
         "nvim-lualine/lualine.nvim",

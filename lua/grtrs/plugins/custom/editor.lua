@@ -18,13 +18,6 @@ return {
             { "<leader>xX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
         },
     },
-    -- Plugin: Structual Search & Replace
-    {
-        "cshuaimin/ssr.nvim",
-        keys = {
-            { "<leader>cR", function() require("ssr").open() end, mode = { "n", "x" }, desc = "Structural Replace" },
-        },
-    },
     -- Plugin: Highlight words
     {
         "RRethy/vim-illuminate",
