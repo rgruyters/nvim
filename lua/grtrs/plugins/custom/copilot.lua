@@ -27,9 +27,9 @@ return {
             dependencies = {
                 "copilot.lua",
             },
-            config = function(_, opts)
+            config = function()
                 local copilot_cmp = require("copilot_cmp")
-                copilot_cmp.setup(opts)
+                copilot_cmp.setup()
                 -- attach cmp source whenever copilot attaches
                 -- fixes lazy-loading issues with the copilot cmp source
                 require("grtrs.functions").on_attach(function(client)
