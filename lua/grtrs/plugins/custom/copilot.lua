@@ -21,7 +21,7 @@ return {
     -- Plugin: GitHub Copilot completion integration
     {
         "nvim-cmp",
-        event = "InsertEnter",
+        event = { "InsertEnter", "LspAttach" },
         dependencies = {
             "zbirenbaum/copilot-cmp",
             dependencies = {
