@@ -3,17 +3,17 @@ return {
   -- Git related plugins
   {
     'tpope/vim-fugitive',
-    event = { "BufReadPre", "BufNewFile" },
-    cmd = "Git",
+    event = { 'BufReadPre', 'BufNewFile' },
+    cmd = 'Git',
     init = function()
-      vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "[G]it [S]tatus"} )
-      vim.keymap.set("n", "<leader>gp", function() vim.cmd.Git('push') end, { desc = "[G]it [p]ush"} )
-      vim.keymap.set("n", "<leader>gP", function() vim.cmd.Git('pull') end, { desc = "Git [P]ull"} )
+      vim.keymap.set('n', '<leader>gs', vim.cmd.Git, { desc = '[G]it [S]tatus' })
+      vim.keymap.set('n', '<leader>gp', function() vim.cmd.Git('push') end, { desc = '[G]it [p]ush' })
+      vim.keymap.set('n', '<leader>gP', function() vim.cmd.Git('pull') end, { desc = 'Git [P]ull' })
     end,
   },
   {
     'tpope/vim-rhubarb',
-    event = { "BufReadPre", "BufNewFile" },
+    event = { 'BufReadPre', 'BufNewFile' },
   },
 
   -- Detect tabstop and shiftwidth automatically
@@ -42,7 +42,7 @@ return {
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
-    event = "InsertEnter",
+    event = 'InsertEnter',
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       'L3MON4D3/LuaSnip',
@@ -62,9 +62,9 @@ return {
       luasnip.config.setup {}
 
       local has_words_before = function()
-        if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+        if vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt' then return false end
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
+        return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match('^%s*$') == nil
       end
 
       return {
@@ -111,12 +111,12 @@ return {
           format = function(entry, item)
             local icons = require('custom.icons')
             if icons.kind[item.kind] then
-              item.kind = icons.kind[item.kind] .. " " .. item.kind
+              item.kind = icons.kind[item.kind] .. ' ' .. item.kind
             end
 
-            if entry.source.name == "copilot" then
-              item.kind = icons.git.Octoface .. " " .. item.kind
-              item.kind_hl_group = "CmpItemKindCopilot"
+            if entry.source.name == 'copilot' then
+              item.kind = icons.git.Octoface .. ' ' .. item.kind
+              item.kind_hl_group = 'CmpItemKindCopilot'
             end
 
             return item
@@ -124,8 +124,8 @@ return {
         },
         enabled = function()
           if require('cmp.config.context').in_treesitter_capture('comment') == true
-            or require('cmp.config.context').in_syntax_group('Comment')
-            or vim.bo.filetype == "TelescopePrompt" then -- HACK: disable completion when using Telescope
+              or require('cmp.config.context').in_syntax_group('Comment')
+              or vim.bo.filetype == 'TelescopePrompt' then -- HACK: disable completion when using Telescope
             return false
           else
             return true
@@ -141,15 +141,15 @@ return {
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
-    event = { "BufReadPre", "BufNewFile" },
+    event = { 'BufReadPre', 'BufNewFile' },
     opts = {
       -- See `:help gitsigns.txt`
       signs = {
-        add = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-        change = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-        delete = { hl = "GitSignsDelete", text = "_", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-        topdelete = { hl = "GitSignsDelete", text = "‾", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-        changedelete = { hl = "GitSignsChange", text = "~", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+        add = { hl = 'GitSignsAdd', text = '▎', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
+        change = { hl = 'GitSignsChange', text = '▎', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
+        delete = { hl = 'GitSignsDelete', text = '_', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
+        topdelete = { hl = 'GitSignsDelete', text = '‾', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
+        changedelete = { hl = 'GitSignsChange', text = '~', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
       },
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
@@ -158,13 +158,13 @@ return {
           if vim.wo.diff then return ']c' end
           vim.schedule(function() gs.next_hunk() end)
           return '<Ignore>'
-        end, {expr=true, buffer = bufnr, desc = 'Go to Previous Hunk' })
+        end, { expr = true, buffer = bufnr, desc = 'Go to Previous Hunk' })
 
         vim.keymap.set('n', '[c', function()
           if vim.wo.diff then return '[c' end
           vim.schedule(function() gs.prev_hunk() end)
           return '<Ignore>'
-        end, {expr=true, buffer = bufnr, desc = 'Go to Next Hunk' })
+        end, { expr = true, buffer = bufnr, desc = 'Go to Next Hunk' })
 
         vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
       end,
@@ -184,7 +184,7 @@ return {
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
-    event = "VeryLazy",
+    event = 'VeryLazy',
     -- See `:help lualine.txt`
     opts = function()
       local icons = require('custom.icons')
@@ -198,10 +198,10 @@ return {
       -- show number of spaces that is used for current buffer
       local spaces = {
         function()
-          return icons.misc.Spaces .. " " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
+          return icons.misc.Spaces .. ' ' .. vim.api.nvim_buf_get_option(0, 'shiftwidth')
         end,
         padding = 1,
-        separator = "",
+        separator = '',
       }
 
       return {
@@ -219,7 +219,7 @@ return {
           lualine_y = { 'location' },
           lualine_z = { 'progress' }
         },
-        extensions = { "fugitive", "lazy", "nvim-dap-ui", "trouble" },
+        extensions = { 'fugitive', 'lazy', 'nvim-dap-ui', 'trouble' },
       }
     end,
   },
@@ -228,19 +228,19 @@ return {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
-    event = { "BufReadPost", "BufNewFile" },
+    event = { 'BufReadPost', 'BufNewFile' },
     -- See `:help indent_blankline.txt`
     opts = {
-      char = "▏",
+      char = '▏',
       show_trailing_blankline_indent = false,
       show_current_context = true,
     },
   },
 
-  -- "gc" to comment visual regions/lines
+  -- 'gc' to comment visual regions/lines
   {
     'numToStr/Comment.nvim',
-    event = { "BufReadPost", "BufNewFile" },
+    event = { 'BufReadPost', 'BufNewFile' },
     opts = {},
   },
 
@@ -248,7 +248,7 @@ return {
   {
     'nvim-telescope/telescope.nvim',
     cmd = 'Telescope',
-    event = "VeryLazy",
+    event = 'VeryLazy',
     branch = '0.1.x',
     dependencies = { 'nvim-lua/plenary.nvim' },
     init = function()
@@ -276,18 +276,18 @@ return {
       return {
         -- See `:help telescope` and `:help telescope.setup()`
         defaults = {
-          prompt_prefix = require('custom.icons').misc.Telescope .. " ",
-          selection_caret = " ",
-          path_display = { "smart" },
+          prompt_prefix = require('custom.icons').misc.Telescope .. ' ',
+          selection_caret = ' ',
+          path_display = { 'smart' },
           color_devicons = true,
           mappings = {
             i = {
               ['<C-u>'] = false,
               ['<C-d>'] = false,
-              ["<C-n>"] = actions.cycle_history_next,
-              ["<C-p>"] = actions.cycle_history_prev,
-              ["<C-j>"] = actions.move_selection_next,
-              ["<C-k>"] = actions.move_selection_previous,
+              ['<C-n>'] = actions.cycle_history_next,
+              ['<C-p>'] = actions.cycle_history_prev,
+              ['<C-j>'] = actions.move_selection_next,
+              ['<C-k>'] = actions.move_selection_previous,
             },
           },
           pickers = {
@@ -370,14 +370,14 @@ return {
       return vim.fn.executable 'make' == 1
     end,
     config = function()
-      require("telescope").load_extension("fzf")
+      require('telescope').load_extension('fzf')
     end,
   },
 
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    event = { "BufReadPost", "BufNewFile" },
+    event = { 'BufReadPost', 'BufNewFile' },
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
