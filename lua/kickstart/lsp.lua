@@ -59,7 +59,7 @@ mason_lspconfig.setup {
   automatic_installation = true
 }
 
--- Add any additional override configuration, filetypes, etc. for LSP server in a separate file under lua/lsp/settings
+-- Add any additional override configuration, filetypes, etc. for LSP server in a separate file under lua/custom/lsp/settings
 mason_lspconfig.setup_handlers {
   function(server_name)
     local opts = {
