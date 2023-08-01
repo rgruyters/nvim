@@ -136,11 +136,12 @@ return {
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
 
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       -- See `:help gitsigns.txt`
       signs = {
@@ -183,6 +184,7 @@ return {
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
+    event = "VeryLazy",
     -- See `:help lualine.txt`
     opts = function()
       local icons = require('custom.icons')
@@ -226,20 +228,27 @@ return {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
+    event = { "BufReadPost", "BufNewFile" },
     -- See `:help indent_blankline.txt`
     opts = {
       char = "▏",
       show_trailing_blankline_indent = false,
+      show_current_context = true,
     },
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  {
+    'numToStr/Comment.nvim',
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {},
+  },
 
   -- Fuzzy Finder (files, lsp, etc)
   {
     'nvim-telescope/telescope.nvim',
     cmd = 'Telescope',
+    event = "VeryLazy",
     branch = '0.1.x',
     dependencies = { 'nvim-lua/plenary.nvim' },
     init = function()
@@ -353,6 +362,7 @@ return {
   -- requirements installed.
   {
     'nvim-telescope/telescope-fzf-native.nvim',
+    event = 'VeryLazy',
     -- NOTE: If you are having trouble with this installation,
     --       refer to the README for telescope-fzf-native for more instructions.
     build = 'make',

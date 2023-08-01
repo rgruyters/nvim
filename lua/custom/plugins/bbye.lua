@@ -1,5 +1,9 @@
 return {
-  { 'moll/vim-bbye', cmd = 'Bdelete' }
+  {
+    'moll/vim-bbye',
+    event = { "BufReadPre", "BufNewFile" },
+    cmd = 'Bdelete',
+  }
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`

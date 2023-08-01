@@ -1,6 +1,6 @@
 return {
   "windwp/nvim-autopairs",
-  -- Optional dependency
+  event = { "BufReadPost", "BufNewFile" },
   dependencies = { 'hrsh7th/nvim-cmp' },
   config = function()
     require("nvim-autopairs").setup {}
