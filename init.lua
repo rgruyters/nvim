@@ -65,5 +65,8 @@ require('kickstart.keymaps')
 -- [[ Configure LSP ]]
 require('kickstart.lsp')
 
+-- [[ LSP settings ]]
+require('custom.lsp.diagnostics')
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

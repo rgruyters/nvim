@@ -83,3 +83,9 @@ vim.g.netrw_winsize = 25
 
 -- always write files as utf-8
 vim.g.fileencoding = "utf-8"
+
+-- time to wait for a mapped sequence to complete (in milliseconds)
+vim.o.timeoutlen = 300
+
+-- faster completion (4000ms default)
+vim.o.updatetime = 250
