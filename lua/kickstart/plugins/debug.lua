@@ -1,8 +1,16 @@
+-- debug.lua
+--
+-- Shows how to use the DAP plugin to debug your code.
+--
+-- Primarily focused on configuring the debugger for Python, but can
+-- be extended to other languages as well. That's why it's called
+-- kickstart.nvim and not kitchen-sink.nvim ;)
 return {
   {
     "mfussenegger/nvim-dap",
     dependencies = {
       {
+        -- Creates a beautiful debugger UI
         "rcarriga/nvim-dap-ui",
         config = function()
           -- Dap UI setup
@@ -23,6 +31,7 @@ return {
                 step_back = 'b',
                 run_last = '▶▶',
                 terminate = '⏹',
+                disconnect = '⏏',
               },
             },
           }
@@ -48,6 +57,7 @@ return {
         "theHamsta/nvim-dap-virtual-text",
       },
       -- mason integration
+      -- Installs the debug adapters for you
       {
         "jay-babu/mason-nvim-dap.nvim",
         dependencies = "mason.nvim",
