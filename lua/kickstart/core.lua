@@ -110,6 +110,7 @@ return {
           -- kind_icons = require('custom.icons').kind,
           format = function(entry, item)
             local icons = require('custom.icons')
+
             if icons.kind[item.kind] then
               item.kind = icons.kind[item.kind] .. ' ' .. item.kind
             end
@@ -191,7 +192,12 @@ return {
     event = 'VeryLazy',
     -- See `:help lualine.txt`
     opts = function()
+      M = {}
       local icons = require('custom.icons')
+
+      local hide_in_width = function()
+        return vim.o.columns > 80
+      end
 
       local filename = {
         'filename',
@@ -208,6 +214,84 @@ return {
         separator = '',
       }
 
+      local lsp = {
+        function(msg)
+          msg = msg or "LS Inactive"
+          local buf_clients = vim.lsp.get_active_clients()
+          if next(buf_clients) == nil then
+            if type(msg) == "boolean" or #msg == 0 then
+              return "LS Inactive"
+            end
+            return msg
+          end
+
+          local buf_ft = vim.bo.filetype
+          local buf_client_names = {}
+          local copilot_active = false
+
+          -- add client
+          for _, client in pairs(buf_clients) do
+            if client.name ~= "copilot" and client.name ~= "null-ls" then
+              table.insert(buf_client_names, client.name)
+            end
+
+            if client.name == "copilot" then
+              copilot_active = true
+            end
+          end
+
+          -- add formatter
+          local sources = require "null-ls.sources"
+          local available_sources = sources.get_available(buf_ft)
+          local registered = {}
+
+          for _, source in ipairs(available_sources) do
+            for method in pairs(source.methods) do
+              registered[method] = registered[method] or {}
+              table.insert(registered[method], source.name)
+            end
+          end
+
+          local formatter = registered["NULL_LS_FORMATTING"]
+          local linter = registered["NULL_LS_DIAGNOSTICS"]
+
+          if formatter ~= nil then
+            vim.list_extend(buf_client_names, formatter)
+          end
+
+          if linter ~= nil then
+            vim.list_extend(buf_client_names, linter)
+          end
+
+          -- join client names with commas
+          local client_names_str = table.concat(buf_client_names, ", ")
+
+          -- check client_names_str if empty
+          local language_servers = ""
+
+          if #client_names_str ~= 0 then
+            language_servers = "%#SLLSP#" .. "[" .. client_names_str .. "]" .. "%*"
+          end
+
+          if copilot_active then
+            language_servers = language_servers .. "%#SLCopilot#" .. " " .. icons.git.Octoface .. "%*"
+          end
+
+          if #client_names_str == 0 and not copilot_active then
+            return ""
+          else
+            M.language_servers = language_servers
+            return language_servers
+          end
+        end,
+        padding = 0,
+        separator = "%#SLSeparator#" .. " " .. "%*",
+        cond = hide_in_width,
+      }
+
+      -- Change text color for lanuage_server output
+      vim.api.nvim_set_hl(0, "SLLSP", { fg = "#616E88", bg = "#1E1E2E" })
+
       return {
         options = {
           icons_enabled = true,
@@ -219,7 +303,7 @@ return {
           lualine_a = { 'mode' },
           lualine_b = { 'branch', 'diff', 'diagnostics' },
           lualine_c = { filename },
-          lualine_x = { spaces, 'filetype' },
+          lualine_x = { lsp, spaces, 'filetype' },
           lualine_y = { 'location' },
           lualine_z = { 'progress' }
         },
