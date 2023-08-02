@@ -1,8 +1,3 @@
-local schemastore_loaded, schemastore = pcall(require, "schemastore")
-if not schemastore_loaded then
-    return
-end
-
 return {
     settings = {
         json = {
@@ -15,8 +10,6 @@ return {
                         url = "https://raw.githubusercontent.com/microsoft/pyright/main/packages/vscode-pyright/schemas/pyrightconfig.schema.json",
                     },
                 },
-                schemastore.json.schemas {
-                }
             ),
         },
     },
