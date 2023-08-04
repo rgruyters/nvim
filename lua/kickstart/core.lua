@@ -182,7 +182,22 @@ return {
   {
     'folke/which-key.nvim',
     event = "VeryLazy",
-    opts = {}
+    opts = {
+      defaults = {
+        mode = { 'n', 'v' },
+      },
+      triggers_blacklist = {
+        -- list of mode / prefixes that should never be hooked by WhichKey
+        -- this is mostly relevant for keymaps that start with a native binding
+        i = { "j", "k", "d" },
+        v = { "j", "k" },
+      },
+    },
+    config = function(_, opts)
+      local wk = require('which-key')
+      wk.setup(opts)
+      wk.register(opts.defaults)
+    end,
   },
 
   {
