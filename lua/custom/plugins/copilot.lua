@@ -18,6 +18,24 @@ return {
       },
     },
   },
+  {
+    "nvim-lualine/lualine.nvim",
+    optional = true,
+    event = "VeryLazy",
+    opts = function(_, opts)
+      table.insert(opts.sections.lualine_x, 2, {
+        function()
+          local icon = require("custom.icons").git.Octoface
+          local status = require("copilot.api").status.data
+          return icon .. (status.message or "")
+        end,
+        cond = function()
+          local ok, clients = pcall(vim.lsp.get_active_clients, { name = "copilot", bufnr = 0 })
+          return ok and #clients > 0
+        end,
+      })
+    end,
+  },
   -- Plugin: GitHub Copilot completion integration
   {
     "nvim-cmp",

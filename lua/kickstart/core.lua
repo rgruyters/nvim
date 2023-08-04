@@ -330,10 +330,6 @@ return {
             language_servers = "%#SLLSP#" .. "[" .. client_names_str .. "]" .. "%*"
           end
 
-          if copilot_active then
-            language_servers = language_servers .. "%#SLCopilot#" .. " " .. icons.git.Octoface .. "%*"
-          end
-
           if #client_names_str == 0 and not copilot_active then
             return ""
           else
