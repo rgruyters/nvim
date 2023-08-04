@@ -27,10 +27,7 @@ return {
       dependencies = {
         "copilot.lua",
       },
-      opts = {
-        event = { "InsertEnter", "LspAttach" },
-        fix_pairs = true,
-      },
+      opts = {},
       config = function(_, opts)
         local copilot_cmp = require("copilot_cmp")
         copilot_cmp.setup(opts)
@@ -48,9 +45,11 @@ return {
         -- cmp.setup(config)
       end,
     },
+    ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
-      local cmp = require("cmp")
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "copilot" } }))
+      table.insert(opts.sources, 1, { name = "copilot", group_index = 2 })
+      opts.sorting = opts.sorting or require("cmp.config.default")().sorting
+      table.insert(opts.sorting.comparators, 1, require("copilot_cmp.comparators").prioritize)
     end,
   },
 }
