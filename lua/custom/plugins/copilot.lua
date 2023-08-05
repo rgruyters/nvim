@@ -33,6 +33,7 @@ return {
           local ok, clients = pcall(vim.lsp.get_active_clients, { name = "copilot", bufnr = 0 })
           return ok and #clients > 0
         end,
+        separator = "%#SLSeparator#" .. "" .. "%*",
       })
     end,
   },
