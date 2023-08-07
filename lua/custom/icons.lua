@@ -34,13 +34,13 @@ return {
         Unit = "",
         Value = "",
         Variable = "",
+        Copilot = "",
     },
     git = {
         added = "",
         branch = "",
         modified = "",
         removed = "",
-        Octoface = "",
     },
     diagnostics = {
         Error = "",

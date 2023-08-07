@@ -107,17 +107,11 @@ return {
           { name = 'luasnip' },
         },
         formatting = {
-          -- kind_icons = require('custom.icons').kind,
-          format = function(entry, item)
+          format = function(_, item)
             local icons = require('custom.icons')
 
             if icons.kind[item.kind] then
               item.kind = icons.kind[item.kind] .. ' ' .. item.kind
-            end
-
-            if entry.source.name == 'copilot' then
-              item.kind = icons.git.Octoface .. ' ' .. item.kind
-              item.kind_hl_group = 'CmpItemKindCopilot'
             end
 
             return item

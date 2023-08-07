@@ -25,7 +25,7 @@ return {
     opts = function(_, opts)
       table.insert(opts.sections.lualine_x, 2, {
         function()
-          local icon = require("custom.icons").git.Octoface
+          local icon = require("custom.icons").kind.Copilot
           local status = require("copilot.api").status.data
           return icon .. (status.message or "")
         end,
