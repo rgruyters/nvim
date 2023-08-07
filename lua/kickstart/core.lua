@@ -284,16 +284,14 @@ return {
 
           local buf_ft = vim.bo.filetype
           local buf_client_names = {}
-          local copilot_active = false
 
           -- add client
           for _, client in pairs(buf_clients) do
-            if client.name ~= "copilot" and client.name ~= "null-ls" then
-              table.insert(buf_client_names, client.name)
-            end
-
-            if client.name == "copilot" then
-              copilot_active = true
+            local filetypes = client.config.filetypes
+            if filetypes and vim.fn.index(filetypes,buf_ft) ~= -1 then
+              if client.name ~= "copilot" and client.name ~= "null-ls" then
+                table.insert(buf_client_names, client.name)
+              end
             end
           end
 
@@ -330,7 +328,7 @@ return {
             language_servers = "%#SLLSP#" .. "[" .. client_names_str .. "]" .. "%*"
           end
 
-          if #client_names_str == 0 and not copilot_active then
+          if #client_names_str == 0 then
             return ""
           else
             M.language_servers = language_servers
