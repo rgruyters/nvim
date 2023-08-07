@@ -24,6 +24,7 @@ return {
           formatting.gofmt,
           diagnostics.markdownlint,
           diagnostics.ansiblelint,
+          diagnostics.mypy,
         },
       }
     end
