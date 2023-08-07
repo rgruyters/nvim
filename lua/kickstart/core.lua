@@ -269,14 +269,10 @@ return {
       }
 
       local lsp = {
-        function(msg)
-          msg = msg or "LS Inactive"
-          local buf_clients = vim.lsp.get_active_clients()
-          if next(buf_clients) == nil then
-            if type(msg) == "boolean" or #msg == 0 then
-              return "LS Inactive"
-            end
-            return msg
+        function()
+          local buf_clients = vim.lsp.get_active_clients{ bufnr = 0 }
+          if #buf_clients == 0 then
+            return "LS Inactive"
           end
 
           local buf_ft = vim.bo.filetype
@@ -286,7 +282,7 @@ return {
           for _, client in pairs(buf_clients) do
             local filetypes = client.config.filetypes
             if filetypes and vim.fn.index(filetypes,buf_ft) ~= -1 then
-              if client.name ~= "copilot" and client.name ~= "null-ls" then
+              if client.name ~= "null-ls" then
                 table.insert(buf_client_names, client.name)
               end
             end
@@ -304,41 +300,30 @@ return {
             end
           end
 
+          -- add formatters
           local formatter = registered["NULL_LS_FORMATTING"]
-          local linter = registered["NULL_LS_DIAGNOSTICS"]
-
           if formatter ~= nil then
             vim.list_extend(buf_client_names, formatter)
           end
 
+          -- add linters
+          local linter = registered["NULL_LS_DIAGNOSTICS"]
           if linter ~= nil then
             vim.list_extend(buf_client_names, linter)
           end
 
           -- join client names with commas
-          local client_names_str = table.concat(buf_client_names, ", ")
+          local unique_client_names = table.concat(buf_client_names, ", ")
 
-          -- check client_names_str if empty
-          local language_servers = ""
+          local language_servers = string.format("[%s]", unique_client_names)
 
-          if #client_names_str ~= 0 then
-            language_servers = "%#SLLSP#" .. "[" .. client_names_str .. "]" .. "%*"
-          end
-
-          if #client_names_str == 0 then
-            return ""
-          else
-            M.language_servers = language_servers
-            return language_servers
-          end
+          return language_servers
         end,
         padding = 0,
         separator = "%#SLSeparator#" .. " " .. "%*",
         cond = hide_in_width,
+        color = { fg = "#616E88" },
       }
-
-      -- Change text color for lanuage_server output
-      vim.api.nvim_set_hl(0, "SLLSP", { fg = "#616E88", bg = "#1E1E2E" })
 
       return {
         options = {
