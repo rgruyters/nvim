@@ -31,9 +31,6 @@ vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { silent = true })
 vim.keymap.set("n", "<S-l>", ":bnext<CR>", { silent = true })
 vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { silent = true })
 
--- Close buffers
-vim.keymap.set("n", "<S-q>", "<cmd>Bdelete!<CR>", { silent = true })
-
 -- File Explorer
 vim.keymap.set("n", "<leader>pv", "<cmd>Ex<CR>", { silent = true })
 

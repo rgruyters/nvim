@@ -3,6 +3,9 @@ return {
     'moll/vim-bbye',
     event = { "BufReadPre", "BufNewFile" },
     cmd = 'Bdelete',
+    keys = {
+      {'<S-q>', '<cmd>Bdelete!<CR>', desc = 'Close Buffer Window' },
+    }
   }
 }
 
