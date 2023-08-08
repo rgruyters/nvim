@@ -226,6 +226,7 @@ return {
         end, { expr = true, buffer = bufnr, desc = 'Go to Next Hunk' })
 
         vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
+        vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, { buffer = bufnr, desc = '[G]it [B]lame' })
       end,
     },
   },
