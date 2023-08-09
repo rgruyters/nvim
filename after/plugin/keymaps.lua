@@ -35,12 +35,10 @@ vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { silent = true })
 vim.keymap.set("n", "<leader>pv", "<cmd>Ex<CR>", { silent = true })
 
 -- Better paste
-vim.keymap.set("v", "<leader>p", "\"_dP")
-vim.keymap.set("x", "<leader>p", "\"_dP")
+vim.keymap.set({ "v", "x" }, "<leader>p", "\"_dP")
 
 -- Better Yank
-vim.keymap.set("n", "<leader>y", "\"+y")
-vim.keymap.set("v", "<leader>y", "\"+y")
+vim.keymap.set({ "n", "v" }, "<leader>y", "\"+y")
 
 -- Stay in indent mode
 vim.keymap.set("v", "<", "<gv", { silent = true })
