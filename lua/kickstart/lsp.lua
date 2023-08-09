@@ -68,12 +68,12 @@ mason_lspconfig.setup_handlers {
     }
 
     -- If exists, load the custom config for current installed language
-    local conf_opts_loaded, conf_opts = pcall(require, "custom.lsp.settings." .. server_name)
+    local conf_opts_loaded, conf_opts = pcall(require, 'custom.lsp.settings.' .. server_name)
     if conf_opts_loaded then
-      opts = vim.tbl_deep_extend("force", conf_opts, opts)
+      opts = vim.tbl_deep_extend('force', conf_opts, opts)
     end
 
-    require("lspconfig")[server_name].setup(opts)
+    require('lspconfig')[server_name].setup(opts)
   end
 }
 
