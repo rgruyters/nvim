@@ -1,5 +1,4 @@
 return {
-  -- NOTE: First, some plugins that don't require any configuration
   -- Git related plugins
   {
     'tpope/vim-fugitive',
@@ -20,7 +19,7 @@ return {
   -- 'tpope/vim-sleuth',
 
   -- NOTE: This is where your plugins related to LSP can be installed.
-  --  The configuration is done below. Search for lspconfig to find it below.
+  --       The configuration is done in lua/kickstart/lsp.lua.
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
