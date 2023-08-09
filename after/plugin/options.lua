@@ -61,6 +61,20 @@ vim.o.sidescrolloff = 8
 
 vim.o.title = true
 
+-- time to wait for a mapped sequence to complete (in milliseconds)
+vim.o.timeoutlen = 300
+
+-- faster completion (4000ms default)
+vim.o.updatetime = 250
+
+-- Netrw settings
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
+
+-- always write files as utf-8
+vim.g.fileencoding = "utf-8"
+
 -- show empty lines at the end of a buffer as ` ` {default `~`}
 vim.opt.fillchars.eob=" "
 
@@ -75,17 +89,3 @@ vim.opt.iskeyword:append("-")
 
 -- when enabled show specific characters when list is enabled
 vim.opt.listchars:append("eol:↴")
-
--- Netrw settings
-vim.g.netrw_browse_split = 0
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
-
--- always write files as utf-8
-vim.g.fileencoding = "utf-8"
-
--- time to wait for a mapped sequence to complete (in milliseconds)
-vim.o.timeoutlen = 300
-
--- faster completion (4000ms default)
-vim.o.updatetime = 250
