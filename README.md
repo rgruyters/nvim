@@ -10,8 +10,8 @@ etc.. For this config we need to have Neovim version 0.8 or higher.
 On a Mac:
 
 ```sh
-brew install neovim # For Neovim version 0.8
-brew install --HEAD neovim # For Neovim Nightly (currently 0.9-dev)
+brew install neovim # For latest stable Neovim
+brew install --HEAD neovim # For Neovim nightly version
 ```
 
 If you would like to make sure Neovim only updates when you want it to
@@ -101,6 +101,11 @@ I recommend using the following repo to get a "[Nerd Font](https://github.com/ry
 
 ## Configuration
 
+### Kickstart
+
+My setup is now build on [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) as core setup.
+All other changes are added to `lua/custom` folder or in `after/plugins`.
+
 ### LSP
 
 To install a LSP, open "Mason" and find the list of all available LSP plugins.
@@ -137,12 +142,10 @@ The following plugins are availabile in the current setup:
 - [Comment.nvim](https://github.com/numToStr/Comment.nvim)
 - [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
 - [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
-- [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
 - [vim-bbye](https://github.com/moll/vim-bbye)
 - [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
 - [project.nvim](https://github.com/ahmedkhalf/project.nvim)
 - [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
-- [nvim-colorizer](https://github.com/NvChad/nvim-colorizer.lua)
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
 - [cmp-buffer](https://github.com/hrsh7th/cmp-buffer)
 - [cmp-path](https://github.com/hrsh7th/cmp-path)
@@ -160,16 +163,12 @@ The following plugins are availabile in the current setup:
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 - [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context)
 - [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
-- [lazygit](https://github.com/kdheepak/lazygit.nvim)
 - [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
 - [nvim-surround](https://github.com/kylechui/nvim-surround)
 - [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
-- [lspkind-nvim](https://github.com/onsails/lspkind-nvim)
 - [align.nvim](https://github.com/Vonr/align.nvim)
 - [undotree](https://github.com/mbbill/undotree)
 - [catppucchin](https://github.com/catppuccin/nvim)
-- [diffview.nvim](https://github.com/sindrets/diffview.nvim)
-- [git-messenger.vim](https://github.com/rhysd/git-messenger.vim)
 - [vim-fugitive](https://github.com/tpope/vim-fugitive)
 
 ### Breaking changes
@@ -178,7 +177,6 @@ Some plugins will have breaking changes at some point. Here are some links with
 more information:
 
 - [nvim-treesitter breaking changes](https://github.com/nvim-treesitter/nvim-treesitter/issues/2293)
-- [bufferline breaking changes](https://github.com/akinsho/bufferline.nvim/issues/387)
 - [comments breaking changes](https://github.com/numToStr/Comment.nvim/issues/114)
 - [nvim-cmp breaking changes](https://github.com/hrsh7th/nvim-cmp/issues/231)
 - [luasnip breaking changes](https://github.com/L3MON4D3/LuaSnip/issues/81)
@@ -195,5 +193,5 @@ more information:
 
 \- Edsger W. Dijkstra
 
-[1]: https://github.com/rgruyters/nvim/tree/main/lua/grtrs/plugins/core
-[2]: https://github.com/rgruyters/nvim/tree/main/lua/grtrs/plugins/custom
+[1]: https://github.com/rgruyters/nvim/tree/main/lua/kickstart/core.lua
+[2]: https://github.com/rgruyters/nvim/tree/main/lua/custom/plugins
