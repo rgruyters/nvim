@@ -124,6 +124,10 @@ Make sure the formatter or linter is installed and add it to this setup function
 
 **NOTE** Some are already setup as examples, remove them if you want
 
+### LSP Settings
+
+Custom LSP settings can be added to [lua/custom/lsp/settings](https://github.com/rgruyters/nvim/tree/main/lua/custom/lsp/settings).
+
 ### Plugins
 
 The current setup uses two files for installing and implementing plugins:
