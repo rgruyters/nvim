@@ -377,13 +377,14 @@ return {
           previewer = false,
         })
       end, desc = '[/] Fuzzily search in current buffer' },
-      {'<leader>gf', function() require('telescope.builtin').git_files() end, desc = 'Search [G]it [F]iles' },
-      {'<leader>sf', function() require('telescope.builtin').find_files() end, desc = '[S]earch [F]iles' },
-      {'<leader>sh', function() require('telescope.builtin').help_tags() end, desc = '[S]earch [H]elp' },
-      {'<leader>sw', function() require('telescope.builtin').grep_string() end, desc = '[S]earch current [W]ord' },
-      {'<leader>sg', function() require('telescope.builtin').live_grep() end, desc = '[S]earch by [G]rep' },
-      {'<leader>sd', function() require('telescope.builtin').diagnostics() end, desc = '[S]earch [D]iagnostics' },
+      {'<leader>gf', function() require('telescope.builtin').git_files() end, desc = '[G]it [F]iles' },
+      {'<leader>ff', function() require('telescope.builtin').find_files() end, desc = '[F]ind [F]iles' },
+      {'<leader>fh', function() require('telescope.builtin').help_tags() end, desc = '[F]ind [H]elp' },
+      {'<leader>fw', function() require('telescope.builtin').grep_string() end, desc = '[F]ind current [W]ord' },
+      {'<leader>fg', function() require('telescope.builtin').live_grep() end, desc = '[F]ind by [G]rep' },
+      {'<leader>fd', function() require('telescope.builtin').diagnostics() end, desc = '[F]ind [D]iagnostics' },
       {'<leader>gc', function() require('telescope.builtin').git_commits() end, desc = '[G]it [C]ommits' },
+      { "<leader>fk", function() require('telescope.builtin').keymaps() end, desc = "[F]ind [K]eymaps" },
     },
     opts = function()
       local actions = require('telescope.actions')
