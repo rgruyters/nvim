@@ -34,7 +34,7 @@ return {
         Unit = "",
         Value = "",
         Variable = "",
-        Copilot = "",
+        Copilot = "",
     },
     git = {
         added = "",
@@ -54,5 +54,6 @@ return {
         Tag = "",
         Telescope = "",
         Spaces = "󰞔",
+        Octoface = "",
     },
 }
