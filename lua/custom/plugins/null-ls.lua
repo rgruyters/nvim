@@ -22,6 +22,7 @@ return {
           formatting.puppet_lint,
           formatting.terrafmt,
           formatting.gofmt,
+          formatting.stylua,
           diagnostics.markdownlint,
           diagnostics.ansiblelint,
         },
