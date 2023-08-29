@@ -3,8 +3,10 @@
         "prefix": "astro_post",
         "body": [
             "---",
-            "datetime: $1",
-            "title: $2",
+            "author: $1",
+            "pubDatetime: $2",
+            "title: $3",
+            "postSlug: $4",
             "featured: false",
             "draft: false",
             "tags:",
