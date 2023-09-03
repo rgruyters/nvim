@@ -17,7 +17,7 @@ local on_attach = function(_, bufnr)
   kmap('n', '<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   kmap('n', '<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-  kmap('n', 'gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+  kmap('n', 'gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
   kmap('n', 'gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   kmap('n', 'gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
   kmap('n', '<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
