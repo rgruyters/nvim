@@ -391,7 +391,7 @@ return {
 
       return {
         -- See `:help telescope` and `:help telescope.setup()`
-        defaults = {
+        defaults = require('telescope.themes').get_dropdown {
           prompt_prefix = require('custom.icons').misc.Telescope .. ' ',
           selection_caret = ' ',
           path_display = { 'smart' },
@@ -406,16 +406,6 @@ return {
               ['<C-k>'] = actions.move_selection_previous,
             },
           },
-          pickers = {
-            find_files = {
-              hidden = true,
-              theme = 'dropdown',
-            }
-          },
-          git_files = {
-            hidden = true,
-            show_untracked = true,
-          },
           file_ignore_patterns = {
             '.git/',
             '__pycache__/',
@@ -425,7 +415,19 @@ return {
             'env/',
           },
         },
+        pickers = {
+          find_files = {
+            hidden = true,
+          },
+        },
+        git_files = {
+          hidden = true,
+          show_untracked = true,
+        },
       }
+    end,
+    config = function(_, opts)
+      require("telescope").setup(opts)
     end,
   },
 
