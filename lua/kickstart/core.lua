@@ -44,7 +44,6 @@ return {
     event = 'InsertEnter',
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
-      'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
 
       -- Adds LSP completion capabilities
@@ -57,8 +56,6 @@ return {
     opts = function()
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
-      require('luasnip.loaders.from_vscode').lazy_load()
-      luasnip.config.setup {}
 
       return {
         completion = {
