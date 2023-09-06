@@ -130,6 +130,7 @@ return {
     event = "InsertEnter",
     dependencies = {
       "rafamadriz/friendly-snippets",
+      event = "InsertEnter",
       config = function()
         require("luasnip.loaders.from_vscode").lazy_load()
         require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
