@@ -34,7 +34,7 @@ return {
       -- { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
-      'folke/neodev.nvim',
+      { 'folke/neodev.nvim', lazy = true },
     },
   },
 
@@ -433,17 +433,20 @@ return {
   -- Only load if `make` is available. Make sure you have the system
   -- requirements installed.
   {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    event = 'VeryLazy',
-    -- NOTE: If you are having trouble with this installation,
-    --       refer to the README for telescope-fzf-native for more instructions.
-    build = 'make',
-    cond = function()
-      return vim.fn.executable 'make' == 1
-    end,
-    config = function()
-      require('telescope').load_extension('fzf')
-    end,
+    'telescope.nvim',
+    dependencies = {
+      'nvim-telescope/telescope-fzf-native.nvim',
+      event = 'VeryLazy',
+      -- NOTE: If you are having trouble with this installation,
+      --       refer to the README for telescope-fzf-native for more instructions.
+      build = 'make',
+      cond = function()
+        return vim.fn.executable 'make' == 1
+      end,
+      config = function()
+        require('telescope').load_extension('fzf')
+      end,
+    },
   },
 
   {
