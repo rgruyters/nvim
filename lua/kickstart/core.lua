@@ -205,17 +205,16 @@ return {
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
         -- Navigation
-        vim.keymap.set('n', ']c', function()
+        vim.keymap.set({'n', 'v'}, ']c', function()
           if vim.wo.diff then return ']c' end
           vim.schedule(function() gs.next_hunk() end)
           return '<Ignore>'
-        end, { expr = true, buffer = bufnr, desc = 'Go to Previous Hunk' })
-
-        vim.keymap.set('n', '[c', function()
+        end, {expr=true, buffer = bufnr, desc = "Jump to next hunk"})
+        vim.keymap.set({'n', 'v'}, '[c', function()
           if vim.wo.diff then return '[c' end
           vim.schedule(function() gs.prev_hunk() end)
           return '<Ignore>'
-        end, { expr = true, buffer = bufnr, desc = 'Go to Next Hunk' })
+        end, {expr=true, buffer = bufnr, desc = "Jump to previous hunk"})
 
         vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
         vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, { buffer = bufnr, desc = '[G]it [B]lame' })
