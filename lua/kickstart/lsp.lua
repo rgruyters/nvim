@@ -19,7 +19,7 @@ local on_attach = function(_, bufnr)
 
   kmap('n', 'gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
   kmap('n', 'gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  kmap('n', 'gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+  kmap('n', 'gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
   kmap('n', '<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
   kmap('n', '<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
   kmap('n', '<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
