@@ -439,15 +439,9 @@ return {
     opts = {
       -- Add languages to be installed here that you want installed for treesitter
       ensure_installed = {
-        'go',
         'lua',
-        'python',
-        'tsx',
-        'typescript',
         'vimdoc',
         'vim',
-        'hcl',
-        'terraform',
         'markdown',
         'markdown_inline'
       },
