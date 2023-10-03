@@ -23,11 +23,11 @@ return {
     },
   },
   {
-    "nvimtools/none-ls.nvim",
+    'nvimtools/none-ls.nvim',
     optional = true,
     opts = function(_, opts)
-      if type(opts.sources) == "table" then
-        local nonels = require("null-ls")
+      if type(opts.sources) == 'table' then
+        local nonels = require('null-ls')
         vim.list_extend(opts.sources, {
           nonels.builtins.formatting.terrafmt,
         })

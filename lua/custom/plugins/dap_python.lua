@@ -1,51 +1,51 @@
 return {
   {
     -- use own debugging language
-    "mfussenegger/nvim-dap-python",
-    dependencies = { "mfussenegger/nvim-dap" },
-    ft = "python",
+    'mfussenegger/nvim-dap-python',
+    dependencies = { 'mfussenegger/nvim-dap' },
+    ft = 'python',
     config = function()
-      local dap_python = require("dap-python")
-      local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
+      local dap_python = require('dap-python')
+      local mason_path = vim.fn.glob(vim.fn.stdpath 'data' .. '/mason/')
 
-      dap_python.setup(mason_path .. "packages/debugpy/venv/bin/python")
+      dap_python.setup(mason_path .. 'packages/debugpy/venv/bin/python')
 
-      dap_python.test_runner = "pytest"
+      dap_python.test_runner = 'pytest'
     end,
   },
   {
-    "nvim-neotest/neotest-python",
-    ft = "python",
+    'nvim-neotest/neotest-python',
+    ft = 'python',
     dependencies = {
-      "nvim-neotest/neotest",
+      'nvim-neotest/neotest',
     },
     keys = {
       { '<leader>tm', "<cmd>lua require('neotest').run.run()<cr>",
-        { desc = "Test Method" }
+        { desc = 'Test Method' }
       },
       { '<leader>tM', "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
-        { desc = "Test Method DAP" }
+        { desc = 'Test Method DAP' }
       },
       { '<leader>tf', "<cmd>lua require('neotest').run.run({vim.fn.expand('%')})<cr>",
-        { desc = "Test Class" }
+        { desc = 'Test Class' }
       },
       { '<leader>tF', "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>",
-        { desc = "Test Class DAP" }
+        { desc = 'Test Class DAP' }
       },
       { '<leader>tS', "<cmd>lua require('neotest').summary.toggle()<cr>",
-        { desc = "Test Summary" }
+        { desc = 'Test Summary' }
       },
     },
     config = function()
-      require("neotest").setup {
+      require('neotest').setup {
         adapters = {
-          require("neotest-python")({
+          require('neotest-python')({
             dap = {
               justMyCode = false,
-              console = "integratedTerminal",
+              console = 'integratedTerminal',
             },
-            args = { "--log-level", "DEBUG", "--quiet" },
-            runner = "pytest",
+            args = { '--log-level', 'DEBUG', '--quiet' },
+            runner = 'pytest',
           })
         }
       }

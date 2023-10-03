@@ -7,15 +7,15 @@
 -- kickstart.nvim and not kitchen-sink.nvim ;)
 return {
   {
-    "mfussenegger/nvim-dap",
+    'mfussenegger/nvim-dap',
     dependencies = {
       {
         -- Creates a beautiful debugger UI
-        "rcarriga/nvim-dap-ui",
+        'rcarriga/nvim-dap-ui',
         config = function()
           -- Dap UI setup
           -- For more information, see |:help nvim-dap-ui|
-          local dapui = require("dapui")
+          local dapui = require('dapui')
           dapui.setup {
             -- Set icons to characters that are more likely to work in every terminal.
             --    Feel free to remove or use ones that you like more! :)
@@ -35,9 +35,9 @@ return {
               },
             },
           }
-          vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "" })
+          vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DiagnosticSignError', linehl = '', numhl = '' })
 
-          local dap = require("dap")
+          local dap = require('dap')
 
           dap.listeners.after.event_initialized['dapui_config'] = dapui.open
           dap.listeners.before.event_terminated['dapui_config'] = dapui.close
@@ -46,22 +46,22 @@ return {
       },
       -- integrate nvim-dap with telescope
       {
-        "nvim-telescope/telescope-dap.nvim",
-        dependencies = { "nvim-telescope/telescope.nvim" },
+        'nvim-telescope/telescope-dap.nvim',
+        dependencies = { 'nvim-telescope/telescope.nvim' },
         config = function()
-          require("telescope").load_extension("dap")
+          require('telescope').load_extension('dap')
         end,
       },
       -- virtual text in debugger
       {
-        "theHamsta/nvim-dap-virtual-text",
+        'theHamsta/nvim-dap-virtual-text',
       },
       -- mason integration
       -- Installs the debug adapters for you
       {
-        "jay-babu/mason-nvim-dap.nvim",
-        dependencies = "mason.nvim",
-        cmd = { "DapInstall", "DapUninstall" },
+        'jay-babu/mason-nvim-dap.nvim',
+        dependencies = 'mason.nvim',
+        cmd = { 'DapInstall', 'DapUninstall' },
         opts = {
           -- Makes a best effort to setup the various debuggers with
           -- reasonable debug configurations

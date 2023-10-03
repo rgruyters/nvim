@@ -39,7 +39,7 @@ return {
 
       return {
         completion = {
-          completeopt = "menu,menuone,noinsert",
+          completeopt = 'menu,menuone,noinsert',
           -- keyword_length = 2,
         },
         snippet = {
@@ -106,43 +106,43 @@ return {
 
   -- Snippets engine
   {
-    "L3MON4D3/LuaSnip",
-    event = "InsertEnter",
+    'L3MON4D3/LuaSnip',
+    event = 'InsertEnter',
     dependencies = {
-      "rafamadriz/friendly-snippets",
-      event = "InsertEnter",
+      'rafamadriz/friendly-snippets',
+      event = 'InsertEnter',
       config = function()
-        require("luasnip.loaders.from_vscode").lazy_load()
-        require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
+        require('luasnip.loaders.from_vscode').lazy_load()
+        require('luasnip.loaders.from_vscode').lazy_load({ paths = { './snippets' } })
       end,
     },
     keys = {
       {
-        "<tab>",
-        function() return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>" end,
+        '<tab>',
+        function() return require('luasnip').jumpable(1) and '<Plug>luasnip-jump-next' or '<tab>' end,
         expr = true,
         silent = true,
-        mode = "i",
+        mode = 'i',
       },
-      { "<tab>",   function() require("luasnip").jump(1) end,  mode = "s" },
-      { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+      { '<tab>',   function() require('luasnip').jump(1) end,  mode = 's' },
+      { '<s-tab>', function() require('luasnip').jump(-1) end, mode = { 'i', 's' } },
       {
-        "<C-j>",
+        '<C-j>',
         function()
-          if require("luasnip").choice_active() then
-            require("luasnip").change_choice(1)
+          if require('luasnip').choice_active() then
+            require('luasnip').change_choice(1)
           end
         end,
-        mode = { "i", "s" }
+        mode = { 'i', 's' }
       },
       {
-        "<C-k>",
+        '<C-k>',
         function()
-          if require("luasnip").choice_active() then
-            require("luasnip").change_choice(-1)
+          if require('luasnip').choice_active() then
+            require('luasnip').change_choice(-1)
           end
         end,
-        mode = { "i", "s" }
+        mode = { 'i', 's' }
       },
     },
   },
@@ -150,7 +150,7 @@ return {
   -- Useful plugin to show you pending keybinds.
   {
     'folke/which-key.nvim',
-    event = "VeryLazy",
+    event = 'VeryLazy',
     opts = {
       defaults = {
         mode = { 'n', 'v' },
@@ -158,8 +158,8 @@ return {
       triggers_blacklist = {
         -- list of mode / prefixes that should never be hooked by WhichKey
         -- this is mostly relevant for keymaps that start with a native binding
-        i = { "j", "k", "d" },
-        v = { "j", "k" },
+        i = { 'j', 'k', 'd' },
+        v = { 'j', 'k' },
       },
     },
     config = function(_, opts)
@@ -189,12 +189,12 @@ return {
           if vim.wo.diff then return ']c' end
           vim.schedule(function() gs.next_hunk() end)
           return '<Ignore>'
-        end, {expr=true, buffer = bufnr, desc = "Jump to next hunk"})
+        end, {expr=true, buffer = bufnr, desc = 'Jump to next hunk'})
         vim.keymap.set({'n', 'v'}, '[c', function()
           if vim.wo.diff then return '[c' end
           vim.schedule(function() gs.prev_hunk() end)
           return '<Ignore>'
-        end, {expr=true, buffer = bufnr, desc = "Jump to previous hunk"})
+        end, {expr=true, buffer = bufnr, desc = 'Jump to previous hunk'})
 
         vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
         vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, { buffer = bufnr, desc = '[G]it [B]lame' })
@@ -244,7 +244,7 @@ return {
         function()
           local buf_clients = vim.lsp.get_active_clients{ bufnr = 0 }
           if #buf_clients == 0 then
-            return "LS Inactive"
+            return 'LS Inactive'
           end
 
           local buf_ft = vim.bo.filetype
@@ -254,14 +254,14 @@ return {
           for _, client in pairs(buf_clients) do
             local filetypes = client.config.filetypes
             if filetypes and vim.fn.index(filetypes,buf_ft) ~= -1 then
-              if client.name ~= "null-ls" then
+              if client.name ~= 'null-ls' then
                 table.insert(buf_client_names, client.name)
               end
             end
           end
 
           -- add formatter
-          local sources = require "null-ls.sources"
+          local sources = require 'null-ls.sources'
           local available_sources = sources.get_available(buf_ft)
           local registered = {}
 
@@ -273,28 +273,28 @@ return {
           end
 
           -- add formatters
-          local formatter = registered["NULL_LS_FORMATTING"]
+          local formatter = registered['NULL_LS_FORMATTING']
           if formatter ~= nil then
             vim.list_extend(buf_client_names, formatter)
           end
 
           -- add linters
-          local linter = registered["NULL_LS_DIAGNOSTICS"]
+          local linter = registered['NULL_LS_DIAGNOSTICS']
           if linter ~= nil then
             vim.list_extend(buf_client_names, linter)
           end
 
           -- join client names with commas
-          local unique_client_names = table.concat(buf_client_names, ", ")
+          local unique_client_names = table.concat(buf_client_names, ', ')
 
-          local language_servers = string.format("[%s]", unique_client_names)
+          local language_servers = string.format('[%s]', unique_client_names)
 
           return language_servers
         end,
         padding = 0,
-        separator = "%#SLSeparator#" .. " " .. "%*",
+        separator = '%#SLSeparator#' .. ' ' .. '%*',
         cond = hide_in_width,
-        color = { fg = "#616E88" },
+        color = { fg = '#616E88' },
       }
 
       return {
@@ -361,7 +361,7 @@ return {
       {'<leader>fg', function() require('telescope.builtin').live_grep() end, desc = '[F]ind by [G]rep' },
       {'<leader>fd', function() require('telescope.builtin').diagnostics() end, desc = '[F]ind [D]iagnostics' },
       {'<leader>gc', function() require('telescope.builtin').git_commits() end, desc = '[G]it [C]ommits' },
-      { "<leader>fk", function() require('telescope.builtin').keymaps() end, desc = "[F]ind [K]eymaps" },
+      { '<leader>fk', function() require('telescope.builtin').keymaps() end, desc = '[F]ind [K]eymaps' },
     },
     opts = function()
       local actions = require('telescope.actions')
@@ -404,7 +404,7 @@ return {
       }
     end,
     config = function(_, opts)
-      require("telescope").setup(opts)
+      require('telescope').setup(opts)
     end,
   },
 
