@@ -41,6 +41,9 @@ require('lazy').setup({
   -- Core kickstart plugins
   { import = 'kickstart.core' },
 
+  -- [[ Configure LSP ]]
+  { import = 'kickstart.plugins.lsp' },
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -62,9 +65,6 @@ require('kickstart.options')
 
 -- [[ Basic Keymaps ]]
 require('kickstart.keymaps')
-
--- [[ Configure LSP ]]
-require('kickstart.lsp')
 
 -- [[ LSP settings ]]
 require('custom.lsp.diagnostics')
