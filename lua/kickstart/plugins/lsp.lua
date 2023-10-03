@@ -1,6 +1,6 @@
 return {
   -- NOTE: This is where your plugins related to LSP can be installed.
-  --       The configuration is done in lua/kickstart/lsp.lua.
+  --       The configuration is done in lua/kickstart/plugins/lsp.lua.
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',

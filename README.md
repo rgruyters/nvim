@@ -120,13 +120,13 @@ automatically enable the LSP for the particular file type.
 ### Formatters and linters
 
 Make sure the formatter or linter is installed and add it to this setup function:
-[null-ls](https://github.com/rgruyters/nvim/blob/main/lua/grtrs/lsp/null-ls.lua)
+[null-ls](https://github.com/rgruyters/nvim/blob/main/lua/custom/plugins/null-ls.lua)
 
 **NOTE** Some are already setup as examples, remove them if you want
 
 ### LSP Settings
 
-Custom LSP settings can be added to [lua/custom/lsp/settings](https://github.com/rgruyters/nvim/tree/main/lua/custom/lsp/settings).
+Custom LSP settings can be added to [lua/custom/extras/lang](https://github.com/rgruyters/nvim/tree/main/lua/custom/extras/lang) as an own language file.
 
 ### Plugins
 
