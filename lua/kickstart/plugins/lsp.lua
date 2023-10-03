@@ -17,7 +17,33 @@ return {
       -- Additional lua configuration, makes nvim stuff amazing!
       { 'folke/neodev.nvim', lazy = true },
     },
-    config = function()
+    opts = {
+      servers = {
+        -- NOTE: This is where you add the LSP servers you want to use.
+        --       You can find the full list of available servers here:
+        --       https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+        lua_ls = {
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = { "vim" },
+              },
+              workspace = {
+                library = {
+                  [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+                  [vim.fn.stdpath "config" .. "/lua"] = true,
+                },
+                checkThirdParty = false,
+              },
+              telemetry = {
+                enable = false,
+              },
+            },
+          },
+        },
+      },
+    },
+    config = function(_, opts)
       --  This function gets run when an LSP connects to a particular buffer.
       local on_attach = function(_, bufnr)
         -- NOTE: Remember that lua is a real programming language, and as such it is possible
@@ -71,6 +97,8 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
+      local servers = opts.servers
+
       -- Ensure the servers above are installed
       local mason_lspconfig = require 'mason-lspconfig'
 
@@ -79,21 +107,15 @@ return {
         automatic_installation = true
       }
 
-      -- Add any additional override configuration, filetypes, etc. for LSP server in a separate file under lua/custom/lsp/settings
+      -- Add any additional override configuration, filetypes, etc.
       mason_lspconfig.setup_handlers {
         function(server_name)
-          local opts = {
+          require('lspconfig')[server_name].setup {
             capabilities = capabilities,
             on_attach = on_attach,
+            settings = (servers[server_name] or {}).settings,
+            filetypes = (servers[server_name] or {}).filetypes,
           }
-
-          -- If exists, load the custom config for current installed language
-          local conf_opts_loaded, conf_opts = pcall(require, 'custom.lsp.settings.' .. server_name)
-          if conf_opts_loaded then
-            opts = vim.tbl_deep_extend('force', conf_opts, opts)
-          end
-
-          require('lspconfig')[server_name].setup(opts)
         end
       }
     end
