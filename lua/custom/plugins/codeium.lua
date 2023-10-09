@@ -31,7 +31,7 @@ return {
         cond = function()
           return status() ~= nil
         end,
-        separator = '%#SLSeparator#' .. '' .. '%*',
+        separator = '',
       })
     end
   },
