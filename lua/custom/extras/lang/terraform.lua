@@ -35,6 +35,8 @@ return {
         local nonels = require('null-ls')
         vim.list_extend(opts.sources, {
           nonels.builtins.formatting.terrafmt,
+          nonels.builtins.formatting.terraform_fmt,
+          nonels.builtins.diagnostics.terraform_validate,
         })
       end
     end,
