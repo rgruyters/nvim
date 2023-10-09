@@ -322,12 +322,9 @@ return {
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     event = { 'BufReadPost', 'BufNewFile' },
+    main = 'ibl',
     -- See `:help indent_blankline.txt`
-    opts = {
-      char = '▏',
-      show_trailing_blankline_indent = false,
-      show_current_context = true,
-    },
+    opts = {},
   },
 
   -- 'gc' to comment visual regions/lines
