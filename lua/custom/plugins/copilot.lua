@@ -47,7 +47,6 @@ return {
     event = { 'InsertEnter' },
     dependencies = {
       'zbirenbaum/copilot-cmp',
-      event = { 'InsertEnter' },
       dependencies = {
         'copilot.lua',
       },
