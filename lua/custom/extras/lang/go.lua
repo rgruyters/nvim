@@ -36,6 +36,18 @@ return {
       end
     end,
   },
+  {
+    'nvim-neotest/neotest',
+    optional = true,
+    dependencies = {
+      'nvim-neotest/neotest-go',
+    },
+    opts = {
+      adapters = {
+        ['neotest-go'] = {},
+      },
+    },
+  },
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
