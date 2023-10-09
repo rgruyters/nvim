@@ -10,11 +10,6 @@ return {
       panel = { enabled = false },
       filetypes = {
         lua = true,
-        python = true,
-        terraform = true,
-        go = true,
-        puppet = true,
-        ['*'] = false,
       },
     },
     config = function(_, opts)
@@ -61,11 +56,6 @@ return {
             copilot_cmp._on_insert_enter()
           end
         end)
-
-        -- local cmp = require('cmp')
-        -- local config = cmp.get_config()
-        -- table.insert(config.sources, { name = 'copilot' } )
-        -- cmp.setup(config)
       end,
     },
     ---@param opts cmp.ConfigSchema
