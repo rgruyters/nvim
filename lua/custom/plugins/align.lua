@@ -2,6 +2,7 @@
 return {
   {
     'Vonr/align.nvim',
+    branch = 'v2',
     keys = {
       -- Aligns to 1 character, looking left
       { 'aa', "<cmd>lua require('align').align_to_char(1, true)<CR>",           desc = 'Align 1 character', mode = {'v'} },
