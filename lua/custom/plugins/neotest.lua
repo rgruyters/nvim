@@ -1,6 +1,9 @@
 return {
   {
     'nvim-neotest/neotest',
+    opts = {
+      adapters = {},
+    },
     keys = {
       { '<leader>tm', "<cmd>lua require('neotest').run.run()<cr>",
         { desc = 'Test Method' }
@@ -20,3 +23,6 @@ return {
     },
   },
 }
+
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et
