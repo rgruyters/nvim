@@ -503,8 +503,10 @@ return {
       },
     },
     config = function(_, opts)
-      require('nvim-treesitter.configs').setup(opts)
-      require('nvim-treesitter.install').prefer_git = true
+      vim.defer_fn(function()
+        require('nvim-treesitter.configs').setup(opts)
+        require('nvim-treesitter.install').prefer_git = true
+      end, 0)
     end,
   },
 }
