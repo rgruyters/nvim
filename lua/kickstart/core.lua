@@ -284,12 +284,12 @@ return {
             vim.list_extend(buf_client_names, linter)
           end
 
-          -- join client names with commas
-          local unique_client_names = table.concat(buf_client_names, ', ')
-
-          local language_servers = string.format('[%s]', unique_client_names)
-
-          return language_servers
+          -- join buffer client names with commas
+          if vim.tbl_isempty(buf_client_names) then
+            return 'LS Inactive'
+          else
+            return '[' .. table.concat(buf_client_names, ', ') .. ']'
+          end
         end,
         padding = 0,
         separator = '%#SLSeparator#' .. ' ' .. '%*',
