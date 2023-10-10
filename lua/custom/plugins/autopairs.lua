@@ -1,20 +1,20 @@
 return {
   'windwp/nvim-autopairs',
-  event = { 'BufReadPost', 'BufNewFile' },
+  event = { 'InsertEnter' },
   dependencies = { 'hrsh7th/nvim-cmp' },
   opts = {
     check_ts = true, -- treesitter integration
     disable_filetype = { 'TelescopePrompt' },
+    enable_check_bracket_line = false,
   },
-  config = function()
-    require('nvim-autopairs').setup {}
+  config = function(_, opts)
+    require('nvim-autopairs').setup(opts)
+
     -- If you want to automatically add `(` after selecting a function or method
     local cmp_autopairs = require('nvim-autopairs.completion.cmp')
     local cmp = require('cmp')
-    cmp.event:on(
-      'confirm_done',
-      cmp_autopairs.on_confirm_done()
-    )
+    cmp.event:off('confirm_done', cmp_autopairs.on_confirm_done())
+    cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
   end,
 }
 
