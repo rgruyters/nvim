@@ -7,7 +7,7 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
-      { 'williamboman/mason.nvim', config = true },
+      'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
 
       -- Useful status updates for LSP
@@ -89,6 +89,11 @@ return {
 
         kmap('n', '<space>f', '<cmd>Format<CR>', { buffer = bufnr, desc = '[F]ormat current buffer' })
       end
+
+      -- mason-lspconfig requires that these setup functions are called in this order
+      -- before setting up the servers.
+      require('mason').setup()
+      require('mason-lspconfig').setup()
 
       -- Setup neovim lua configuration
       require('neodev').setup()
