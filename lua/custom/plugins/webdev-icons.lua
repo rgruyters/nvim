@@ -1,5 +1,5 @@
 return {
-  'kyazdani42/nvim-web-devicons',
+  'nvim-tree/nvim-web-devicons',
   event = { 'BufReadPost', 'BufNewFile' },
   opts = {
     override_by_filename = {
