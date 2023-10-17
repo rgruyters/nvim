@@ -324,7 +324,12 @@ return {
     event = { 'BufReadPost', 'BufNewFile' },
     main = 'ibl',
     -- See `:help indent_blankline.txt`
-    opts = {},
+    opts = {
+      scope = {
+        show_start = false,
+        show_end = false,
+      }
+    },
   },
 
   -- 'gc' to comment visual regions/lines
