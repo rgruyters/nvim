@@ -76,10 +76,13 @@ return {
             end
           end, { 'i', 's' }),
         },
-        sources = {
-          { name = 'nvim_lsp' },
-          { name = 'luasnip' },
-        },
+        sources = cmp.config.sources({
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+          { name = 'path' },
+        }, {
+          { name = 'buffer' },
+        }),
         formatting = {
           format = function(_, item)
             local icons = require('custom.icons')
@@ -101,6 +104,12 @@ return {
           end
         end,
       }
+    end,
+    config = function(_, opts)
+      for _, source in ipairs(opts.sources) do
+        source.group_index = source.group_index or 1
+      end
+      require("cmp").setup(opts)
     end,
   },
 

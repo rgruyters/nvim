@@ -8,15 +8,11 @@ return {
     'saadparwaiz1/cmp_luasnip',
   },
   opts = function(_, opts)
-      local cmp = require('cmp')
-
-      local cmp_sources = {
-        { name = 'nvim_lsp_signature_help' },
-        { name = 'buffer' },
-        { name = 'path' },
-      }
-
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { cmp_sources }))
+    table.insert(opts.sources, 1, {
+      name = 'nvim_lsp_signature_help',
+      group_index = 1,
+      priority = 100,
+    })
   end,
 }
 

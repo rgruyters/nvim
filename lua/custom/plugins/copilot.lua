@@ -53,16 +53,20 @@ return {
         -- fixes lazy-loading issues with the copilot cmp source
         require('custom.functions').on_attach(function(client)
           if client.name == 'copilot' then
-            copilot_cmp._on_insert_enter()
+            copilot_cmp._on_insert_enter({})
           end
         end)
       end,
     },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
-      table.insert(opts.sources, 1, { name = 'copilot', group_index = 2 })
-      opts.sorting = opts.sorting or require('cmp.config.default')().sorting
-      table.insert(opts.sorting.comparators, 1, require('copilot_cmp.comparators').prioritize)
+      table.insert(opts.sources, 1, {
+        name = 'copilot',
+        group_index = 1,
+        priority = 100,
+      })
+      -- opts.sorting = opts.sorting or require('cmp.config.default')().sorting
+      -- table.insert(opts.sorting.comparators, 1, require('copilot_cmp.comparators').prioritize)
     end,
   },
 }
