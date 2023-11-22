@@ -40,7 +40,6 @@ return {
       return {
         completion = {
           completeopt = 'menu,menuone,noinsert',
-          -- keyword_length = 2,
         },
         snippet = {
           expand = function(args)
@@ -95,6 +94,7 @@ return {
           end,
         },
         enabled = function()
+          -- Disable completion in comments and Telescope
           if require('cmp.config.context').in_treesitter_capture('comment') == true
               or require('cmp.config.context').in_syntax_group('Comment')
               or vim.bo.filetype == 'TelescopePrompt' then -- HACK: disable completion when using Telescope
