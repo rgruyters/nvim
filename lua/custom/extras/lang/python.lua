@@ -14,7 +14,6 @@ return {
         pyright = {
           settings = {
             pyright = {
-              disableLanguageServices = false,
               disableOrganizeImports = false
             },
             python = {
