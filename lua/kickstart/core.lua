@@ -342,6 +342,10 @@ return {
     main = 'ibl',
     -- See `:help indent_blankline.txt`
     opts = {
+      indent = {
+        char = "│",
+        tab_char = "│",
+      },
       scope = {
         show_start = false,
         show_end = false,
