@@ -89,3 +89,7 @@ vim.opt.iskeyword:append("-")
 
 -- when enabled show specific characters when list is enabled
 vim.opt.listchars:append("eol:↴")
+
+vim.opt.formatoptions = "jcroqlnt"
+vim.opt.grepformat = "%f:%l:%c:%m"
+vim.opt.grepprg = "rg --vimgrep"
