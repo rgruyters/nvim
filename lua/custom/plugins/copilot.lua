@@ -65,8 +65,6 @@ return {
         group_index = 1,
         priority = 100,
       })
-      -- opts.sorting = opts.sorting or require('cmp.config.default')().sorting
-      -- table.insert(opts.sorting.comparators, 1, require('copilot_cmp.comparators').prioritize)
     end,
   },
 }
