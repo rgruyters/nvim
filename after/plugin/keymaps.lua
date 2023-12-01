@@ -22,8 +22,9 @@ vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { silent = true })
 vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { silent = true })
 
 -- Navigate buffers
-vim.keymap.set("n", "<S-l>", ":bnext<CR>", { silent = true })
-vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { silent = true })
+vim.keymap.set("n", "<S-l>", ":bnext<CR>", { silent = true }) -- move to next buffer
+vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { silent = true }) -- move to previous buffer
+vim.keymap.set("n", "<S-q>", ":bd!<CR>") -- delete current buffer
 
 -- File Explorer
 vim.keymap.set("n", "<leader>pv", "<cmd>Ex<CR>", { silent = true })
