@@ -7,6 +7,14 @@ return {
       })
     end,
   },
+  {
+    'neovim/nvim-lspconfig',
+    opts = {
+      servers = {
+        astro = {},
+      },
+    },
+  },
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
