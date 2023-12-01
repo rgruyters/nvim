@@ -537,6 +537,11 @@ return {
       end, 0)
     end,
   },
+  {
+    "williamboman/mason.nvim",
+    cmd = "Mason",
+    build = ":MasonUpdate",
+  },
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
