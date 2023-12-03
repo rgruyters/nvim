@@ -7,7 +7,7 @@ return {
     'neovim/nvim-lspconfig',
     opts = {
       servers = {
-        helm = {},
+        helm_ls = {},
         yamlls = {
           filetypes_exclude = { 'helm' },
         },
