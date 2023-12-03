@@ -11,7 +11,7 @@ return {
       'williamboman/mason-lspconfig.nvim',
 
       -- Additional lua configuration, makes nvim stuff amazing!
-      { 'folke/neodev.nvim', lazy = true },
+      { 'folke/neodev.nvim', opts = {} },
     },
     opts = {
       servers = {
@@ -26,8 +26,8 @@ return {
               },
               workspace = {
                 library = {
-                  [vim.fn.expand '$VIMRUNTIME/lua'] = true,
-                  [vim.fn.stdpath 'config' .. '/lua'] = true,
+                  [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+                  [vim.fn.stdpath('config') .. '/lua'] = true,
                 },
                 checkThirdParty = false,
               },
@@ -86,40 +86,69 @@ return {
         kmap('n', '<space>f', '<cmd>Format<CR>', { buffer = bufnr, desc = '[F]ormat current buffer' })
       end
 
-      -- mason-lspconfig requires that these setup functions are called in this order
-      -- before setting up the servers.
-      require('mason').setup()
-      require('mason-lspconfig').setup()
-
-      -- Setup neovim lua configuration
-      require('neodev').setup()
-
       -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
       local servers = opts.servers
 
-      -- Ensure the servers above are installed
-      local mason_lspconfig = require 'mason-lspconfig'
+      -- Load Mason LSP support
+      local mason_lspconfig = require('mason-lspconfig')
 
-      mason_lspconfig.setup {
-        ensure_installed = {},
-        automatic_installation = true
-      }
+      local ensure_installed = {} ---@type string[]
+      for server, _ in pairs(servers) do
+        ensure_installed[#ensure_installed + 1] = server
+      end
+
+      mason_lspconfig.setup({
+        ensure_installed = ensure_installed,
+        automatic_installation = false,
+      })
 
       -- Add any additional override configuration, filetypes, etc.
-      mason_lspconfig.setup_handlers {
+      mason_lspconfig.setup_handlers({
         function(server_name)
-          require('lspconfig')[server_name].setup {
+          require('lspconfig')[server_name].setup({
             capabilities = capabilities,
             on_attach = on_attach,
             settings = (servers[server_name] or {}).settings,
             filetypes = (servers[server_name] or {}).filetypes,
-          }
+          })
+        end,
+      })
+    end,
+  },
+  {
+    'williamboman/mason.nvim',
+    cmd = 'Mason',
+    build = ':MasonUpdate',
+    ---@param opts MasonSettings | {ensure_installed: string[]}
+    config = function(_, opts)
+      require('mason').setup(opts)
+      local mr = require('mason-registry')
+      mr:on('package:install:success', function()
+        vim.defer_fn(function()
+          -- trigger FileType event to possibly load this newly installed LSP server
+          require('lazy.core.handler.event').trigger({
+            event = 'FileType',
+            buf = vim.api.nvim_get_current_buf(),
+          })
+        end, 100)
+      end)
+      local function ensure_installed()
+        for _, tool in ipairs(opts.ensure_installed) do
+          local p = mr.get_package(tool)
+          if not p:is_installed() then
+            p:install()
+          end
         end
-      }
-    end
+      end
+      if mr.refresh then
+        mr.refresh(ensure_installed)
+      else
+        ensure_installed()
+      end
+    end,
   },
 }
 
