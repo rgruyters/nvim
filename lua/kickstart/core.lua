@@ -241,10 +241,6 @@ return {
       M = {}
       local icons = require('custom.icons')
 
-      local hide_in_width = function()
-        return vim.o.columns > 80
-      end
-
       local filename = {
         'filename',
         path = 1, -- display relative path
@@ -260,62 +256,6 @@ return {
         separator = '',
       }
 
-      local lsp = {
-        function()
-          local buf_clients = vim.lsp.get_active_clients{ bufnr = 0 }
-          if #buf_clients == 0 then
-            return 'LS Inactive'
-          end
-
-          local buf_ft = vim.bo.filetype
-          local buf_client_names = {}
-
-          -- add client
-          for _, client in pairs(buf_clients) do
-            local filetypes = client.config.filetypes
-            if filetypes and vim.fn.index(filetypes,buf_ft) ~= -1 then
-              if client.name ~= 'null-ls' then
-                table.insert(buf_client_names, client.name)
-              end
-            end
-          end
-
-          -- add formatter
-          local sources = require 'null-ls.sources'
-          local available_sources = sources.get_available(buf_ft)
-          local registered = {}
-
-          for _, source in ipairs(available_sources) do
-            for method in pairs(source.methods) do
-              registered[method] = registered[method] or {}
-              table.insert(registered[method], source.name)
-            end
-          end
-
-          -- add formatters
-          local formatter = registered['NULL_LS_FORMATTING']
-          if formatter ~= nil then
-            vim.list_extend(buf_client_names, formatter)
-          end
-
-          -- add linters
-          local linter = registered['NULL_LS_DIAGNOSTICS']
-          if linter ~= nil then
-            vim.list_extend(buf_client_names, linter)
-          end
-
-          -- join buffer client names with commas
-          local unique_client_names = table.concat(buf_client_names, ", ")
-          local language_servers = string.format("[%s]", unique_client_names)
-
-          return language_servers
-        end,
-        padding = 0,
-        separator = '%#SLSeparator#' .. ' ' .. '%*',
-        cond = hide_in_width,
-        color = { fg = '#616E88' },
-      }
-
       return {
         options = {
           icons_enabled = true,
@@ -327,7 +267,7 @@ return {
           lualine_a = { 'mode' },
           lualine_b = { 'branch', 'diff', 'diagnostics' },
           lualine_c = { filename },
-          lualine_x = { lsp, spaces, 'filetype' },
+          lualine_x = { spaces, 'filetype' },
           lualine_y = { 'location' },
           lualine_z = { 'progress' }
         },

@@ -150,6 +150,68 @@ return {
       end
     end,
   },
+  {
+    'nvim-lualine/lualine.nvim',
+    optional = true,
+    event = 'VeryLazy',
+    opts = function(_, opts)
+      table.insert(opts.sections.lualine_x, 1, {
+        function()
+          local buf_clients = vim.lsp.get_active_clients{ bufnr = 0 }
+          if #buf_clients == 0 then
+            return 'LS Inactive'
+          end
+
+          local buf_ft = vim.bo.filetype
+          local buf_client_names = {}
+
+          -- add client
+          for _, client in pairs(buf_clients) do
+            local filetypes = client.config.filetypes
+            if filetypes and vim.fn.index(filetypes,buf_ft) ~= -1 then
+              if client.name ~= 'null-ls' then
+                table.insert(buf_client_names, client.name)
+              end
+            end
+          end
+
+          -- add formatter
+          local sources = require 'null-ls.sources'
+          local available_sources = sources.get_available(buf_ft)
+          local registered = {}
+
+          for _, source in ipairs(available_sources) do
+            for method in pairs(source.methods) do
+              registered[method] = registered[method] or {}
+              table.insert(registered[method], source.name)
+            end
+          end
+
+          -- add formatters
+          local formatter = registered['NULL_LS_FORMATTING']
+          if formatter ~= nil then
+            vim.list_extend(buf_client_names, formatter)
+          end
+
+          -- add linters
+          local linter = registered['NULL_LS_DIAGNOSTICS']
+          if linter ~= nil then
+            vim.list_extend(buf_client_names, linter)
+          end
+
+          -- join buffer client names with commas
+          local unique_client_names = table.concat(buf_client_names, ", ")
+          local language_servers = string.format("[%s]", unique_client_names)
+
+          return language_servers
+        end,
+        padding = 0,
+        separator = '%#SLSeparator#',
+        cond = function() return vim.o.columns > 80 end,
+        color = { fg = '#616E88' },
+      })
+    end,
+  },
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
