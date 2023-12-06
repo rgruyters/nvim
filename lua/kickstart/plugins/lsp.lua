@@ -205,8 +205,6 @@ return {
 
           return language_servers
         end,
-        padding = 0,
-        separator = '%#SLSeparator#',
         cond = function() return vim.o.columns > 80 end,
         color = { fg = '#616E88' },
       })

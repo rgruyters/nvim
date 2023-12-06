@@ -251,15 +251,13 @@ return {
         function()
           return icons.misc.Spaces .. ' ' .. vim.api.nvim_buf_get_option(0, 'shiftwidth')
         end,
-        separator = '%#SLSeparator#',
-        padding = 1,
       }
 
       return {
         options = {
           icons_enabled = true,
           theme = 'auto',
-          component_separators = '|',
+          component_separators = { left = '|', right = '' },
           section_separators = '',
         },
         sections = {

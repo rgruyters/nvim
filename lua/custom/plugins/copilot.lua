@@ -26,13 +26,13 @@ return {
         function()
           local icon = require('custom.icons').kind.Copilot
           local status = require('copilot.api').status.data
-          return icon .. (status.message or '')
+          return icon .. (status.message or '') .. ' '
         end,
         cond = function()
           local ok, clients = pcall(vim.lsp.get_active_clients, { name = 'copilot', bufnr = 0 })
           return ok and #clients > 0
         end,
-        separator = '%#SLSeparator#',
+        padding = { left = 1, right = 1 },
       })
     end,
   },
