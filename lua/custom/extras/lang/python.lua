@@ -83,6 +83,18 @@ return {
       },
     },
   },
+  {
+    "linux-cultist/venv-selector.nvim",
+    cmd = "VenvSelect",
+    opts = {
+      dap_enabled = true,
+      name = {
+          "venv",
+          ".venv",
+      },
+    },
+    keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
+  },
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
