@@ -238,7 +238,6 @@ return {
     event = 'VeryLazy',
     -- See `:help lualine.txt`
     opts = function()
-      M = {}
       local icons = require('custom.icons')
 
       local filename = {
@@ -252,7 +251,6 @@ return {
         function()
           return icons.misc.Spaces .. ' ' .. vim.api.nvim_buf_get_option(0, 'shiftwidth')
         end,
-        padding = 1,
         separator = '',
       }
 
