@@ -251,7 +251,8 @@ return {
         function()
           return icons.misc.Spaces .. ' ' .. vim.api.nvim_buf_get_option(0, 'shiftwidth')
         end,
-        separator = '',
+        separator = '%#SLSeparator#',
+        padding = 1,
       }
 
       return {
