@@ -14,8 +14,11 @@ return {
     },
     config = function(_, opts)
       require('copilot').setup(opts)
-      vim.keymap.set('n', '<leader>gC', '<CMD>Copilot toggle<CR>', { desc = 'Toggle Github Copilot', silent = true })
+      vim.keymap.set('n', '<leader>ct', '<CMD>Copilot toggle<CR>', { desc = 'Toggle Github Copilot', silent = true })
     end,
+  },
+  {
+
   },
   {
     'nvim-lualine/lualine.nvim',
