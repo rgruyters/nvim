@@ -33,16 +33,13 @@ return {
     },
   },
   {
-    'nvimtools/none-ls.nvim',
+    "stevearc/conform.nvim",
     optional = true,
-    opts = function(_, opts)
-      if type(opts.sources) == 'table' then
-        local nonels = require('null-ls')
-        vim.list_extend(opts.sources, {
-          nonels.builtins.formatting.gofmt,
-        })
-      end
-    end,
+    opts = {
+      formatters_by_ft = {
+        go = { "goimports", "gofumpt" },
+      },
+    },
   },
   {
     'nvim-neotest/neotest',
