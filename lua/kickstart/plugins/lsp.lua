@@ -169,34 +169,19 @@ return {
           for _, client in pairs(buf_clients) do
             local filetypes = client.config.filetypes
             if filetypes and vim.fn.index(filetypes,buf_ft) ~= -1 then
-              if client.name ~= 'null-ls' then
-                table.insert(buf_client_names, client.name)
+              table.insert(buf_client_names, client.name)
+            end
+          end
+
+          -- FIXME: Need to find a way to load this modular, within formatting.lua
+          local ok, conform = pcall(require, "conform")
+          if ok then
+            local formatters = conform.list_formatters(0)
+            if not conform.will_fallback_lsp() then
+              for _, formatter in ipairs(formatters) do
+                table.insert(buf_client_names, formatter.name)
               end
             end
-          end
-
-          -- add formatter
-          local sources = require 'null-ls.sources'
-          local available_sources = sources.get_available(buf_ft)
-          local registered = {}
-
-          for _, source in ipairs(available_sources) do
-            for method in pairs(source.methods) do
-              registered[method] = registered[method] or {}
-              table.insert(registered[method], source.name)
-            end
-          end
-
-          -- add formatters
-          local formatter = registered['NULL_LS_FORMATTING']
-          if formatter ~= nil then
-            vim.list_extend(buf_client_names, formatter)
-          end
-
-          -- add linters
-          local linter = registered['NULL_LS_DIAGNOSTICS']
-          if linter ~= nil then
-            vim.list_extend(buf_client_names, linter)
           end
 
           -- join buffer client names with commas

@@ -119,8 +119,9 @@ automatically enable the LSP for the particular file type.
 
 ### Formatters and linters
 
-Make sure the formatter or linter is installed and add it to this setup function:
-[null-ls](https://github.com/rgruyters/nvim/blob/main/lua/custom/plugins/null-ls.lua)
+My setup uses some [conform.nvim](https://github.com/stevearc/conform.nvim) for
+formatting and [nvim-lint](https://github.com/mfussenegger/nvim-lint) for
+linting. It will install via [mason](https://github.com/williamboman/mason.nvim)
 
 **NOTE** Some are already setup as examples, remove them if you want
 
@@ -161,7 +162,6 @@ The following plugins are availabile in the current setup:
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 - [mason.nvim](https://github.com/williamboman/mason.nvim)
 - [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
-- [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)
 - [vim-illuminate](https://github.com/RRethy/vim-illuminate)
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
@@ -174,6 +174,8 @@ The following plugins are availabile in the current setup:
 - [undotree](https://github.com/mbbill/undotree)
 - [catppucchin](https://github.com/catppuccin/nvim)
 - [vim-fugitive](https://github.com/tpope/vim-fugitive)
+- [conform.nvim](https://github.com/stevearc/conform.nvim)
+- [nvim-lint](https://github.com/mfussenegger/nvim-lint)
 
 ### Breaking changes
 
