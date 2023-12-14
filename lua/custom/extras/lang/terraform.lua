@@ -15,6 +15,13 @@ return {
     end,
   },
   {
+    'williamboman/mason.nvim',
+    opts = function(_, opts)
+      opts.ensure_installed = opts.ensure_installed or {}
+      vim.list_extend(opts.ensure_installed, { 'terraform-ls', 'snyk' })
+    end,
+  },
+  {
     'neovim/nvim-lspconfig',
     opts = {
       servers = {
@@ -28,18 +35,25 @@ return {
     },
   },
   {
-    'nvimtools/none-ls.nvim',
+    "mfussenegger/nvim-lint",
     optional = true,
-    opts = function(_, opts)
-      if type(opts.sources) == 'table' then
-        local nonels = require('null-ls')
-        vim.list_extend(opts.sources, {
-          nonels.builtins.formatting.terrafmt,
-          nonels.builtins.formatting.terraform_fmt,
-          nonels.builtins.diagnostics.terraform_validate,
-        })
-      end
-    end,
+    opts = {
+      linters_by_ft = {
+        terraform = { 'terraform_validate', 'snyk_iac' },
+        tf = { 'terraform_validate', 'snyk_iac' },
+      },
+    },
+  },
+  {
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+      formatters_by_ft = {
+        terraform = { "terraform_fmt" },
+        tf = { "terraform_fmt" },
+        ["terraform-vars"] = { "terraform_fmt" },
+      },
+    },
   },
 }
 
