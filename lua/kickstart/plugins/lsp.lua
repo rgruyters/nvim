@@ -83,7 +83,7 @@ return {
           vim.lsp.buf.format()
         end, { desc = 'Format current buffer with LSP' })
 
-        kmap('n', '<space>f', '<cmd>Format<CR>', { buffer = bufnr, desc = '[F]ormat current buffer' })
+        kmap('n', '<space>cf', '<cmd>Format<CR>', 'Format current buffer')
       end
 
       -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
