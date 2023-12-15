@@ -20,6 +20,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- [[ Setting options ]]
+require('kickstart.options')
+require('custom.options')
+
 -- NOTE: Here is where you install your plugins.
 --       You can configure plugins using the `config` key.
 --
@@ -60,9 +64,6 @@ require('lazy').setup({
   { import = 'custom.plugins' },
   { import = 'custom.extras.lang' },
 }, {})
-
--- [[ Setting options ]]
-require('kickstart.options')
 
 -- [[ Basic Keymaps ]]
 require('kickstart.keymaps')
