@@ -174,13 +174,22 @@ return {
           end
 
           -- FIXME: Need to find a way to load this modular, within formatting.lua
-          local ok, conform = pcall(require, "conform")
-          if ok then
+          local conform_ok, conform = pcall(require, 'conform')
+          if conform_ok then
             local formatters = conform.list_formatters(0)
             if not conform.will_fallback_lsp() then
               for _, formatter in ipairs(formatters) do
                 table.insert(buf_client_names, formatter.name)
               end
+            end
+          end
+
+          -- FIXME: Need to find a way to load this modular, within linting.lua
+          local lint_ok, nl = pcall(require, 'lint')
+          if lint_ok then
+            local linters = nl.get_running()
+            for _, linter in ipairs(linters) do
+              table.insert(buf_client_names, linter)
             end
           end
 
