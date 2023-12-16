@@ -62,7 +62,7 @@ require('lazy').setup({
   --       up-to-date with whatever is in the kickstart repo.
   --
   { import = 'custom.plugins' },
-  { import = 'custom.extras.lang' },
+  { import = 'custom.extras' },
 }, {})
 
 -- [[ Basic Keymaps ]]
