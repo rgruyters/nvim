@@ -58,8 +58,6 @@ require('lazy').setup({
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --       You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
   --       up-to-date with whatever is in the kickstart repo.
-  --       For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  --       Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --
   { import = 'custom.plugins' },
   { import = 'custom.extras.lang' },
@@ -67,9 +65,6 @@ require('lazy').setup({
 
 -- [[ Basic Keymaps ]]
 require('kickstart.keymaps')
-
--- [[ LSP settings ]]
-require('custom.lsp.diagnostics')
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
