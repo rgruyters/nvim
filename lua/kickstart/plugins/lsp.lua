@@ -14,6 +14,8 @@ return {
       { 'folke/neodev.nvim', opts = {} },
     },
     opts = {
+      -- add any global capabilities here
+      capabilities = {},
       servers = {
         -- NOTE: This is where you add the LSP servers you want to use.
         --       You can find the full list of available servers here:
@@ -87,8 +89,14 @@ return {
       end
 
       -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+      local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+      local capabilities = vim.tbl_deep_extend(
+        "force",
+        {},
+        vim.lsp.protocol.make_client_capabilities(),
+        has_cmp and cmp_nvim_lsp.default_capabilities() or {},
+        opts.capabilities or {}
+      )
 
       local servers = opts.servers
 
