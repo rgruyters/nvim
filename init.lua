@@ -21,6 +21,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- [[ Setting options ]]
+-- load options here, before lazy init plugins
+-- this is needed to make sure options will be loaded correctly
 require('kickstart.options')
 require('custom.options')
 
