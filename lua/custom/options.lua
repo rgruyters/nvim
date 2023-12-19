@@ -41,9 +41,6 @@ vim.o.writebackup = false
 vim.o.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.o.undofile = true
 
--- hide (partial) command in the last line of the screen (for performance)
-vim.opt.showcmd = false
-
 -- only the last window will always have a status line
 vim.o.laststatus = 3
 
