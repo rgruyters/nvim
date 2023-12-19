@@ -2,7 +2,7 @@ return {
   'telescope.nvim',
   dependencies = {
     'ahmedkhalf/project.nvim',
-    event = "VeryLazy",
+    event = 'VimEnter',
     cmd = 'Telescope projects',
     keys = {
       { '<leader>fp', '<cmd>Telescope projects<CR>', desc = '[F]ind [P]rojects' },
