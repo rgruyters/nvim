@@ -17,6 +17,11 @@ return {
           lint.try_lint()
         end,
       })
+
+    vim.api.nvim_create_user_command("LinterInfo", function()
+      local runningLinters = table.concat(require("lint").get_running(), "\n")
+      vim.notify(runningLinters, vim.log.levels.INFO, { title = "nvim-lint" })
+    end, {})
   end,
 }
 
