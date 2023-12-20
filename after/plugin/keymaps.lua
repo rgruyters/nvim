@@ -44,3 +44,5 @@ vim.keymap.set("v", "<", "<gv", { silent = true })
 vim.keymap.set("v", ">", ">gv", { silent = true })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true }) -- Move visual up
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true }) -- Move visual down
+
+vim.keymap.set('n', '<leader>cf', '<cmd>Format<CR>', { desc = 'Format Buffer' })

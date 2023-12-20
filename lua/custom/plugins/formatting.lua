@@ -3,6 +3,16 @@ return {
   event = 'BufReadPre',
   dependencies = { 'mason.nvim' },
   cmd = 'ConformInfo',
+  keys = {
+    {
+      '<leader>cF',
+      function()
+        require('conform').format({ formatters = { 'injected' } })
+      end,
+      mode = { 'n', 'v' },
+      desc = 'Format Injected Languages',
+    },
+  },
   opts = {
     format = {
       timeout_ms = 3000,

@@ -7,9 +7,6 @@ return {
       table.insert(opts.sections.lualine_x, 1, {
         function()
           local buf_clients = vim.lsp.get_active_clients{ bufnr = 0 }
-          if #buf_clients == 0 then
-            return 'LS Inactive'
-          end
 
           local buf_ft = vim.bo.filetype
           local buf_client_names = {}
@@ -40,6 +37,10 @@ return {
                 table.insert(buf_client_names, linters[linter])
               end
             end
+          end
+
+          if #buf_clients == 0 and #buf_client_names == 1 then
+            return 'LS Inactive'
           end
 
           -- join buffer client names with commas
