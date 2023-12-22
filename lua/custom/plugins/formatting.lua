@@ -16,8 +16,8 @@ return {
   opts = {
     format = {
       timeout_ms = 3000,
-      async = false,       -- not recommended to change
-      quiet = false,       -- show notifications when available
+      async = false, -- not recommended to change
+      quiet = false, -- show notifications when available
       lsp_fallback = true, -- try using LSP formatting if no formatter is available
     },
     -- define options for formatter based on filetype ~ https://github.com/stevearc/conform.nvim#setup

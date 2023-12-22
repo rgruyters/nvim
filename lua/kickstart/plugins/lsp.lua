@@ -82,9 +82,9 @@ return {
       end
 
       -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-      local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+      local has_cmp, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
       local capabilities = vim.tbl_deep_extend(
-        "force",
+        'force',
         {},
         vim.lsp.protocol.make_client_capabilities(),
         has_cmp and cmp_nvim_lsp.default_capabilities() or {},

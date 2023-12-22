@@ -78,17 +78,17 @@ return {
             -- Update this to ensure that you have the debuggers for the langs you want
           },
         },
-      }
+      },
     },
     keys = {
       -- Basic debugging keymaps, feel free to change to your liking!
-      { '<F5>',      "<cmd>lua require('dap').continue()<CR>" },
-      { '<F1>',      "<cmd>lua require('dap').step_into()<CR>" },
-      { '<F2>',      "<cmd>lua require('dap').step_over()<CR>" },
-      { '<F3>',      "<cmd>lua require('dap').step_out()<CR>" },
+      { '<F5>', "<cmd>lua require('dap').continue()<CR>" },
+      { '<F1>', "<cmd>lua require('dap').step_into()<CR>" },
+      { '<F2>', "<cmd>lua require('dap').step_over()<CR>" },
+      { '<F3>', "<cmd>lua require('dap').step_out()<CR>" },
       { '<leader>b', "<cmd>lua require('dap').toggle_breakpoint()<CR>" },
       { '<leader>B', "<cmd>lua require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')<CR>" },
-    }
+    },
   },
 }
 

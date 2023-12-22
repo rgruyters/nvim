@@ -38,7 +38,7 @@ vim.o.backup = false
 vim.o.writebackup = false
 
 -- enable persistent undo
-vim.o.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.o.undodir = os.getenv('HOME') .. '/.vim/undodir'
 vim.o.undofile = true
 
 -- only the last window will always have a status line
@@ -70,23 +70,23 @@ vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 
 -- always write files as utf-8
-vim.g.fileencoding = "utf-8"
+vim.g.fileencoding = 'utf-8'
 
 -- show empty lines at the end of a buffer as ` ` {default `~`}
-vim.opt.fillchars.eob=" "
+vim.opt.fillchars.eob = ' '
 
 -- hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
-vim.opt.shortmess:append "c"
+vim.opt.shortmess:append('c')
 
 -- keys allowed to move to the previous/next line when the beginning/end of line is reached
-vim.opt.whichwrap:append("<,>,[,],h,l")
+vim.opt.whichwrap:append('<,>,[,],h,l')
 
 -- treats words with `-` as single words
-vim.opt.iskeyword:append("-")
+vim.opt.iskeyword:append('-')
 
 -- when enabled show specific characters when list is enabled
-vim.opt.listchars:append("eol:↴")
+vim.opt.listchars:append('eol:↴')
 
-vim.opt.formatoptions = "jcroqlnt"
-vim.opt.grepformat = "%f:%l:%c:%m"
-vim.opt.grepprg = "rg --vimgrep"
+vim.opt.formatoptions = 'jcroqlnt'
+vim.opt.grepformat = '%f:%l:%c:%m'
+vim.opt.grepprg = 'rg --vimgrep'

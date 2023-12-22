@@ -14,7 +14,7 @@ return {
         pyright = {
           settings = {
             pyright = {
-              disableOrganizeImports = false
+              disableOrganizeImports = false,
             },
             python = {
               analysis = {
@@ -37,7 +37,7 @@ return {
     setup = {
       ruff_lsp = function()
         require('custom.functions').on_attach(function(client, _)
-          if client.name == "ruff_lsp" then
+          if client.name == 'ruff_lsp' then
             -- Disable hover in favor of Pyright
             client.server_capabilities.hoverProvider = false
           end
@@ -46,11 +46,11 @@ return {
     },
   },
   {
-    "stevearc/conform.nvim",
+    'stevearc/conform.nvim',
     optional = true,
     opts = {
       formatters_by_ft = {
-        ["python"] = { "black" },
+        ['python'] = { 'black' },
       },
     },
   },
@@ -61,7 +61,7 @@ return {
     ft = 'python',
     config = function()
       local dap_python = require('dap-python')
-      local mason_path = vim.fn.glob(vim.fn.stdpath 'data' .. '/mason/')
+      local mason_path = vim.fn.glob(vim.fn.stdpath('data') .. '/mason/')
 
       dap_python.setup(mason_path .. 'packages/debugpy/venv/bin/python')
 
@@ -81,16 +81,16 @@ return {
     },
   },
   {
-    "linux-cultist/venv-selector.nvim",
-    cmd = "VenvSelect",
+    'linux-cultist/venv-selector.nvim',
+    cmd = 'VenvSelect',
     opts = {
       dap_enabled = true,
       name = {
-          "venv",
-          ".venv",
+        'venv',
+        '.venv',
       },
     },
-    keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
+    keys = { { '<leader>cv', '<cmd>:VenvSelect<cr>', desc = 'Select VirtualEnv' } },
   },
 }
 

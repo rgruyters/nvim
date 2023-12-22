@@ -6,8 +6,12 @@ return {
     cmd = 'Git',
     init = function()
       vim.keymap.set('n', '<leader>gs', vim.cmd.Git, { desc = '[G]it [S]tatus' })
-      vim.keymap.set('n', '<leader>gp', function() vim.cmd.Git('push') end, { desc = '[G]it [p]ush' })
-      vim.keymap.set('n', '<leader>gP', function() vim.cmd.Git('pull') end, { desc = 'Git [P]ull' })
+      vim.keymap.set('n', '<leader>gp', function()
+        vim.cmd.Git('push')
+      end, { desc = '[G]it [p]ush' })
+      vim.keymap.set('n', '<leader>gP', function()
+        vim.cmd.Git('pull')
+      end, { desc = 'Git [P]ull' })
     end,
   },
   {
@@ -35,8 +39,8 @@ return {
     },
     -- See `:help cmp`
     opts = function()
-      local cmp = require 'cmp'
-      local luasnip = require 'luasnip'
+      local cmp = require('cmp')
+      local luasnip = require('luasnip')
 
       return {
         completion = {
@@ -47,19 +51,19 @@ return {
             luasnip.lsp_expand(args.body)
           end,
         },
-        mapping = cmp.mapping.preset.insert {
-          ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-          ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        mapping = cmp.mapping.preset.insert({
+          ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+          ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
           ['<C-d>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete {},
-          ['<CR>'] = cmp.mapping.confirm {
+          ['<C-Space>'] = cmp.mapping.complete({}),
+          ['<CR>'] = cmp.mapping.confirm({
             select = true,
-          },
-          ['<S-CR>'] = cmp.mapping.confirm {
+          }),
+          ['<S-CR>'] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
-          },
+          }),
           ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
@@ -78,10 +82,10 @@ return {
               fallback()
             end
           end, { 'i', 's' }),
-        },
+        }),
         sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
+          { name = 'nvim_lsp' },
+          { name = 'luasnip' },
           { name = 'path' },
         }),
         formatting = {
@@ -97,9 +101,11 @@ return {
         },
         enabled = function()
           -- Disable completion in comments and Telescope
-          if require('cmp.config.context').in_treesitter_capture('comment') == true
-              or require('cmp.config.context').in_syntax_group('Comment')
-              or vim.bo.filetype == 'TelescopePrompt' then -- HACK: disable completion when using Telescope
+          if
+            require('cmp.config.context').in_treesitter_capture('comment') == true
+            or require('cmp.config.context').in_syntax_group('Comment')
+            or vim.bo.filetype == 'TelescopePrompt'
+          then -- HACK: disable completion when using Telescope
             return false
           else
             return true
@@ -111,7 +117,7 @@ return {
       for _, source in ipairs(opts.sources) do
         source.group_index = source.group_index or 1
       end
-      require("cmp").setup(opts)
+      require('cmp').setup(opts)
     end,
   },
 
@@ -130,13 +136,27 @@ return {
     keys = {
       {
         '<tab>',
-        function() return require('luasnip').jumpable(1) and '<Plug>luasnip-jump-next' or '<tab>' end,
+        function()
+          return require('luasnip').jumpable(1) and '<Plug>luasnip-jump-next' or '<tab>'
+        end,
         expr = true,
         silent = true,
         mode = 'i',
       },
-      { '<tab>',   function() require('luasnip').jump(1) end,  mode = 's' },
-      { '<s-tab>', function() require('luasnip').jump(-1) end, mode = { 'i', 's' } },
+      {
+        '<tab>',
+        function()
+          require('luasnip').jump(1)
+        end,
+        mode = 's',
+      },
+      {
+        '<s-tab>',
+        function()
+          require('luasnip').jump(-1)
+        end,
+        mode = { 'i', 's' },
+      },
       {
         '<C-j>',
         function()
@@ -144,7 +164,7 @@ return {
             require('luasnip').change_choice(1)
           end
         end,
-        mode = { 'i', 's' }
+        mode = { 'i', 's' },
       },
       {
         '<C-k>',
@@ -153,7 +173,7 @@ return {
             require('luasnip').change_choice(-1)
           end
         end,
-        mode = { 'i', 's' }
+        mode = { 'i', 's' },
       },
     },
   },
@@ -196,25 +216,43 @@ return {
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
         -- Navigation
-        vim.keymap.set({'n', 'v'}, ']c', function()
-          if vim.wo.diff then return ']c' end
-          vim.schedule(function() gs.next_hunk() end)
+        vim.keymap.set({ 'n', 'v' }, ']c', function()
+          if vim.wo.diff then
+            return ']c'
+          end
+          vim.schedule(function()
+            gs.next_hunk()
+          end)
           return '<Ignore>'
-        end, {expr=true, buffer = bufnr, desc = 'Jump to next hunk'})
-        vim.keymap.set({'n', 'v'}, '[c', function()
-          if vim.wo.diff then return '[c' end
-          vim.schedule(function() gs.prev_hunk() end)
+        end, { expr = true, buffer = bufnr, desc = 'Jump to next hunk' })
+        vim.keymap.set({ 'n', 'v' }, '[c', function()
+          if vim.wo.diff then
+            return '[c'
+          end
+          vim.schedule(function()
+            gs.prev_hunk()
+          end)
           return '<Ignore>'
-        end, {expr=true, buffer = bufnr, desc = 'Jump to previous hunk'})
+        end, { expr = true, buffer = bufnr, desc = 'Jump to previous hunk' })
 
         vim.keymap.set('n', '<leader>hs', require('gitsigns').stage_hunk, { buffer = bufnr, desc = 'Stage Hunk' })
         vim.keymap.set('n', '<leader>hr', require('gitsigns').reset_hunk, { buffer = bufnr, desc = 'Reset Hunk' })
         vim.keymap.set('n', '<leader>hS', require('gitsigns').stage_buffer, { buffer = bufnr, desc = 'Stage Buffer' })
-        vim.keymap.set('n', '<leader>hu', require('gitsigns').undo_stage_hunk, { buffer = bufnr, desc = 'Undo Stage Hunk' })
+        vim.keymap.set(
+          'n',
+          '<leader>hu',
+          require('gitsigns').undo_stage_hunk,
+          { buffer = bufnr, desc = 'Undo Stage Hunk' }
+        )
         vim.keymap.set('n', '<leader>hR', require('gitsigns').reset_buffer, { buffer = bufnr, desc = 'Reset Buffer' })
         vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview Hunk' })
         vim.keymap.set('n', '<leader>hb', require('gitsigns').blame_line, { buffer = bufnr, desc = 'Blame Line' })
-        vim.keymap.set('n', '<leader>tb', require('gitsigns').toggle_current_line_blame, { buffer = bufnr, desc = 'Toggle Line Blame' })
+        vim.keymap.set(
+          'n',
+          '<leader>tb',
+          require('gitsigns').toggle_current_line_blame,
+          { buffer = bufnr, desc = 'Toggle Line Blame' }
+        )
         vim.keymap.set('n', '<leader>hd', require('gitsigns').diffthis, { buffer = bufnr, desc = 'Diff This' })
         vim.keymap.set('n', '<leader>td', require('gitsigns').blame_line, { buffer = bufnr, desc = 'Toggle Deleted' })
       end,
@@ -227,7 +265,7 @@ return {
     name = 'catppuccin',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'catppuccin-mocha'
+      vim.cmd.colorscheme('catppuccin-mocha')
     end,
   },
 
@@ -265,7 +303,7 @@ return {
           lualine_c = { filename },
           lualine_x = { spaces, 'filetype' },
           lualine_y = { 'location' },
-          lualine_z = { 'progress' }
+          lualine_z = { 'progress' },
         },
         extensions = { 'fugitive', 'lazy', 'nvim-dap-ui', 'trouble' },
       }
@@ -281,13 +319,13 @@ return {
     -- See `:help indent_blankline.txt`
     opts = {
       indent = {
-        char = "│",
-        tab_char = "│",
+        char = '│',
+        tab_char = '│',
       },
       scope = {
         show_start = false,
         show_end = false,
-      }
+      },
     },
   },
 
@@ -306,30 +344,94 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     -- See `:help telescope.builtin`
     keys = {
-      {'<leader>?', function() require('telescope.builtin').oldfiles() end, desc = '[?] Find recently opened files' },
-      {'<leader><space>', function() require('telescope.builtin').buffers() end, desc = '[ ] Find existing buffers' },
-      {'<leader>/', function()
-        -- You can pass additional configuration to telescope to change theme, layout, etc.
-        require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-          winblend = 10,
-          previewer = false,
-        })
-      end, desc = '[/] Fuzzily search in current buffer' },
-      {'<leader>gf', function() require('telescope.builtin').git_files() end, desc = '[G]it [F]iles' },
-      {'<leader>ff', function() require('telescope.builtin').find_files() end, desc = '[F]ind [F]iles' },
-      {'<leader>fh', function() require('telescope.builtin').help_tags() end, desc = '[F]ind [H]elp' },
-      {'<leader>fw', function() require('telescope.builtin').grep_string() end, desc = '[F]ind current [W]ord' },
-      {'<leader>fg', function() require('telescope.builtin').live_grep() end, desc = '[F]ind by [G]rep' },
-      {'<leader>fd', function() require('telescope.builtin').diagnostics() end, desc = '[F]ind [D]iagnostics' },
-      {'<leader>gc', function() require('telescope.builtin').git_commits() end, desc = '[G]it [C]ommits' },
-      { '<leader>fk', function() require('telescope.builtin').keymaps() end, desc = '[F]ind [K]eymaps' },
+      {
+        '<leader>?',
+        function()
+          require('telescope.builtin').oldfiles()
+        end,
+        desc = '[?] Find recently opened files',
+      },
+      {
+        '<leader><space>',
+        function()
+          require('telescope.builtin').buffers()
+        end,
+        desc = '[ ] Find existing buffers',
+      },
+      {
+        '<leader>/',
+        function()
+          -- You can pass additional configuration to telescope to change theme, layout, etc.
+          require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({
+            winblend = 10,
+            previewer = false,
+          }))
+        end,
+        desc = '[/] Fuzzily search in current buffer',
+      },
+      {
+        '<leader>gf',
+        function()
+          require('telescope.builtin').git_files()
+        end,
+        desc = '[G]it [F]iles',
+      },
+      {
+        '<leader>ff',
+        function()
+          require('telescope.builtin').find_files()
+        end,
+        desc = '[F]ind [F]iles',
+      },
+      {
+        '<leader>fh',
+        function()
+          require('telescope.builtin').help_tags()
+        end,
+        desc = '[F]ind [H]elp',
+      },
+      {
+        '<leader>fw',
+        function()
+          require('telescope.builtin').grep_string()
+        end,
+        desc = '[F]ind current [W]ord',
+      },
+      {
+        '<leader>fg',
+        function()
+          require('telescope.builtin').live_grep()
+        end,
+        desc = '[F]ind by [G]rep',
+      },
+      {
+        '<leader>fd',
+        function()
+          require('telescope.builtin').diagnostics()
+        end,
+        desc = '[F]ind [D]iagnostics',
+      },
+      {
+        '<leader>gc',
+        function()
+          require('telescope.builtin').git_commits()
+        end,
+        desc = '[G]it [C]ommits',
+      },
+      {
+        '<leader>fk',
+        function()
+          require('telescope.builtin').keymaps()
+        end,
+        desc = '[F]ind [K]eymaps',
+      },
     },
     opts = function()
       local actions = require('telescope.actions')
 
       return {
         -- See `:help telescope` and `:help telescope.setup()`
-        defaults = require('telescope.themes').get_dropdown {
+        defaults = require('telescope.themes').get_dropdown({
           prompt_prefix = require('custom.icons').misc.Telescope .. ' ',
           selection_caret = ' ',
           path_display = { 'smart' },
@@ -352,7 +454,7 @@ return {
             'build/',
             'env/',
           },
-        },
+        }),
         pickers = {
           find_files = {
             hidden = true,
@@ -380,7 +482,7 @@ return {
       --       refer to the README for telescope-fzf-native for more instructions.
       build = 'make',
       cond = function()
-        return vim.fn.executable 'make' == 1
+        return vim.fn.executable('make') == 1
       end,
       config = function()
         require('telescope').load_extension('fzf')
@@ -404,7 +506,7 @@ return {
         'vimdoc',
         'vim',
         'markdown',
-        'markdown_inline'
+        'markdown_inline',
       },
 
       -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
@@ -474,9 +576,9 @@ return {
     end,
   },
   {
-    "williamboman/mason.nvim",
-    cmd = "Mason",
-    build = ":MasonUpdate",
+    'williamboman/mason.nvim',
+    cmd = 'Mason',
+    build = ':MasonUpdate',
   },
 }
 

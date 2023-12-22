@@ -7,16 +7,16 @@ vim.g.maplocalleader = ' '
 -- Install package manager
 -- https://github.com/folke/lazy.nvim
 -- `:help lazy.nvim.txt` for more info
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system {
+  vim.fn.system({
     'git',
     'clone',
     '--filter=blob:none',
     'https://github.com/folke/lazy.nvim.git',
     '--branch=stable', -- latest stable release
     lazypath,
-  }
+  })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -33,7 +33,7 @@ require('custom.options')
 --  as they will be available in your neovim runtime.
 require('lazy').setup({
   install = {
-    colorscheme = { "catppuccin" }
+    colorscheme = { 'catppuccin' },
   },
   checker = { enabled = false }, -- do not check automatically for plugin updates
   defaults = {
@@ -55,7 +55,7 @@ require('lazy').setup({
   --       Uncomment any of the lines below to enable them.
   --
   -- require 'kickstart.plugins.autoformat',
-  require 'kickstart.plugins.debug',
+  require('kickstart.plugins.debug'),
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --       You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping

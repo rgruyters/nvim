@@ -21,7 +21,7 @@ return {
           return not vim.tbl_contains(opts.filetypes_exclude or {}, ft)
         end, yaml.default_config.filetypes)
       end,
-    }
+    },
   },
 }
 

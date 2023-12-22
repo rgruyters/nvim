@@ -17,11 +17,11 @@ return {
     },
   },
   {
-    "mfussenegger/nvim-lint",
+    'mfussenegger/nvim-lint',
     optional = true,
     opts = {
       linters_by_ft = {
-        dockerfile = { "hadolint" },
+        dockerfile = { 'hadolint' },
       },
     },
   },

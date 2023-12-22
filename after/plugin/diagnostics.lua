@@ -2,9 +2,9 @@ local icons = require('custom.icons')
 
 local signs = {
   { name = 'DiagnosticSignError', text = icons.diagnostics.Error },
-  { name = 'DiagnosticSignWarn',  text = icons.diagnostics.Warning },
-  { name = 'DiagnosticSignHint',  text = icons.diagnostics.Hint },
-  { name = 'DiagnosticSignInfo',  text = icons.diagnostics.Information },
+  { name = 'DiagnosticSignWarn', text = icons.diagnostics.Warning },
+  { name = 'DiagnosticSignHint', text = icons.diagnostics.Hint },
+  { name = 'DiagnosticSignInfo', text = icons.diagnostics.Information },
 }
 
 -- define signs when diagnostics kicks in
