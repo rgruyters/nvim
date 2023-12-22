@@ -7,6 +7,9 @@ return {
       vim.g.mkdp_filetypes = { 'markdown' }
     end,
     ft = { 'markdown' },
+    keys = {
+      { '<leader>mp', '<cmd>MarkdownPreview<CR>', { silent = true, desc = '[M]arkdown [P]review' } },
+    },
   },
 }
 
