@@ -1,9 +1,3 @@
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'terraform-vars' },
-  desc = 'set correct filetype for terraform vars',
-  command = 'set ft=terraform',
-})
-
 return {
   {
     'nvim-treesitter/nvim-treesitter',
@@ -26,10 +20,6 @@ return {
     opts = {
       servers = {
         terraformls = {
-          filetypes = {
-            'terraform',
-            'tf',
-          },
         },
       },
     },
