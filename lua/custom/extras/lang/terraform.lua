@@ -12,7 +12,7 @@ return {
     'williamboman/mason.nvim',
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, { 'terraform-ls', 'snyk' })
+      vim.list_extend(opts.ensure_installed, { 'terraform-ls' })
     end,
   },
   {
@@ -29,8 +29,8 @@ return {
     optional = true,
     opts = {
       linters_by_ft = {
-        terraform = { 'terraform_validate', 'snyk_iac' },
-        tf = { 'terraform_validate', 'snyk_iac' },
+        terraform = { 'terraform_validate' },
+        tf = { 'terraform_validate' },
       },
     },
   },
