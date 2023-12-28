@@ -1,6 +1,7 @@
 return {
   -- Git related plugins
   {
+    -- See `:help Git`
     'tpope/vim-fugitive',
     event = { 'BufReadPre', 'BufNewFile' },
     cmd = 'Git',
@@ -15,6 +16,7 @@ return {
     end,
   },
   {
+    -- See `:h rhubarb.txt`
     'tpope/vim-rhubarb',
     event = { 'BufReadPre', 'BufNewFile' },
   },
