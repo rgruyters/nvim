@@ -4,8 +4,7 @@ return {
   dependencies = { 'hrsh7th/nvim-cmp' },
   opts = {
     check_ts = true, -- treesitter integration
-    disable_filetype = { 'TelescopePrompt' },
-    enable_check_bracket_line = false,
+    enable_check_bracket_line = false, -- Don't add pairs if it already has a close pair in the same line
   },
   config = function(_, opts)
     require('nvim-autopairs').setup(opts)
