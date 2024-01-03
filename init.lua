@@ -63,7 +63,9 @@ require('lazy').setup({
   --
   { import = 'custom.plugins' },
   { import = 'custom.extras' },
-}, {})
+}, {
+  change_detection = { notify = false }, -- disable changes notifications
+})
 
 -- [[ Basic Keymaps ]]
 require('kickstart.keymaps')
