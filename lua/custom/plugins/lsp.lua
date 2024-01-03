@@ -6,12 +6,17 @@ return {
     opts = function(_, opts)
       table.insert(opts.sections.lualine_x, 1, {
         function()
+          -- When buffer is empty, no LSP, formatter or linter available
+          if vim.fn.empty(vim.fn.expand('%:t')) == 1 then
+            return 'LSP Inactive'
+          end
+
           local buf_clients = vim.lsp.get_active_clients({ bufnr = 0 })
 
           local buf_ft = vim.bo.filetype
           local buf_client_names = {}
 
-          -- add client
+          -- add available LSP clients to buffer client names
           for _, client in pairs(buf_clients) do
             local filetypes = client.config.filetypes
             if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
@@ -19,7 +24,7 @@ return {
             end
           end
 
-          -- FIXME: Need to find a way to load this modular, within formatting.lua
+          -- FIXME: Need to find a way to load this modular, within formatting.lua and linting.lua
           local conform_ok, conform = pcall(require, 'conform')
           if conform_ok then
             local formatters = conform.list_formatters_for_buffer(0)
@@ -28,10 +33,9 @@ return {
             end
           end
 
-          -- FIXME: Need to find a way to load this modular, within linting.lua
           local lint_ok, nl = pcall(require, 'lint')
           if lint_ok then
-            local linters = nl.linters_by_ft[vim.bo.filetype]
+            local linters = nl.linters_by_ft[buf_ft]
             if linters ~= nil then
               for linter in pairs(linters) do
                 table.insert(buf_client_names, linters[linter])
@@ -39,6 +43,7 @@ return {
             end
           end
 
+          -- No LSP, formatter or linting available
           if #buf_clients == 0 and #buf_client_names == 1 then
             return 'LS Inactive'
           end

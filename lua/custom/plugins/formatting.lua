@@ -1,6 +1,6 @@
 return {
   'stevearc/conform.nvim',
-  event = 'BufReadPre',
+  event = 'BufReadPost',
   dependencies = { 'mason.nvim' },
   cmd = 'ConformInfo',
   keys = {
