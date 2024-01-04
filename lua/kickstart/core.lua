@@ -131,53 +131,19 @@ return {
       'rafamadriz/friendly-snippets',
       event = 'InsertEnter',
       config = function()
-        require('luasnip.loaders.from_vscode').lazy_load()
-        require('luasnip.loaders.from_vscode').lazy_load({ paths = { './snippets' } })
+        local lsvs = require('luasnip.loaders.from_vscode')
+        lsvs.lazy_load()
+        lsvs.lazy_load({ paths = { './snippets' } })
       end,
     },
-    keys = {
-      {
-        '<tab>',
-        function()
-          return require('luasnip').jumpable(1) and '<Plug>luasnip-jump-next' or '<tab>'
-        end,
-        expr = true,
-        silent = true,
-        mode = 'i',
-      },
-      {
-        '<tab>',
-        function()
-          require('luasnip').jump(1)
-        end,
-        mode = 's',
-      },
-      {
-        '<s-tab>',
-        function()
-          require('luasnip').jump(-1)
-        end,
-        mode = { 'i', 's' },
-      },
-      {
-        '<C-j>',
-        function()
-          if require('luasnip').choice_active() then
-            require('luasnip').change_choice(1)
-          end
-        end,
-        mode = { 'i', 's' },
-      },
-      {
-        '<C-k>',
-        function()
-          if require('luasnip').choice_active() then
-            require('luasnip').change_choice(-1)
-          end
-        end,
-        mode = { 'i', 's' },
-      },
-    },
+    config = function()
+      local ls = require('luasnip')
+
+      ls.setup() -- setup luasnip with default settings
+
+      vim.keymap.set({ 'i', 's' }, '<C-j>', function() if ls.choice_active() then ls.change_choice(1) end end)
+      vim.keymap.set({ 'i', 's' }, '<C-k>', function() if ls.choice_active() then ls.change_choice(-1) end end)
+    end,
   },
 
   -- Useful plugin to show you pending keybinds.
