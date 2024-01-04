@@ -106,8 +106,8 @@ return {
           if
             require('cmp.config.context').in_treesitter_capture('comment') == true
             or require('cmp.config.context').in_syntax_group('Comment')
-            or vim.bo.filetype == 'TelescopePrompt'
-          then -- HACK: disable completion when using Telescope
+            or vim.bo.filetype == 'TelescopePrompt' -- HACK: disable completion when using Telescope
+          then
             return false
           else
             return true
