@@ -59,14 +59,14 @@ return {
     })
 
     -- add LinterInfo to display active linters
-    vim.api.nvim_create_user_command('LinterInfo', function()
-      local runningLinters = table.concat(require('lint').linters_by_ft[vim.bo.filetype], '\n')
+  vim.api.nvim_create_user_command('LinterInfo', function()
+      local runningLinters = table.concat(require('lint').linters_by_ft[vim.bo.filetype] or {}, '\n')
       vim.notify(runningLinters, vim.log.levels.INFO, { title = 'nvim-lint' })
     end, {})
 
     -- add LinterRunning to show active running linters
     vim.api.nvim_create_user_command('LinterRunning', function()
-      local runningLinters = table.concat(require('lint').get_running(), '\n')
+      local runningLinters = table.concat(require('lint').get_running() or {}, '\n')
       vim.notify(runningLinters, vim.log.levels.INFO, { title = 'nvim-lint' })
     end, {})
   end,
