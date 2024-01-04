@@ -7,7 +7,7 @@ return {
       delay = 200,
       filetypes_denylist = {
         'fugitive',
-        'lir',
+        'netrw',
         'TelescopePrompt',
       },
     },
