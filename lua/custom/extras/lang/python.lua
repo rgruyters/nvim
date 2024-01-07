@@ -92,6 +92,19 @@ return {
     },
     keys = { { '<leader>cv', '<cmd>:VenvSelect<cr>', desc = 'Select VirtualEnv' } },
   },
+  -- HACK: correct highlights for variables and classes
+  {
+    'rose-pine',
+    name = 'rose-pine',
+    optional = true,
+    opts = function(_, opts)
+      local highlight_groups = vim.tbl_deep_extend('force', opts.highlight_groups or {}, {
+        ['@field.python'] = { fg = 'iris' },
+        ['@attribute.python'] = { fg = 'subtle' },
+      })
+      opts.highlight_groups = highlight_groups
+    end,
+  },
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
