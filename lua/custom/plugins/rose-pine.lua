@@ -5,10 +5,13 @@ return {
     priority = 1000,
     opts = {
       dark_variant = 'moon',
-      disable_background = true, -- In case of transparent terminals
+      disable_background = true, -- Use terminal default background color (or transparency)
 
       highlight_groups = {
-        IlluminatedWordRead = { bg = 'overlay', blend = 30 },
+        -- vim-illuminate custom colors
+        IlluminatedWordText = { bg = 'highlight_med', blend = 40 },
+        IlluminatedWordRead = { bg = 'highlight_med', blend = 40 },
+        IlluminatedWordWrite = { bg = 'highlight_med', blend = 40 },
 
         -- indent-blankline.nvim custom colors
         IblIndent = { fg = 'overlay' },
