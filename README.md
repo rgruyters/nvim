@@ -176,6 +176,7 @@ The following plugins are availabile in the current setup:
 - [vim-fugitive](https://github.com/tpope/vim-fugitive)
 - [conform.nvim](https://github.com/stevearc/conform.nvim)
 - [nvim-lint](https://github.com/mfussenegger/nvim-lint)
+- [cloak.nvim](https://github.com/laytan/cloak.nvim)
 
 ### Breaking changes
 
