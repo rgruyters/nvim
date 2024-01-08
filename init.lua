@@ -32,9 +32,6 @@ require('custom.options')
 --  You can also configure plugins after the setup call,
 --  as they will be available in your neovim runtime.
 require('lazy').setup({
-  install = {
-    colorscheme = { 'catppuccin' },
-  },
   checker = { enabled = false }, -- do not check automatically for plugin updates
   defaults = {
     -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
