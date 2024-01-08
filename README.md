@@ -143,7 +143,6 @@ The following plugins are availabile in the current setup:
 
 - [lazy](https://github.com/folke/lazy.nvim)
 - [plenary](https://github.com/nvim-lua/plenary.nvim)
-- [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
 - [Comment.nvim](https://github.com/numToStr/Comment.nvim)
 - [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
 - [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
@@ -173,6 +172,7 @@ The following plugins are availabile in the current setup:
 - [align.nvim](https://github.com/Vonr/align.nvim)
 - [undotree](https://github.com/mbbill/undotree)
 - [catppucchin](https://github.com/catppuccin/nvim)
+- [rose pine](https://github.com/rose-pine/neovim)
 - [vim-fugitive](https://github.com/tpope/vim-fugitive)
 - [conform.nvim](https://github.com/stevearc/conform.nvim)
 - [nvim-lint](https://github.com/mfussenegger/nvim-lint)
