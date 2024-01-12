@@ -15,7 +15,12 @@ return {
 
         -- indent-blankline.nvim custom colors
         IblIndent = { fg = 'overlay' },
-        IblScope = { fg = 'text' },
+        IblScope = { fg = 'foam' },
+
+        -- Give Telescope titles own color
+        TelescopeTitle = { fg = "base", bg = "love" },
+        TelescopePromptTitle = { fg = "base", bg = "pine" },
+        TelescopePreviewTitle = { fg = "base", bg = "iris" },
       },
     },
     init = function()
