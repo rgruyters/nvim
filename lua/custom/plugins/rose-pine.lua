@@ -5,9 +5,11 @@ return {
     priority = 1000,
     opts = {
       dark_variant = 'moon',
-      disable_background = true, -- Use terminal default background color (or transparency)
 
       highlight_groups = {
+        -- change background color to the same color as for terminal
+        Normal = { bg = '#1e1e2e' },
+
         -- vim-illuminate custom colors
         IlluminatedWordText = { bg = 'highlight_med', blend = 40 },
         IlluminatedWordRead = { bg = 'highlight_med', blend = 40 },
