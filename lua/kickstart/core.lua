@@ -123,11 +123,13 @@ return {
 
       ls.setup() -- setup luasnip with default settings
 
+      -- stylua: ignore start
       vim.keymap.set({ 'i', 's' }, '<C-j>', function() if ls.choice_active() then ls.change_choice(1) end end)
       vim.keymap.set({ 'i', 's' }, '<C-k>', function() if ls.choice_active() then ls.change_choice(-1) end end)
       vim.keymap.set('i', '<tab>', function() return ls.jumpable(1) and '<Plug>luasnip-jump-next' or '<tab>' end, { expr = true, silent = true })
       vim.keymap.set('s', '<tab>', function() require("luasnip").jump(1) end)
       vim.keymap.set({ 'i', 's' }, '<s-tab>', function() ls.jump(-1) end)
+      -- stylua: ignore end
     end,
   },
 
@@ -188,26 +190,18 @@ return {
           return '<Ignore>'
         end, { expr = true, buffer = bufnr, desc = 'Jump to previous hunk' })
 
+        -- stylua: ignore start
         vim.keymap.set('n', '<leader>hs', require('gitsigns').stage_hunk, { buffer = bufnr, desc = 'Stage Hunk' })
         vim.keymap.set('n', '<leader>hr', require('gitsigns').reset_hunk, { buffer = bufnr, desc = 'Reset Hunk' })
         vim.keymap.set('n', '<leader>hS', require('gitsigns').stage_buffer, { buffer = bufnr, desc = 'Stage Buffer' })
-        vim.keymap.set(
-          'n',
-          '<leader>hu',
-          require('gitsigns').undo_stage_hunk,
-          { buffer = bufnr, desc = 'Undo Stage Hunk' }
-        )
+        vim.keymap.set('n', '<leader>hu', require('gitsigns').undo_stage_hunk, { buffer = bufnr, desc = 'Undo Stage Hunk' })
         vim.keymap.set('n', '<leader>hR', require('gitsigns').reset_buffer, { buffer = bufnr, desc = 'Reset Buffer' })
         vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview Hunk' })
         vim.keymap.set('n', '<leader>hb', require('gitsigns').blame_line, { buffer = bufnr, desc = 'Blame Line' })
-        vim.keymap.set(
-          'n',
-          '<leader>tb',
-          require('gitsigns').toggle_current_line_blame,
-          { buffer = bufnr, desc = 'Toggle Line Blame' }
-        )
+        vim.keymap.set('n', '<leader>tb', require('gitsigns').toggle_current_line_blame, { buffer = bufnr, desc = 'Toggle Line Blame' })
         vim.keymap.set('n', '<leader>hd', require('gitsigns').diffthis, { buffer = bufnr, desc = 'Diff This' })
         vim.keymap.set('n', '<leader>td', require('gitsigns').blame_line, { buffer = bufnr, desc = 'Toggle Deleted' })
+        -- stylua: ignore start
       end,
     },
   },
@@ -336,6 +330,7 @@ return {
     config = function(_, opts)
       local builtin = require('telescope.builtin')
 
+      -- stylua: ignore start
       vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })
       vim.keymap.set('n', '<leader>?', builtin.oldfiles, { desc = '[?] Find recently opened files' })
       vim.keymap.set('n', '<leader><space>', builtin.buffers, { desc = '[ ] Find existing buffers' })
@@ -348,6 +343,7 @@ return {
       vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[F]ind [D]iagnostics' })
       vim.keymap.set('n', '<leader>gc', builtin.git_commits, { desc = '[G]it [C]ommits' })
       vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[F]ind [K]eymaps' })
+      -- stylua: ignore end
 
       require('telescope').setup(opts)
     end,
