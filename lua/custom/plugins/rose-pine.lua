@@ -15,10 +15,6 @@ return {
         IlluminatedWordRead = { bg = 'highlight_med', blend = 40 },
         IlluminatedWordWrite = { bg = 'highlight_med', blend = 40 },
 
-        -- indent-blankline.nvim custom colors
-        IblIndent = { fg = 'overlay' },
-        IblScope = { fg = 'foam' },
-
         -- Give Telescope titles own color
         TelescopeTitle = { fg = "base", bg = "love" },
         TelescopePromptTitle = { fg = "base", bg = "pine" },
