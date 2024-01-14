@@ -35,6 +35,7 @@ return {
     Value = '',
     Variable = '',
     Copilot = '',
+    Codeium = '󰘦 ',
   },
   git = {
     added = '',
