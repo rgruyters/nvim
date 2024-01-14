@@ -375,12 +375,16 @@ return {
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    event = { 'BufReadPost', 'BufNewFile' },
+    event = { 'VeryLazy' },
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
     build = ':TSUpdate',
     -- See `:help nvim-treesitter`
+    init = function(plugin)
+      require('lazy.core.loader').add_to_rtp(plugin)
+      require('nvim-treesitter.query_predicates')
+    end,
     opts = {
       -- Add languages to be installed here that you want installed for treesitter
       ensure_installed = {
