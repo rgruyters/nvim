@@ -230,7 +230,7 @@ return {
       -- show number of spaces that is used for current buffer
       local spaces = {
         function()
-          return icons.misc.Spaces .. ' ' .. vim.api.nvim_buf_get_option(0, 'shiftwidth')
+          return icons.misc.Spaces .. ' ' .. vim.api.nvim_get_option_value('shiftwidth', { buf = 0 })
         end,
       }
 
