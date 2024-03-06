@@ -1,20 +1,18 @@
 return {
-  'telescope.nvim',
-  dependencies = {
-    'ahmedkhalf/project.nvim',
-    event = 'VeryLazy',
-    cmd = 'Telescope projects',
-    keys = {
-      { '<leader>fp', '<cmd>Telescope projects<CR>', desc = '[F]ind [P]rojects' },
-    },
-    opts = {
-      detection_methods = { 'pattern' },
-    },
-    config = function(_, opts)
-      require('project_nvim').setup(opts)
-      require('telescope').load_extension('projects')
-    end,
+  'ahmedkhalf/project.nvim',
+  dependencies = 'telescope.nvim',
+  event = 'VeryLazy',
+  cmd = 'Telescope projects',
+  keys = {
+    { '<leader>fp', '<cmd>Telescope projects<CR>', desc = '[F]ind [P]rojects' },
   },
+  opts = {
+    detection_methods = { 'pattern' },
+  },
+  config = function(_, opts)
+    require('project_nvim').setup(opts)
+    require('telescope').load_extension('projects')
+  end,
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
