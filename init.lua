@@ -917,6 +917,10 @@ require('lazy').setup({
 
   require('custom.plugins.telescope-project'),
   require('custom.plugins.surround'),
+  require('custom.plugins.trouble'),
+  require('custom.plugins.undotree'),
+  require('custom.plugins.webdev-icons'),
+  require('custom.plugins.copilot'),
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
