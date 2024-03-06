@@ -726,13 +726,11 @@ require('lazy').setup({
       --    set up the ones that are useful for you.
       -- 'rafamadriz/friendly-snippets',
     },
-    config = function()
-      -- See `:help cmp`
+    opts = function()
       local cmp = require('cmp')
       local luasnip = require('luasnip')
-      luasnip.config.setup({})
 
-      cmp.setup({
+      return {
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -784,7 +782,15 @@ require('lazy').setup({
           { name = 'luasnip' },
           { name = 'path' },
         },
-      })
+      }
+    end,
+    config = function(_, opts)
+      -- See `:help cmp`
+      local cmp = require('cmp')
+      local luasnip = require('luasnip')
+      luasnip.config.setup({})
+
+      cmp.setup(opts)
     end,
   },
 
