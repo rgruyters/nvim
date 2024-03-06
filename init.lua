@@ -148,6 +148,9 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- Enable format on save
+vim.g.confirm_save_format = true
+
 -- [[ Custom Options ]]
 require('custom.options')
 
@@ -666,10 +669,14 @@ require('lazy').setup({
     'stevearc/conform.nvim',
     opts = {
       notify_on_error = false,
-      format_on_save = {
-        timeout_ms = 500,
-        lsp_fallback = true,
-      },
+      format_on_save = function()
+        if vim.g.confirm_save_format then
+          return {
+            timeout_ms = 500,
+            lsp_fallback = true,
+          }
+        end
+      end,
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
