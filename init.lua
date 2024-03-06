@@ -789,6 +789,17 @@ require('lazy').setup({
           { name = 'luasnip' },
           { name = 'path' },
         },
+        formatting = {
+          format = function(_, item)
+            local icons = require('custom.icons')
+
+            if icons.kind[item.kind] then
+              item.kind = icons.kind[item.kind] .. ' ' .. item.kind
+            end
+
+            return item
+          end,
+        },
       }
     end,
     config = function(_, opts)
