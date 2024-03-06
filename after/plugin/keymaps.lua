@@ -1,15 +1,5 @@
--- Disable arrow keys
-vim.keymap.set('', '<Up>', '<cmd>echo "Use j"<CR>')
-vim.keymap.set('', '<Down>', '<cmd>echo "Use k"<CR>')
-vim.keymap.set('', '<Left>', '<cmd>echo "Use h"<CR>')
-vim.keymap.set('', '<Right>', '<cmd>echo "Use l"<CR>')
-
 -- Normal --
 -- Better window navigation
-vim.keymap.set('n', '<C-h>', '<C-w>h', { silent = true })
-vim.keymap.set('n', '<C-j>', '<C-w>j', { silent = true })
-vim.keymap.set('n', '<C-k>', '<C-w>k', { silent = true })
-vim.keymap.set('n', '<C-l>', '<C-w>l', { silent = true })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { silent = true })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { silent = true })
 vim.keymap.set('n', 'n', 'nzz', { silent = true })
@@ -45,4 +35,5 @@ vim.keymap.set('v', '>', '>gv', { silent = true })
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { silent = true }) -- Move visual up
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { silent = true }) -- Move visual down
 
+-- LSP
 vim.keymap.set('n', '<leader>cf', '<cmd>Format<CR>', { desc = 'Format Buffer' })
