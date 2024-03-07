@@ -933,6 +933,8 @@ require('lazy').setup({
   require('kickstart.plugins.lualine'),
 
   require('custom.plugins.telescope-project'),
+  require('custom.plugins.treesitter-context'),
+  require('custom.plugins.trouble'),
   require('custom.plugins.surround'),
   require('custom.plugins.trouble'),
   require('custom.plugins.undotree'),
