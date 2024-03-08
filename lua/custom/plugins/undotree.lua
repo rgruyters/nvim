@@ -1,7 +1,9 @@
--- Plugin: Undotree
+-- Undotree visualizes the undo history and makes it easy to browse and switch
+-- between different undo branches.
 return {
   {
     'mbbill/undotree',
+    event = { 'BufReadPost', 'BufNewFile' },
     keys = {
       { '<leader>u', '<cmd>UndotreeToggle<CR>', desc = 'Toggle Undotree' },
     },

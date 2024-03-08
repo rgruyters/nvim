@@ -1,3 +1,4 @@
+-- Telescope extension to list and switch between projects
 return {
   'ahmedkhalf/project.nvim',
   dependencies = 'telescope.nvim',

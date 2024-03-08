@@ -1,3 +1,4 @@
+-- Pretty icons for Neovim built-in LSP, Treesitter, and more.
 return {
   'nvim-tree/nvim-web-devicons',
   event = { 'BufReadPost', 'BufNewFile' },

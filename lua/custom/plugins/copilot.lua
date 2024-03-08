@@ -1,5 +1,9 @@
+-- Bring AI to Neovim with Github Copilot.
+-- GitHub Copilot uses OpenAI Codex to suggest code and entire functions in
+-- real-time right from your editor. Trained on billions of lines of public code,
+-- GitHub Copilot turns natural language prompts including comments and method
+-- names into coding suggestions across dozens of languages.
 return {
-  -- Plugin: GitHub Copilot
   {
     'zbirenbaum/copilot.lua',
     cmd = 'Copilot',
@@ -17,6 +21,7 @@ return {
       vim.keymap.set('n', '<leader>ct', '<CMD>Copilot toggle<CR>', { desc = 'Toggle Github Copilot', silent = true })
     end,
   },
+  -- Update lualine to show copilot status
   {
     'nvim-lualine/lualine.nvim',
     optional = true,
@@ -36,7 +41,7 @@ return {
       })
     end,
   },
-  -- Plugin: GitHub Copilot completion integration
+  -- use Github copilot as a completion source
   {
     'nvim-cmp',
     event = { 'InsertEnter' },
@@ -58,7 +63,7 @@ return {
         end)
       end,
     },
-    ---@param opts cmp.ConfigSchema
+    -- Add copilot as the first source
     opts = function(_, opts)
       table.insert(opts.sources, 1, {
         name = 'copilot',
