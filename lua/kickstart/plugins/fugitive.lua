@@ -5,7 +5,6 @@ return {
   {
     -- See `:help Git`
     'tpope/vim-fugitive',
-    event = { 'BufReadPre', 'BufNewFile' },
     cmd = 'Git',
     init = function()
       -- stylua: ignore start
