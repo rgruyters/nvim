@@ -933,27 +933,20 @@ require('lazy').setup({
   --
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
-  require('kickstart.plugins.fugitive'),
   require('kickstart.plugins.friendly-snippets'),
-  require('kickstart.plugins.lualine'),
+  require('kickstart.plugins.fugitive'),
   require('kickstart.plugins.indent_line'),
-
-  require('custom.plugins.telescope-project'),
-  require('custom.plugins.treesitter-context'),
-  require('custom.plugins.trouble'),
-  require('custom.plugins.surround'),
-  require('custom.plugins.trouble'),
-  require('custom.plugins.undotree'),
-  require('custom.plugins.webdev-icons'),
-  require('custom.plugins.copilot'),
+  require('kickstart.plugins.lualine'),
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   { import = 'custom.extras' },
+}, {
+  change_detection = { notify = false }, -- disable changes notifications
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
