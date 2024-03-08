@@ -2,6 +2,7 @@ return {
   -- Add a bunch of pre-configured snippets. Custom snippets can be added to
   -- the `snippets/` folder in the root of the project.
   'L3MON4D3/LuaSnip',
+  event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
     'rafamadriz/friendly-snippets',
     event = 'InsertEnter',
