@@ -13,7 +13,7 @@ return {
         shorting_target = 40,
       }
 
-      -- show number of spaces that is used for current buffer
+      -- show number of spaces that is used for current buffer with additional icon
       local spaces = {
         function()
           return icons.misc.Spaces .. ' ' .. vim.api.nvim_get_option_value('shiftwidth', { buf = 0 })
