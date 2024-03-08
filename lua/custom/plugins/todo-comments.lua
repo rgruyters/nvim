@@ -1,4 +1,4 @@
--- Plugin: highlight todo comments
+-- highlight and search for todo comments like `TODO`, `FIXME`, `HACK`, etc.
 return {
   {
     'folke/todo-comments.nvim',
@@ -7,10 +7,12 @@ return {
     cmd = { 'TodoTrouble', 'TodoTelescope' },
     config = true,
     keys = {
-      { ']t',         function() require('todo-comments').jump_next() end, desc = 'Next todo comment' },
-      { '[t',         function() require('todo-comments').jump_prev() end, desc = 'Previous todo comment' },
-      { '<leader>xt', '<cmd>TodoTrouble<cr>',                              desc = 'Todo (Trouble)' },
-      { '<leader>ft', '<cmd>TodoTelescope keywords=TODO,FIX,HACK<CR>',     desc = 'Telescope: [F]ind [T]odo' }
+      -- stylua: ignore start
+      { ']t', function() require('todo-comments').jump_next() end, desc = 'Next todo comment', },
+      { '[t', function() require('todo-comments').jump_prev() end, desc = 'Previous todo comment', },
+      { '<leader>xt', '<cmd>TodoTrouble<cr>', desc = 'Todo (Trouble)' },
+      { '<leader>ft', '<cmd>TodoTelescope keywords=TODO,FIX,HACK<CR>', desc = 'Telescope: [F]ind [T]odo' },
+      -- stylua: ignore end
     },
   },
 }
