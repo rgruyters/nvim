@@ -932,6 +932,7 @@ require('lazy').setup({
   require('kickstart.plugins.fugitive'),
   require('kickstart.plugins.friendly-snippets'),
   require('kickstart.plugins.lualine'),
+  require('kickstart.plugins.indent_line'),
 
   require('custom.plugins.telescope-project'),
   require('custom.plugins.treesitter-context'),
