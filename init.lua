@@ -837,7 +837,7 @@ require('lazy').setup({
 
       highlight_groups = {
         -- change background color to the same color as for terminal
-        Normal = { bg = '#1e1e2e' },
+        Normal = { bg = 'none' },
 
         -- vim-illuminate custom colors
         IlluminatedWordText = { bg = 'highlight_med', blend = 40 },
