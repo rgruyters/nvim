@@ -801,6 +801,7 @@ require('lazy').setup({
           { name = 'path' },
         },
         formatting = {
+          -- show icons next to completion items
           format = function(_, item)
             local icons = require('custom.icons')
 
@@ -867,6 +868,7 @@ require('lazy').setup({
     opts = { signs = false },
   },
 
+  -- Using lualine for status
   -- { -- Collection of various small independent plugins/modules
   --   'echasnovski/mini.nvim',
   --   config = function()
@@ -939,7 +941,6 @@ require('lazy').setup({
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
   require('kickstart.plugins.friendly-snippets'),
   require('kickstart.plugins.fugitive'),
   require('kickstart.plugins.indent_line'),
