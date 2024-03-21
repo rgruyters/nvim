@@ -21,7 +21,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   pattern = { '' },
   callback = function()
     local get_project_dir = function()
-      local cwd = vim.fn.getcwd()
+      local cwd = vim.fn.getcwd() or ''
       local project_dir = vim.split(cwd, '/')
       local project_name = project_dir[#project_dir]
       return project_name
@@ -39,3 +39,20 @@ vim.api.nvim_create_user_command('Format', function()
     vim.lsp.buf.format()
   end
 end, { desc = 'Format current buffer' })
+
+vim.api.nvim_create_autocmd('VimEnter', {
+  desc = 'Auto select virtualenv Nvim open',
+  pattern = '*',
+  callback = function()
+    local venv = vim.fn.findfile('pyproject.toml', vim.fn.getcwd() .. ';')
+    if venv ~= '' then
+      local venv_selector_okay, venv_selector = pcall(require, 'venv-selector')
+      if venv_selector_okay then
+        venv_selector.retrieve_from_cache()
+      else
+        return
+      end
+    end
+  end,
+  once = true,
+})
