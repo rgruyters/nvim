@@ -12,9 +12,6 @@ return {
     opts = {
       suggestion = { enabled = false },
       panel = { enabled = false },
-      filetypes = {
-        lua = true,
-      },
     },
     config = function(_, opts)
       require('copilot').setup(opts)
