@@ -55,37 +55,37 @@ So let's fix that
 
 First we'll fix copy/paste
 
-- On Mac `pbcopy` should be builtin
+-   On Mac `pbcopy` should be builtin
 
-- On Ubuntu
+-   On Ubuntu
 
-  ```sh
-  sudo apt install xsel # for X11
-  sudo apt install wl-clipboard # for wayland
-  ```
+    ```sh
+    sudo apt install xsel # for X11
+    sudo apt install wl-clipboard # for wayland
+    ```
 
 Next we need to install Python support (node is optional)
 
-- Neovim python support
+-   Neovim python support
 
-  ```sh
-  pip install pynvim
-  ```
+    ```sh
+    pip install pynvim
+    ```
 
-- Neovim node support
+-   Neovim node support
 
-  ```sh
-  npm i -g neovim
-  ```
+    ```sh
+    npm i -g neovim
+    ```
 
 We will also need `ripgrep` for Telescope to work:
 
-- Ripgrep
+-   Ripgrep
 
-  ```sh
-  brew install ripgrep # for Mac
-  sudo apt install ripgrep # for Ubuntu
-  ```
+    ```sh
+    brew install ripgrep # for Mac
+    sudo apt install ripgrep # for Ubuntu
+    ```
 
 ---
 
@@ -133,65 +133,58 @@ Custom LSP settings can be added to [lua/custom/extras/lang](https://github.com/
 
 The current setup uses two files for installing and implementing plugins:
 
-- [core][1] - The minimum of plugins to use within Neovim
-- [custom][2] - Any extra plugins that I want to use or test out
+-   [init][1] - [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim), minimum of plugins to use
+-   [custom][2] - Any extra plugins that I want to use or test out
 
 If you want to add more plugins, the best place is to add them in the
 [custom][2] plugin folder.
 
 The following plugins are availabile in the current setup:
 
-- [lazy](https://github.com/folke/lazy.nvim)
-- [plenary](https://github.com/nvim-lua/plenary.nvim)
-- [Comment.nvim](https://github.com/numToStr/Comment.nvim)
-- [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
-- [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
-- [vim-bbye](https://github.com/moll/vim-bbye)
-- [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
-- [project.nvim](https://github.com/ahmedkhalf/project.nvim)
-- [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
-- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
-- [cmp-buffer](https://github.com/hrsh7th/cmp-buffer)
-- [cmp-path](https://github.com/hrsh7th/cmp-path)
-- [cmp-cmdline](https://github.com/hrsh7th/cmp-cmdline)
-- [cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)
-- [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
-- [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
-- [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
-- [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
-- [mason.nvim](https://github.com/williamboman/mason.nvim)
-- [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
-- [vim-illuminate](https://github.com/RRethy/vim-illuminate)
-- [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
-- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-- [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context)
-- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
-- [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
-- [nvim-surround](https://github.com/kylechui/nvim-surround)
-- [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
-- [align.nvim](https://github.com/Vonr/align.nvim)
-- [undotree](https://github.com/mbbill/undotree)
-- [catppucchin](https://github.com/catppuccin/nvim)
-- [rose pine](https://github.com/rose-pine/neovim)
-- [vim-fugitive](https://github.com/tpope/vim-fugitive)
-- [conform.nvim](https://github.com/stevearc/conform.nvim)
-- [nvim-lint](https://github.com/mfussenegger/nvim-lint)
-- [cloak.nvim](https://github.com/laytan/cloak.nvim)
+-   [Comment.nvim](https://github.com/numToStr/Comment.nvim)
+-   [LuaSnip](https://github.com/L3MON4D3/LuaSnip)
+-   [cmp-cmdline](https://github.com/hrsh7th/cmp-cmdline)
+-   [cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
+-   [cmp-path](https://github.com/hrsh7th/cmp-path)
+-   [cmp_luasnip](https://github.com/saadparwaiz1/cmp_luasnip)
+-   [conform.nvim](https://github.com/stevearc/conform.nvim)
+-   [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
+-   [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
+-   [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
+-   [lazy](https://github.com/folke/lazy.nvim)
+-   [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
+-   [markdown-preview.nvim](https://github.com/iamcco/markdown-preview.nvim)
+-   [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim)
+-   [mason.nvim](https://github.com/williamboman/mason.nvim)
+-   [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+-   [nvim-lint](https://github.com/mfussenegger/nvim-lint)
+-   [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
+-   [nvim-surround](https://github.com/kylechui/nvim-surround)
+-   [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context)
+-   [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+-   [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
+-   [plenary](https://github.com/nvim-lua/plenary.nvim)
+-   [project.nvim](https://github.com/ahmedkhalf/project.nvim)
+-   [rose pine](https://github.com/rose-pine/neovim)
+-   [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+-   [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
+-   [undotree](https://github.com/mbbill/undotree)
+-   [vim-fugitive](https://github.com/tpope/vim-fugitive)
+-   [vim-sleuth](https://github.com/tpope/vim-sleuth)
 
 ### Breaking changes
 
 Some plugins will have breaking changes at some point. Here are some links with
 more information:
 
-- [nvim-treesitter breaking changes](https://github.com/nvim-treesitter/nvim-treesitter/issues/2293)
-- [comments breaking changes](https://github.com/numToStr/Comment.nvim/issues/114)
-- [nvim-cmp breaking changes](https://github.com/hrsh7th/nvim-cmp/issues/231)
-- [luasnip breaking changes](https://github.com/L3MON4D3/LuaSnip/issues/81)
-- [null-ls breaking changes](https://github.com/jose-elias-alvarez/null-ls.nvim/issues/344)
-- [telescope breaking changes](https://github.com/nvim-telescope/telescope.nvim/issues/1470)
-- [gitsigns breaking changes](https://github.com/lewis6991/gitsigns.nvim/issues/453)
-- [nvim-surround breaking changes](https://github.com/kylechui/nvim-surround/issues/77)
-- [catppuccin breaking changes](https://github.com/catppuccin/nvim/issues/260)
+-   [nvim-treesitter breaking changes](https://github.com/nvim-treesitter/nvim-treesitter/issues/2293)
+-   [comments breaking changes](https://github.com/numToStr/Comment.nvim/issues/114)
+-   [nvim-cmp breaking changes](https://github.com/hrsh7th/nvim-cmp/issues/231)
+-   [luasnip breaking changes](https://github.com/L3MON4D3/LuaSnip/issues/81)
+-   [null-ls breaking changes](https://github.com/jose-elias-alvarez/null-ls.nvim/issues/344)
+-   [telescope breaking changes](https://github.com/nvim-telescope/telescope.nvim/issues/1470)
+-   [gitsigns breaking changes](https://github.com/lewis6991/gitsigns.nvim/issues/453)
+-   [nvim-surround breaking changes](https://github.com/kylechui/nvim-surround/issues/77)
 
 ---
 
@@ -200,5 +193,5 @@ more information:
 
 \- Edsger W. Dijkstra
 
-[1]: https://github.com/rgruyters/nvim/tree/main/lua/kickstart/core.lua
+[1]: https://github.com/rgruyters/nvim/tree/main/init.lua
 [2]: https://github.com/rgruyters/nvim/tree/main/lua/custom/plugins
