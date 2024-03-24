@@ -834,12 +834,9 @@ require('lazy').setup({
     priority = 1000, -- make sure to load this before all the other start plugins
     name = 'rose-pine',
     opts = {
-      dark_variant = 'moon',
+      disable_background = true,
 
       highlight_groups = {
-        -- change background color to the same color as for terminal
-        Normal = { bg = 'none' },
-
         -- vim-illuminate custom colors
         IlluminatedWordText = { bg = 'highlight_med', blend = 40 },
         IlluminatedWordRead = { bg = 'highlight_med', blend = 40 },
@@ -847,7 +844,7 @@ require('lazy').setup({
 
         -- Give Telescope titles own color
         TelescopeTitle = { fg = 'base', bg = 'love' },
-        TelescopePromptTitle = { fg = 'base', bg = 'pine' },
+        TelescopePromptTitle = { fg = 'base', bg = 'rose' },
         TelescopePreviewTitle = { fg = 'base', bg = 'iris' },
       },
     },
