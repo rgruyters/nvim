@@ -11,9 +11,9 @@ return {
     'neovim/nvim-lspconfig',
     opts = {
       servers = {
-        pyright = {
+        basedpyright = {
           settings = {
-            pyright = {
+            basedpyright = {
               disableOrganizeImports = false,
             },
             python = {
@@ -29,9 +29,9 @@ return {
                 },
               },
             },
-            ruff_lsp = {},
           },
         },
+        ruff_lsp = {},
       },
     },
     setup = {
@@ -106,8 +106,8 @@ return {
     optional = true,
     opts = function(_, opts)
       local highlight_groups = vim.tbl_deep_extend('force', opts.highlight_groups or {}, {
-        ['@field.python'] = { fg = 'iris' },
-        ['@attribute.python'] = { fg = 'subtle' },
+        ['@lsp.type.variable'] = {},
+        ['@lsp.type.namespace.python'] = { link = '@variable' },
       })
       opts.highlight_groups = highlight_groups
     end,
