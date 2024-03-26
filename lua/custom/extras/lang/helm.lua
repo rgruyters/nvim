@@ -1,6 +1,7 @@
 return {
   {
     'towolf/vim-helm',
+    commit = 'fc2259e',  -- FIXME: there is an issue with gitlab-ci yaml files. This version works
     ft = 'helm',
   },
   {

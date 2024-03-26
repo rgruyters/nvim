@@ -46,3 +46,8 @@ vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { silent = true }) -- Move visual u
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { silent = true }) -- Move visual down
 
 vim.keymap.set('n', '<leader>cf', '<cmd>Format<CR>', { desc = 'Format Buffer' })
+
+-- toggle inlay hints capabilities
+if vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint then
+  vim.keymap.set('n', '<leader>ih', '<cmd>InlayhintsToggle<CR>', { desc = "Toggle Inlay Hints"})
+end
