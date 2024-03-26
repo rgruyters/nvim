@@ -1,4 +1,4 @@
--- Plugin: Surround selections
+-- Is all about "surroundings": parentheses, brackets, quotes, XML tags, and more
 return {
   'kylechui/nvim-surround',
   event = { 'BufReadPost', 'BufNewFile' },

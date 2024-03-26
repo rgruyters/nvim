@@ -16,15 +16,6 @@ return {
       },
     },
   },
-  {
-    'mfussenegger/nvim-lint',
-    optional = true,
-    opts = {
-      linters_by_ft = {
-        dockerfile = { 'hadolint' },
-      },
-    },
-  },
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
