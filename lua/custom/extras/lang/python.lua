@@ -15,6 +15,7 @@ return {
           settings = {
             basedpyright = {
               disableOrganizeImports = false,
+              typeCheckingMode = 'standard',
             },
             python = {
               analysis = {
