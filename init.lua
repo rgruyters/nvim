@@ -149,7 +149,7 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
 -- Enable format on save
-vim.g.confirm_save_format = true
+vim.g.format_on_save = true
 
 -- [[ Custom Options ]]
 require('custom.options')
@@ -674,8 +674,8 @@ require('lazy').setup({
       notify_on_error = false,
       format_on_save = function(bufnr)
         -- You can disable temporarely the format on save by setting by
-        -- setting vim.g.confirm_save_format to false.
-        if vim.g.confirm_save_format then
+        -- setting vim.g.format_on_save to false.
+        if vim.g.format_on_save then
           -- Disable "format_on_save lsp_fallback" for languages that don't
           -- have a well standardized coding style. You can add additional
           -- languages here or re-enable it for the disabled ones.
