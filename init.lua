@@ -834,7 +834,9 @@ require('lazy').setup({
     priority = 1000, -- make sure to load this before all the other start plugins
     name = 'rose-pine',
     opts = {
-      disable_background = true,
+      styles = {
+        transparency = true, -- Enable this to hide the background color
+      },
 
       highlight_groups = {
         -- vim-illuminate custom colors
