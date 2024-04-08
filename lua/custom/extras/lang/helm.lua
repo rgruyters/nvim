@@ -1,7 +1,16 @@
+require('custom.functions').on_attach(function(client, buffer)
+  if client.name == 'yamlls' then
+    if vim.api.nvim_get_option_value('filetype', { buf = buffer }) == 'helm' then
+      vim.schedule(function()
+        vim.cmd('LspStop ++force yamlls')
+      end)
+    end
+  end
+end)
+
 return {
   {
     'towolf/vim-helm',
-    commit = 'fc2259e',  -- FIXME: there is an issue with gitlab-ci yaml files. This version works
     ft = 'helm',
   },
   {
