@@ -63,6 +63,15 @@ return {
     },
   },
   {
+    'mfussenegger/nvim-lint',
+    optional = true,
+    opts = {
+      linters_by_ft = {
+        python = { 'mypy' },
+      },
+    },
+  },
+  {
     -- use own debugging language
     'mfussenegger/nvim-dap-python',
     dependencies = { 'mfussenegger/nvim-dap' },
