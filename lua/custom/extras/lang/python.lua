@@ -116,6 +116,13 @@ return {
     },
     keys = { { '<leader>cv', '<cmd>:VenvSelect<cr>', desc = 'Select VirtualEnv' } },
   },
+  {
+    'andythigpen/nvim-coverage',
+    event = { 'BufReadPre', 'BufNewFile' },
+    dependencies = 'nvim-lua/plenary.nvim',
+    ft = 'python',
+    opts = {},
+  },
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
