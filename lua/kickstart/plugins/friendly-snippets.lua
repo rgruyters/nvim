@@ -12,5 +12,4 @@ return {
       snippets.lazy_load({ paths = { './snippets' } })
     end,
   },
-  enabled = vim.fn.has('nvim-0.10') == 0,
 }
