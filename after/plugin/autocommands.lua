@@ -39,20 +39,3 @@ vim.api.nvim_create_user_command('Format', function()
     vim.lsp.buf.format()
   end
 end, { desc = 'Format current buffer' })
-
-vim.api.nvim_create_autocmd('VimEnter', {
-  desc = 'Auto select virtualenv Nvim open',
-  pattern = '*',
-  callback = function()
-    local venv = vim.fn.findfile('pyproject.toml', vim.fn.getcwd() .. ';')
-    if venv ~= '' then
-      local venv_selector_okay, venv_selector = pcall(require, 'venv-selector')
-      if venv_selector_okay then
-        venv_selector.retrieve_from_cache()
-      else
-        return
-      end
-    end
-  end,
-  once = true,
-})
