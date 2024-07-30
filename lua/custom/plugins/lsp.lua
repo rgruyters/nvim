@@ -28,9 +28,7 @@ return {
           local conform_ok, conform = pcall(require, 'conform')
           if conform_ok then
             local formatters = conform.list_formatters_for_buffer(0)
-            if not conform.will_fallback_lsp() then
-              table.insert(buf_client_names, table.concat(formatters, ', '))
-            end
+            table.insert(buf_client_names, table.concat(formatters, ', '))
           end
 
           local lint_ok, nl = pcall(require, 'lint')
