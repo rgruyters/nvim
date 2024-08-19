@@ -8,9 +8,6 @@
 --  █████  ░░█████░░██████ ░░██████   ░░█████    █████ █████░███ █████
 -- ░░░░░    ░░░░░  ░░░░░░   ░░░░░░     ░░░░░    ░░░░░ ░░░░░ ░░░ ░░░░░
 
--- This Neovim configuration is based on kickstart.nvim project (https://github.com/nvim-lua/kickstart.nvim)
--- Feel free to poke around and get inspired. I use Neovim BTW™
-
 -- [[ Kickstart Options ]]
 require('kickstart.options')
 -- [[ Custom Options ]]
