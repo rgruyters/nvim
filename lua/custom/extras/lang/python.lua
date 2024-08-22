@@ -39,34 +39,39 @@ return {
             },
           },
         },
-        ruff_lsp = {},
+        ruff = {
+          cmd_env = { RUFF_TRACE = 'messages' },
+          init_options = {
+            settings = {
+              logLevel = 'error',
+            },
+          },
+          keys = {
+            {
+              '<leader>co',
+              function()
+                vim.lsp.buf.code_action({
+                  apply = true,
+                  context = {
+                    only = { 'source.organizeImports' },
+                    diagnostics = {},
+                  },
+                })
+              end,
+            },
+          },
+        },
       },
     },
     setup = {
-      ruff_lsp = function()
+      ruff = function()
         require('custom.functions').on_attach(function(client, _)
-          if client.name == 'ruff_lsp' then
+          if client.name == 'ruff' then
             -- Disable hover in favor of Pyright
             client.server_capabilities.hoverProvider = false
           end
         end)
       end,
-    },
-  },
-  {
-    'williamboman/mason.nvim',
-    opts = function(_, opts)
-      opts.ensure_installed = opts.ensure_installed or {}
-      table.insert(opts.ensure_installed, 'black')
-    end,
-  },
-  {
-    'stevearc/conform.nvim',
-    optional = true,
-    opts = {
-      formatters_by_ft = {
-        ['python'] = { 'black' },
-      },
     },
   },
   {
