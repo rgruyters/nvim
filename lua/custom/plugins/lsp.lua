@@ -18,7 +18,7 @@ return {
 
           -- add available LSP clients to buffer client names
           for _, client in pairs(buf_clients) do
-            local filetypes = client.config.filetypes
+            local filetypes = client.config.filetypes ---@diagnostic disable-line:undefined-field
             if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
               table.insert(buf_client_names, client.name)
             end
