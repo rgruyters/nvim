@@ -39,3 +39,7 @@ vim.api.nvim_create_user_command('Format', function()
     vim.lsp.buf.format()
   end
 end, { desc = 'Format current buffer' })
+
+vim.api.nvim_create_user_command('FormatToggle', function()
+  vim.g.format_on_save = not vim.g.format_on_save
+end, { desc = 'Toggle format on save' })
