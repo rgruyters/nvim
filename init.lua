@@ -974,6 +974,7 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
+  require('kickstart.plugins.autopairs'),
   require('kickstart.plugins.debug'),
   require('kickstart.plugins.friendly-snippets'),
   require('kickstart.plugins.fugitive'),
