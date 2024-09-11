@@ -18,11 +18,11 @@ return {
   },
   -- correctly setup lspconfig
   {
-    "neovim/nvim-lspconfig",
+    'neovim/nvim-lspconfig',
     opts = {
       -- make sure mason installs the server
       servers = {
-        tsserver = {
+        ts_ls = {
           settings = {
             typescript = {
               format = {
