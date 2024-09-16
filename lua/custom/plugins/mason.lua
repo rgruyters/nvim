@@ -17,6 +17,13 @@ return {
           if not pkg:is_installed() then
             vim.notify(string.format('Installing %s', pkg_name), vim.log.levels.INFO, { title = 'mason' })
             pkg:install()
+          else
+            -- update installed package to latest version
+            pkg:check_new_version(function(success, result_or_err)
+              if success then
+                pkg:install({ version = result_or_err.latest_version })
+              end
+            end)
           end
         end
       end)
