@@ -395,6 +395,10 @@ require('lazy').setup({
         -- pickers = {}
         defaults = {
           mappings = {
+            n = {
+              --use 'd' to close buffers from bufexplorer
+              ['d'] = require('telescope.actions').delete_buffer,
+            },
             i = {
               ['<C-u>'] = actions.preview_scrolling_up,
               ['<C-d>'] = actions.preview_scrolling_down,
