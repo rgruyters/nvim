@@ -104,9 +104,12 @@ return {
   },
   {
     'linux-cultist/venv-selector.nvim',
+    event = 'VeryLazy',
     cmd = 'VenvSelect',
     branch = 'regexp',
-    opts = {},
+    opts = {
+      auto_refresh = true,
+    },
     keys = { { '<leader>cv', '<cmd>:VenvSelect<cr>', desc = 'Select VirtualEnv' } },
   },
   {
