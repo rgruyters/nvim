@@ -106,7 +106,9 @@ return {
     cmd = 'VenvSelect',
     branch = 'regexp',
     ft = 'python',
-    opts = {},
+    opts = {
+      auto_refresh = true,
+    },
     keys = { { '<leader>cv', '<cmd>:VenvSelect<cr>', desc = 'Select VirtualEnv' } },
   },
   {
