@@ -54,11 +54,9 @@ return {
         copilot_cmp.setup(opts)
         -- attach cmp source whenever copilot attaches
         -- fixes lazy-loading issues with the copilot cmp source
-        require('custom.functions').on_attach(function(client, _)
-          if client.name == 'copilot' then
-            copilot_cmp._on_insert_enter({})
-          end
-        end)
+        require('custom.functions').on_attach(function()
+          copilot_cmp._on_insert_enter({})
+        end, 'copilot')
       end,
     },
     -- Add copilot as the first source

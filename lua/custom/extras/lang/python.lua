@@ -66,11 +66,9 @@ return {
     setup = {
       ruff = function()
         require('custom.functions').on_attach(function(client, _)
-          if client.name == 'ruff' then
-            -- Disable hover in favor of Pyright
-            client.server_capabilities.hoverProvider = false
-          end
-        end)
+          -- Disable hover in favor of Pyright
+          client.server_capabilities.hoverProvider = false
+        end, 'ruff')
       end,
     },
   },
@@ -111,8 +109,10 @@ return {
   },
   {
     'linux-cultist/venv-selector.nvim',
+    event = 'VeryLazy',
     cmd = 'VenvSelect',
     branch = 'regexp',
+    ft = 'python',
     opts = {},
     keys = { { '<leader>cv', '<cmd>:VenvSelect<cr>', desc = 'Select VirtualEnv' } },
   },
