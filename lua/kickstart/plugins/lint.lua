@@ -11,6 +11,44 @@ return {
 
     lint.linters_by_ft = opts.linters_by_ft
 
+    -- Make sure the required linters are installed
+    local function linting(ft)
+      local linters = lint._resolve_linter_by_ft(ft)
+
+      if linters then
+        local registry_avail, registry = pcall(require, 'mason-registry')
+        if not registry_avail then
+          vim.api.nvim_err_writeln('Unable to access Mason registry')
+          return false
+        end
+
+        -- Filter out linters that don't exist or needs to be installed before use
+        linters = vim.tbl_filter(function(name)
+          local linter = lint.linters[name]
+          if not linter then
+            vim.notify(string.format('Cannot find linter %s', linter), vim.log.levels.WARN, { title = 'nvim-lint' })
+            return false
+          end
+
+          -- when Mason has the package in registry, check if the package is installed before use
+          if registry.has_package(name) then
+            local pkg = registry.get_package(name)
+            if not pkg:is_installed() then
+              vim.notify(string.format('Installing %s', name), vim.log.levels.INFO, { title = 'mason' })
+              pkg:install()
+              return false -- no point of running a linter during install
+            end
+          end
+          return true
+        end, linters)
+
+        if #linters > 0 then
+          lint.try_lint(linters)
+        end
+      end
+      return false
+    end
+
     -- create autocmd on events for firing nvim-lint
     vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
       group = vim.api.nvim_create_augroup('nvim-lint', { clear = true }),
