@@ -3,19 +3,32 @@ return {
     'williamboman/mason.nvim',
     cmd = 'Mason',
     build = ':MasonUpdate',
+    opts_extend = { 'ensure_installed' },
     opts = {
-      ensure_installed = {},
+      ensure_installed = {
+        'stylua',
+        'shfmt',
+      },
     },
     config = function(_, opts)
       require('mason').setup(opts)
       local mr = require('mason-registry')
+
+      mr:on('package:install:success', function()
+        vim.defer_fn(function()
+          -- trigger FileType event to possibly load this newly installed LSP server
+          require('lazy.core.handler.event').trigger({
+            event = 'FileType',
+            buf = vim.api.nvim_get_current_buf(),
+          })
+        end, 100)
+      end)
 
       -- check if packages need to be installed
       mr.refresh(function()
         for _, pkg_name in ipairs(opts.ensure_installed) do
           local pkg = mr.get_package(pkg_name)
           if not pkg:is_installed() then
-            vim.notify(string.format('Installing %s', pkg_name), vim.log.levels.INFO, { title = 'mason' })
             pkg:install()
           else
             -- update installed package to latest version
