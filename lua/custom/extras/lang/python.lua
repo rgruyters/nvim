@@ -59,11 +59,9 @@ return {
     setup = {
       ruff = function()
         require('custom.functions').on_attach(function(client, _)
-          if client.name == 'ruff' then
-            -- Disable hover in favor of Pyright
-            client.server_capabilities.hoverProvider = false
-          end
-        end)
+          -- Disable hover in favor of Pyright
+          client.server_capabilities.hoverProvider = false
+        end, 'ruff')
       end,
     },
   },
@@ -107,9 +105,8 @@ return {
     event = 'VeryLazy',
     cmd = 'VenvSelect',
     branch = 'regexp',
-    opts = {
-      auto_refresh = true,
-    },
+    ft = 'python',
+    opts = {},
     keys = { { '<leader>cv', '<cmd>:VenvSelect<cr>', desc = 'Select VirtualEnv' } },
   },
   {
