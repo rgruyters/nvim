@@ -42,9 +42,9 @@ return {
   -- use Github copilot as a completion source
   {
     'nvim-cmp',
-    event = { 'InsertEnter' },
     dependencies = {
       'zbirenbaum/copilot-cmp',
+      optional = true,
       dependencies = {
         'copilot.lua',
       },
