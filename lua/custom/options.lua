@@ -10,6 +10,12 @@ vim.opt.tabstop = 4
 -- Number of spaces that a tab counts for while performing editing operations
 vim.opt.softtabstop = 4
 
+-- Do smart autoindenting when starting a new line
+vim.opt.smartindent = true
+
+-- Don't have `o` add a comment
+vim.opt.formatoptions:remove('o')
+
 -- Netrw settings
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
