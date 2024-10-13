@@ -267,7 +267,7 @@ require('lazy').setup({
           else
             gs.nav_hunk('next')
           end
-        end)
+        end, { desc = 'Jump to next git [c]hange' })
 
         map('n', '[c', function()
           if vim.wo.diff then
@@ -275,7 +275,7 @@ require('lazy').setup({
           else
             gs.nav_hunk('prev')
           end
-        end)
+        end, { desc = 'Jump to previous git [c]hange' })
 
         vim.keymap.set('n', '<leader>hs', require('gitsigns').stage_hunk, { buffer = bufnr, desc = 'Stage Hunk' })
         vim.keymap.set('n', '<leader>hr', require('gitsigns').reset_hunk, { buffer = bufnr, desc = 'Reset Hunk' })
