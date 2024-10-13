@@ -5,6 +5,8 @@ return {
     -- See `:help ibl`
     event = { 'BufReadPre', 'BufNewFile' },
     main = 'ibl',
+    ---@module "ibl"
+    ---@type ibl.config
     opts = {
       indent = {
         char = '│',
