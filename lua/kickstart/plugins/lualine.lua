@@ -4,8 +4,20 @@ return {
     'nvim-lualine/lualine.nvim',
     event = 'VeryLazy',
     -- See `:help lualine.txt`
+    init = function()
+      vim.g.lualine_laststatus = vim.o.laststatus
+      if vim.fn.argc(-1) > 0 then
+        -- set an empty statusline till lualine loads
+        vim.o.statusline = ' '
+      else
+        -- hide the statusline on the starter page
+        vim.o.laststatus = 0
+      end
+    end,
     opts = function()
       local icons = require('custom.icons')
+
+      vim.o.laststatus = vim.g.lualine_laststatus
 
       local filename = {
         'filename',
@@ -24,6 +36,7 @@ return {
         options = {
           icons_enabled = true,
           theme = 'auto',
+          globalstatus = vim.o.laststatus == 3,
           component_separators = { left = '|', right = '' },
           section_separators = '',
           disabled_filetypes = { statusline = { 'dashboard', 'alpha' } },

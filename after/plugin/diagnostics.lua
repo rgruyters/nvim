@@ -1,10 +1,10 @@
-local icons = require('custom.icons')
+local diagnostic_icons = require('custom.icons').diagnostics
 
 local signs = {
-  { name = 'DiagnosticSignError', text = icons.diagnostics.Error },
-  { name = 'DiagnosticSignWarn', text = icons.diagnostics.Warning },
-  { name = 'DiagnosticSignHint', text = icons.diagnostics.Hint },
-  { name = 'DiagnosticSignInfo', text = icons.diagnostics.Information },
+  { name = 'DiagnosticSignError', text = diagnostic_icons.Error },
+  { name = 'DiagnosticSignWarn', text = diagnostic_icons.Warning },
+  { name = 'DiagnosticSignHint', text = diagnostic_icons.Hint },
+  { name = 'DiagnosticSignInfo', text = diagnostic_icons.Information },
 }
 
 -- define signs when diagnostics kicks in
