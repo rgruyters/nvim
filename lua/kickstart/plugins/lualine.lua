@@ -26,6 +26,7 @@ return {
           theme = 'auto',
           component_separators = { left = '|', right = '' },
           section_separators = '',
+          disabled_filetypes = { statusline = { 'dashboard', 'alpha' } },
         },
         sections = {
           lualine_a = { 'mode' },
