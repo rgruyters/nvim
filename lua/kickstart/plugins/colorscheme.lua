@@ -9,9 +9,8 @@ return {
     priority = 1000, -- make sure to load this before all the other start plugins
     name = 'rose-pine',
     opts = {
-      styles = {
-        transparency = true, -- Enable this to hide the background color
-      },
+      -- Differentiate between active and inactive windows and panels
+      dim_inactive_windows = true,
 
       highlight_groups = {
         -- vim-illuminate custom colors
