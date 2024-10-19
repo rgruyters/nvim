@@ -29,7 +29,7 @@ return {
           center = {
             { action = 'lua require("telescope.builtin").find_files()',  desc = " Find File",       icon = " ", key = "f" },
             { action = "ene | startinsert",                              desc = " New File",        icon = " ", key = "n" },
-            { action = 'lua require("telescope.builtin").old_files()',   desc = " Recent Files",    icon = " ", key = "r" },
+            { action = 'lua require("telescope.builtin").oldfiles()',    desc = " Recent Files",    icon = " ", key = "r" },
             { action = 'lua require("telescope.builtin").live_grep()',   desc = " Find Text",       icon = " ", key = "g" },
             { action = "Lazy",                                           desc = " Lazy",            icon = "󰒲 ", key = "l" },
             { action = function() vim.api.nvim_input("<cmd>qa<cr>") end, desc = " Quit",            icon = " ", key = "q" },
