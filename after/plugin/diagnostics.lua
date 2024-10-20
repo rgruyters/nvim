@@ -14,7 +14,11 @@ end
 
 -- bare minimum for diagnostics
 local diagnostic_config = {
-  virtual_text = true,
+  virtual_text = {
+    spacing = 4,
+    source = 'if_many',
+    prefix = '●',
+  },
   signs = {
     active = signs, -- show signs
   },
@@ -28,6 +32,32 @@ local diagnostic_config = {
     source = 'always',
     header = '',
     prefix = '',
+  },
+  -- Enable this to enable the builtin LSP inlay hints on Neovim >= 0.10.0
+  -- Be aware that you also will need to properly configure your LSP server to
+  -- provide the inlay hints.
+  inlay_hints = {
+    enabled = true,
+    exclude = { 'vue' }, -- filetypes for which you don't want to enable inlay hints
+  },
+  -- Enable this to enable the builtin LSP code lenses on Neovim >= 0.10.0
+  -- Be aware that you also will need to properly configure your LSP server to
+  -- provide the code lenses.
+  codelens = {
+    enabled = false,
+  },
+  -- Enable lsp cursor word highlighting
+  document_highlight = {
+    enabled = true,
+  },
+  -- add any global capabilities here
+  capabilities = {
+    workspace = {
+      fileOperations = {
+        didRename = true,
+        willRename = true,
+      },
+    },
   },
 }
 
