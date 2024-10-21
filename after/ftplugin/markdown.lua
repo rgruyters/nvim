@@ -1,1 +1,1 @@
-vim.cmd('set tw=80 wrap linebreak')
+vim.cmd('set colorcolumn=120')
