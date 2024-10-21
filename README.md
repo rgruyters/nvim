@@ -121,13 +121,22 @@ automatically enable the LSP for the particular file type.
 
 My setup uses some [conform.nvim](https://github.com/stevearc/conform.nvim) for
 formatting and [nvim-lint](https://github.com/mfussenegger/nvim-lint) for
-linting. It will install via [mason](https://github.com/williamboman/mason.nvim)
+linting. Required plugins can be installed via [mason](https://github.com/williamboman/mason.nvim)
 
 **NOTE** Some are already setup as examples, remove them if you want
 
 ### LSP Settings
 
 Custom LSP settings can be added to [lua/custom/extras/lang](https://github.com/rgruyters/nvim/tree/main/lua/custom/extras/lang) as an own language file.
+
+#### Additional Notes for LSPs
+
+When using Puppet LSP (`puppet-editor-services`), additional packages are required before use. Common error message is
+`An error occured while starting the Language Server`.
+
+The following needs to be installed or available:
+
+-   Puppet GEM (`gem install puppet`)
 
 ### Plugins
 
