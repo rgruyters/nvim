@@ -23,3 +23,6 @@ vim.g.netrw_winsize = 25
 
 -- always write files as utf-8
 vim.g.fileencoding = 'utf-8'
+
+-- only the last window will always have a status line
+vim.opt.laststatus = 3
