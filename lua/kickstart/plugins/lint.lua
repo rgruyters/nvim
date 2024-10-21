@@ -15,7 +15,13 @@ return {
     vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
       group = vim.api.nvim_create_augroup('nvim-lint', { clear = true }),
       callback = function()
-        lint.try_lint()
+        -- Do not execute linting on read-only buffers. This can get quite
+        -- annoying when (e.g.) entering a LSP hover window.
+        -- Besides that, there is no point for linting on read-only buffers.
+        -- They cannot be updated.
+        if vim.opt_local.modifiable:get() then
+          lint.try_lint()
+        end
       end,
     })
 
