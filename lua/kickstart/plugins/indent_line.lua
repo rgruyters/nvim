@@ -16,6 +16,16 @@ return {
         show_start = false,
         show_end = false,
       },
+      exclude = {
+        filetypes = {
+          'help',
+          'dashboard',
+          'Trouble',
+          'trouble',
+          'lazy',
+          'mason',
+        },
+      },
     },
   },
 }
