@@ -9,7 +9,6 @@ return {
     ---@class trouble.Config
     opts = {},
     keys = function()
-      local trouble = require('trouble')
       local keys = {
         { '<leader>xx', '<cmd>Trouble diagnostics toggle<cr>', desc = 'Document Diagnostics (Trouble)' },
         { '<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', desc = 'Workspace Diagnostics (Trouble)' },
@@ -22,7 +21,9 @@ return {
       table.insert(keys, {
         '[q',
         function()
+          local trouble = require('trouble')
           if trouble.is_open() then
+            ---@diagnostic disable-next-line: missing-parameter, missing-fields
             trouble.prev({ skip_groups = true, jump = true })
           else
             local ok, err = pcall(vim.cmd.cprev)
@@ -36,8 +37,10 @@ return {
       table.insert(table, {
         ']q',
         function()
-          if require('trouble').is_open() then
-            require('trouble').next({ skip_groups = true, jump = true })
+          local trouble = require('trouble')
+          if trouble.is_open() then
+            ---@diagnostic disable-next-line: missing-parameter, missing-fields
+            trouble.next({ skip_groups = true, jump = true })
           else
             local ok, err = pcall(vim.cmd.cnext)
             if not ok then

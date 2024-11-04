@@ -1,7 +1,7 @@
 -- enhanced builtin nvim comments
 return {
   'folke/ts-comments.nvim',
-  event = 'VeryLazy',
+  event = { 'BufReadPost' },
   opts = {},
   enabled = vim.fn.has('nvim-0.10') == 1,
 }

@@ -109,7 +109,6 @@ return {
   },
   {
     'linux-cultist/venv-selector.nvim',
-    event = 'VeryLazy',
     cmd = 'VenvSelect',
     branch = 'regexp',
     ft = 'python',
