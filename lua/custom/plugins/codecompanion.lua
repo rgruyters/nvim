@@ -16,23 +16,11 @@ return {
     opts = {
       strategies = {
         chat = {
-          adapter = 'ollama',
+          adapter = 'anthropic',
         },
         inline = {
-          adapter = 'ollama',
+          adapter = 'anthropic',
         },
-      },
-      adapters = {
-        llama3 = function()
-          return require('codecompanion.adapters').extend('ollama', {
-            name = 'deepseek-coder', -- Give this adapter a different name to differentiate it from the default ollama adapter
-            schema = {
-              model = {
-                default = 'deepseek-coder-v2:latest',
-              },
-            },
-          })
-        end,
       },
     },
     config = function(_, opts)
