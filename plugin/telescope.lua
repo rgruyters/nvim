@@ -7,15 +7,15 @@ vim.pack.add({
 })
 
 vim.api.nvim_create_autocmd('PackChanged', {
+  desc = 'Build telescope-fzf-native after install/update',
+  group = vim.api.nvim_create_augroup('telescope_fzf_build', { clear = true }),
   callback = function(ev)
     local name, kind = ev.data.spec.name, ev.data.kind
 
-    if kind ~= 'install' and kind ~= 'update' then
-      return
-    end
-
-    if name == 'telescope-fzf-native.nvim' and vim.fn.executable('make') == 1 then
-      vim.system({ 'make' }, { cwd = ev.data.path }):wait()
+    if name == 'telescope-fzf-native.nvim' and (kind == 'install' or kind == 'update') then
+      if vim.fn.executable('make') == 1 then
+        vim.system({ 'make' }, { cwd = ev.data.path }):wait()
+      end
     end
   end,
 })
@@ -43,8 +43,11 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
     -- The same list as rg/fd flags, so those trees are never walked to begin
     -- with instead of being filtered out after the fact.
     local function exclude_args(flag)
-      return vim.iter(exclude)
-        :map(function(name) return flag .. name end)
+      return vim
+        .iter(exclude)
+        :map(function(name)
+          return flag .. name
+        end)
         :totable()
     end
 
@@ -60,6 +63,17 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
         },
       },
       extensions = {
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = 'smart_case',
+        },
+        frecency = {
+          db_safe_mode = false,
+          db_validate_threshold = 0,
+          show_filter_column = false,
+        },
         ['ui-select'] = { require('telescope.themes').get_dropdown() },
         live_grep_args = {
           auto_quoting = true, -- enable/disable auto-quoting
@@ -132,9 +146,15 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
     })
 
     local ts_live_grep = toggle_hidden({
-      picker = function(opts) require('telescope').extensions.live_grep_args.live_grep_args(opts) end,
+      picker = function(opts)
+        require('telescope').extensions.live_grep_args.live_grep_args(opts)
+      end,
       title = 'Live Grep',
-      opts = { additional_args = function() return exclude_args('--glob=!') end },
+      opts = {
+        additional_args = function()
+          return exclude_args('--glob=!')
+        end,
+      },
       hidden = {
         additional_args = function()
           return vim.list_extend({ '--hidden', '--no-ignore' }, exclude_args('--glob=!'))
