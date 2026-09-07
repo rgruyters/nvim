@@ -16,6 +16,22 @@ vim.api.nvim_create_autocmd('PackChanged', {
 vim.g.fff = {
   lazy_sync = true,
   debug = { enabled = false, show_scores = false },
+  prompt = '❯ ',
+  keymaps = {
+    close = '<Esc>',
+    select = '<CR>',
+    move_up = { '<Up>', '<C-p>' },
+    move_down = { '<Down>', '<C-n>' },
+    preview_scroll_up = '<C-u>',
+    preview_scroll_down = '<C-d>',
+    toggle_select = '<Tab>',
+    send_to_quickfix = '<C-q>',
+    focus_list = '<leader>l',
+    focus_preview = '<leader>p',
+    git = {
+      status_text_color = true,
+    },
+  },
 }
 
 vim.keymap.set('n', '<leader>sf', function()
