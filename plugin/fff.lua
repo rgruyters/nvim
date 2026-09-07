@@ -1,4 +1,4 @@
--- Package name changed from `fff.nvim` to `fff`. If you installed fff.nvim before, clean with `:packdel fff.nvim`
+--- A file search toolkit for humans and AI agents. Really fast.
 vim.pack.add({ 'https://github.com/dmtrKovalenko/fff' })
 
 vim.api.nvim_create_autocmd('PackChanged', {
@@ -34,12 +34,8 @@ vim.g.fff = {
   },
 }
 
-vim.keymap.set('n', '<leader>sf', function()
-  require('fff').find_files()
-end, { desc = 'FFFind files' })
-vim.keymap.set('n', '<leader>sz', function()
-  require('fff').live_grep({ grep = { modes = { 'fuzzy', 'plain' } } })
-end, { desc = 'Live fffuzy grep' })
-vim.keymap.set({ 'n', 'x' }, '<leader>sw', function()
-  require('fff').live_grep_under_cursor()
-end, { desc = 'Search current word / selection' })
+-- stylua: ignore start
+vim.keymap.set('n', '<leader>sf', function() require('fff').find_files() end, { desc = 'FFFind files' })
+vim.keymap.set('n', '<leader>sg', function() require('fff').live_grep({ grep = { modes = { 'fuzzy', 'plain' } } }) end, { desc = 'Live fffuzy grep' })
+vim.keymap.set({ 'n', 'x' }, '<leader>sw', function() require('fff').live_grep_under_cursor() end, { desc = 'Search current word / selection' })
+-- stylua: ignore end
