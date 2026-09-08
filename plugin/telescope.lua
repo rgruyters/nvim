@@ -167,7 +167,7 @@ vim.api.nvim_create_autocmd({ 'VimEnter' }, {
     vim.keymap.set('n', '<leader><space>', builtin.buffers, { desc = 'Buffers' })
     vim.keymap.set('n', '<leader>fr', builtin.oldfiles, { desc = '[F]ind [R]ecent' })
     vim.keymap.set('n', '<leader>fg', ts_live_grep, { desc = '[F]ile [G]rep' })
-    vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = '[F]ind current [W]ord' })
+    vim.keymap.set({'n', 'x'}, '<leader>fw', builtin.grep_string, { desc = '[F]ind current [W]ord' })
     vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[F]ind [D]iagnostics' })
     vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[F]ind [K]eymaps' })
     vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, { desc = '[/] Fuzzy search current buffer' })
